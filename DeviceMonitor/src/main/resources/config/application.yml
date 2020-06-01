@@ -1,0 +1,12 @@
+spring:
+    application:
+       name: DeviceMonitor
+    profiles:
+     active: dev
+
+# web port
+server:
+  port: 8081
+netty:
+  server:
+     port: 11211
