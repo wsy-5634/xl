@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fugu.modules.system.mapper.DeptMapper">
+
+	<!-- 通用查询映射结果 -->
+	<resultMap id="ResultMap" type="com.fugu.modules.system.entity.Dept">
+		<id column="dept_id" property="id" />
+		<result column="name" property="name" />
+        <result column="parent" property="parent" />
+		<result column="order" property="order" />
+        <result column="org_secret" property="orgSecret" />
+        <result column="flag" property="flag" />
+	</resultMap>
+
+    <select id="selectDepts" resultMap="ResultMap">
+       SELECT
+       sr.* FROM  t_sys_dept sr
+       WHERE
+       1 = 1
+       <if test="filter.name!=null and filter.name!=''">
+          AND sr.name LIKE '%${filter.name}%'
+       </if>
+        <if test="filter.id &gt; 0">
+            AND (sr.parent = #{filter.id} OR sr.dept_id = #{filter.id})
+        </if>
+       ORDER BY sr.dept_id ASC
+        <if test="filter.page &gt;= 0 and filter.limit &gt; 0 ">
+            limit ${(filter.page -1 ) * filter.limit},${filter.limit}
+        </if>
+    </select>
+
+
+    <select id="getDeptIdBySecretOrName" resultType="Integer">
+        SELECT
+        sr.dept_id FROM  t_sys_dept sr
+        WHERE
+        1 = 1
+        <if test="filter.orgSecret !=null and filter.orgSecret != ''">
+            AND sr.org_secret = '${filter.orgSecret}'
+        </if>
+        <if test="filter.name !=null and filter.name != ''">
+            AND sr.name = '${filter.name}'
+        </if>
+    </select>
+
+</mapper>

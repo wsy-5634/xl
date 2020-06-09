@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fugu.modules.system.mapper.SysUserFileMapper">
+
+	<!-- 通用查询映射结果 -->
+	<resultMap id="BaseResultMap" type="com.fugu.modules.system.entity.SysUserFile">
+		<id column="id" property="id" />
+		<result column="dept_id" property="deptId" />
+		<result column="user_id" property="userId" />
+		<result column="file_id" property="fileId" />
+		<result column="gmt_create" property="gmtCreate" />
+		<result column="gmt_modified" property="gmtModified" />
+	</resultMap>
+
+
+  <!--    <resultMap id="ResultMap" type="com.fugu.modules.system.dto.output.RoleView" extends="BaseResultMap"></resultMap>-->
+
+    <select id="selectSysUserFiles" resultMap="BaseResultMap">
+        SELECT
+        distinct file_id, id, dept_id, user_id, gmt_create, gmt_modified
+        FROM t_sys_user_file t
+        WHERE
+             1 = 1
+        <if test="filter.id!=null and filter.id!=''">
+            AND t.file_id = #{filter.id}
+        </if>
+        <if test="filter.userId!=null and filter.userId!=''">
+            AND t.user_id = #{filter.userId}
+        </if>
+        <if test="filter.deptIdList!=null and filter.deptIdList.size() > 0">
+            or t.dept_id in
+            <foreach collection="filter.deptIdList" index="index" item="item" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+        ORDER BY id DESC
+    </select>
+
+    <select id="selectSysDeptFilesByPage" resultMap="BaseResultMap">
+        SELECT
+        distinct file_id, id, dept_id, user_id, gmt_create, gmt_modified
+        FROM t_sys_dept_file
+        WHERE
+        1 = 1
+        <if test="filter.id!=null and filter.id!=''">
+            AND file_id = #{filter.id}
+        </if>
+        <if test="filter.userId!=null and filter.userId!=''">
+            AND user_id = #{filter.userId}
+        </if>
+        <if test="filter.deptIdList!=null and filter.deptIdList.size() > 0">
+            or dept_id in
+            <foreach collection="filter.deptIdList" index="index" item="item" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+        <if test="page.current!=null and page.size!=-1 ">
+            limit ${page.current*page.size},#{page.size}
+        </if>
+        ORDER BY id DESC
+    </select>
+
+    <insert id="setAuth" parameterType="com.fugu.modules.system.entity.SysUserFile">
+        insert into t_sys_user_file(file_id, role_id, user_id, gmt_create, gmt_modified) values (#{item.fileId},
+        <if test="filter.deptId!=null and filter.deptId &gt; 0">
+            #{filter.deptId},
+        </if>
+        <if test="filter.userId!=null and filter.userId &gt; 0">
+            #{item.userId},
+        </if>
+        #{item.gmt_create},#{item.gmt_modified})
+    </insert>
+
+    <delete id="deleteUserFileById" parameterType="java.lang.Integer">
+        delete from t_sys_user_file
+        where 1=1
+        <if test="filter!=null and filter &gt; 0">
+            AND file_id = #{filter}
+        </if>
+    </delete>
+
+
+</mapper>

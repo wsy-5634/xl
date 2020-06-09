@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fugu.modules.system.mapper.UserMapper">
+
+	<!-- 通用查询映射结果 -->
+	<resultMap id="BaseResultMap" type="com.fugu.modules.system.entity.User">
+		<id column="id" property="id" />
+		<result column="username" property="username" />
+		<result column="password" property="password" />
+		<result column="pwd" property="pwd" />
+		<result column="nick_name" property="nickName" />
+		<result column="sex" property="sex" />
+		<result column="phone" property="phone" />
+		<result column="email" property="email" />
+		<result column="avatar" property="avatar" />
+		<result column="flag" property="flag" />
+		<result column="salt" property="salt" />
+		<result column="dept_id" property="deptId" />
+		<result column="token" property="token" />
+		<result column="mobile_user_id" property="mobileUserId" />
+		<result column="gmt_create" property="gmtCreate" />
+		<result column="gmt_modified" property="gmtModified" />
+	</resultMap>
+
+
+	<select id="selectUsers" resultMap="BaseResultMap">
+		SELECT
+		*
+		FROM t_sys_user
+		WHERE
+		1 = 1
+		<if test="filter.id!=null and filter.id  &gt; 0">
+			AND	id= #{filter.id}
+		</if>
+		<if test="filter.username!=null and filter.username!=''">
+			AND	username LIKE '%${filter.username}%'
+		</if>
+		<if  test="filter.deptId != 1 and filter.deptId &gt; 0">
+			AND dept_id in (select distinct dept_id from t_sys_dept t where t.dept_id = #{filter.deptId} OR t.parent = #{filter.deptId})
+		</if >
+		ORDER BY id ASC
+		<if test="filter.page &gt;= 0 and filter.limit &gt; 0 ">
+			limit ${(filter.page -1 ) * filter.limit},${filter.limit}
+		</if>
+	</select>
+
+	<select id="count" resultType="Integer">
+		SELECT COUNT(*) FROM t_sys_user
+		WHERE
+		1 = 1
+		<if test="filter.deptId != 1 and filter.deptId &gt; 0">
+			AND dept_id in (select distinct dept_id from t_sys_dept t where t.dept_id = #{filter.deptId} OR t.parent = #{filter.deptId})
+		</if>
+		<if test="filter.username!=null and filter.username!=''">
+			AND	username LIKE '%${filter.username}%'
+		</if>
+	</select>
+
+    <select id="selectUserByUsername" resultType="com.fugu.modules.system.entity.User">
+		SELECT
+			*
+		FROM t_sys_user
+		WHERE 1 = 1
+		<if test="username!=null and username!=''">
+			AND	username = #{username}
+		</if>
+	</select>
+
+    <select id="getUserInfoByToken" resultType="com.fugu.modules.system.entity.User">
+		SELECT
+		*
+		FROM t_sys_user
+		WHERE 1 = 1
+		<if test="token!=null and token!=''">
+			AND	token = #{token}
+		</if>
+	</select>
+
+	<select id="getUserInfoByQQ" resultType="com.fugu.modules.system.entity.User">
+		SELECT
+		*
+		FROM t_sys_user
+		WHERE 1 = 1
+		<if test="qq_oppen_id!=null and qq_oppen_id  &gt; 0">
+			AND	qq_oppen_id = #{qq_oppen_id}
+		</if>
+	</select>
+
+	<select id="getUserInfoByMobileUserId" resultType="com.fugu.modules.system.entity.User">
+		SELECT
+		*
+		FROM t_sys_user
+		WHERE 1 = 1
+		<if test="mobile_user_id!=null and mobile_user_id  &gt; 0">
+			AND	mobile_user_id = #{mobile_user_id}
+		</if>
+	</select>
+
+	<select id="selectUserByMobile" resultType="com.fugu.modules.system.entity.User">
+       SELECT su.* FROM t_sys_user su
+       WHERE su.phone = #{mobile}
+    </select>
+
+	<select id="selectUserByRoleId" resultType="com.fugu.modules.system.entity.User">
+       SELECT su.* FROM t_sys_user su
+       LEFT JOIN t_sys_user_role sur ON su.id=sur.user_id
+       WHERE sur.role_id = #{roleId}
+    </select>
+
+	<select id="selectUsersByDept" resultType="com.fugu.modules.system.entity.User">
+       SELECT su.* FROM t_sys_user su
+       WHERE su.dept_id = #{filter}
+    </select>
+
+
+    <update id="updateUserDept">
+       UPDATE  t_sys_user su set su.dept_id = #{filter.deptId}
+       WHERE su.id = #{filter.id}
+    </update>
+
+</mapper>

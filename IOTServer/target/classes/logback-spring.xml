@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration scan="true">
+    <include resource="org/springframework/boot/logging/logback/base.xml"/>
+
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+       <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+          <!-- 日志文件保存位置 注：前面加/ 表示以盘符为绝对路径  不加则是以项目为相对路径 -->
+<!--          <fileNamePattern>document/log/Study-Api.%d{yyyy-MM-dd}.log</fileNamePattern>-->
+          <fileNamePattern>/root/log/Study-Api.%d{yyyy-MM-dd}.log</fileNamePattern>
+          <maxHistory>30</maxHistory>
+       </rollingPolicy>
+       <encoder>
+          <charset>utf-8</charset>
+          <Pattern>%d %-5level [%thread] %logger{0}: %msg%n</Pattern>
+       </encoder>
+    </appender>
+
+    <logger name="com.fugu" level="#logback.loglevel#"/>
+
+    <logger name="javax.activation" level="ERROR"/>
+    <logger name="javax.mail" level="ERROR"/>
+    <logger name="javax.xml.bind" level="ERROR"/>
+    <logger name="ch.qos.logback" level="ERROR"/>
+    <logger name="com.codahale.metrics" level="ERROR"/>
+    <logger name="com.ryantenney" level="ERROR"/>
+    <logger name="com.sun" level="ERROR"/>
+    <logger name="com.zaxxer" level="ERROR"/>
+    <logger name="io.undertow" level="ERROR"/>
+    <logger name="org.ehcache" level="ERROR"/>
+    <logger name="org.apache" level="ERROR"/>
+    <logger name="org.apache.catalina.startup.DigesterFactory" level="OFF"/>
+    <logger name="org.bson" level="ERROR"/>
+    <logger name="org.elasticsearch" level="ERROR"/>
+    <logger name="org.springframework" level="ERROR"/>
+    <logger name="org.springframework.web" level="ERROR"/>
+    <logger name="org.springframework.security" level="ERROR"/>
+    <logger name="org.springframework.cache" level="ERROR"/>
+    <logger name="org.thymeleaf" level="ERROR"/>
+    <logger name="org.xnio" level="ERROR"/>
+    <logger name="springfox" level="ERROR"/>
+    <logger name="sun.rmi" level="ERROR"/>
+    <logger name="sun.rmi.transport" level="ERROR"/>
+    <logger name="org.mybatis" level="INFO"/>
+    <logger name="tk.mybatis" level="INFO"/>
+    <logger name="com.baomidou" level="ERROR"/>
+    <logger name="org.quartz" level="ERROR"/>
+    <logger name="net.sf.ehcache" level="INFO"/>
+    <logger name="com.netflix" level="ERROR"/>
+    <logger name="org.activiti" level="ERROR"/>
+
+    <contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator">
+       <resetJUL>true</resetJUL>
+    </contextListener>
+
+    <root level="INFO">
+       <appender-ref ref="CONSOLE"/>
+       <appender-ref ref="FILE"/>
+    </root>
+
+</configuration>

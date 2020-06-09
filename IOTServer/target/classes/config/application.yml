@@ -1,0 +1,5 @@
+spring:
+    application:
+       name: Study-Api
+    profiles:
+     active: dev
