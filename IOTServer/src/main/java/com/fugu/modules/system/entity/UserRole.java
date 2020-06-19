@@ -24,24 +24,17 @@ public class UserRole extends BaseEntity<UserRole> {
 
     private static final long serialVersionUID = 1L;
 
-    /**
-     * 主键
-     */
 	@ApiModelProperty(value = "主键")
 	@TableId(value="id", type= IdType.AUTO)
 	private Integer id;
-    /**
-     * 用户ID
-     */
+
 	@ApiModelProperty(value = "用户ID")
 	@TableField("user_id")
-	private Integer userId;
-    /**
-     * 角色ID
-     */
+	private Integer user_id;
+
 	@ApiModelProperty(value = "角色ID")
 	@TableField("role_id")
-	private Integer roleId;
+	private Integer role_id;
 
 	@Override
 	protected Serializable pkVal() {

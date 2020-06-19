@@ -18,8 +18,8 @@ public class UserRoleQueryPara extends BasePageQuery{
     @ApiModelProperty(value = "id")
     private Integer id;
     @ApiModelProperty(value = "角色ID")
-    private Integer roleId;
+    private Integer role_id;
 
     @ApiModelProperty(value = "用户ids")
-    private String userIds;//插入时使用
+    private String user_id;//插入时使用
 }

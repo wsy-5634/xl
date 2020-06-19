@@ -43,16 +43,16 @@ public class UserRoleServiceImpl extends ServiceImpl<UserRoleMapper, UserRole> i
 
     @Override
     public void saveUserRole(UserRoleQueryPara para) {
-       Integer roleId = para.getRoleId();
-       String userIds = para.getUserIds();
+       Integer roleId = para.getRole_id();
+       String userIds = para.getUser_id();
        userRoleMapper.deleteByRoleId( roleId );
        if( StringUtils.isNotBlank( userIds ) ){
           String[] userIdArrays = userIds.split( "," );
           if( userIdArrays.length > 0 ){
               for (String userId : userIdArrays) {
                  UserRole userRole = new UserRole();
-                 userRole.setRoleId( roleId );
-                 userRole.setUserId( Integer.parseInt( userId ) );
+                 userRole.setRole_id( roleId );
+                 userRole.setUser_id( Integer.parseInt( userId ) );
                  userRoleMapper.insert( userRole );
               }
           }

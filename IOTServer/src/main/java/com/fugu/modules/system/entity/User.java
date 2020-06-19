@@ -18,6 +18,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * <p>  系统管理-用户基础信息表 </p>
@@ -25,14 +26,14 @@ import java.io.Serializable;
  * @author: fugu
  * @date: 2019-08-19
  */
+
 @Data
 @ApiModel(description = "系统管理-用户基础信息表")
 @TableName("t_sys_user")
 // 对注解分组的排序，可以通脱他判断先后顺序
 //@GroupSequence({FieldRepeatValidator.class,NotNull.class, Default.class})
-@FieldRepeatValidator(field = "username", message = "账号重复，请重新输入账号！")
+@FieldRepeatValidator(field = "loginname", message = "账号重复，请重新输入账号！")
 public class User extends BaseEntity<User> {
-
     private static final long serialVersionUID = 1L;
 
     /**
@@ -46,11 +47,11 @@ public class User extends BaseEntity<User> {
      * 账号
      */
 	@ApiModelProperty(value = "账号")
-	@TableField("username")
+	@TableField("loginname")
 	@NotBlank(message = "账号不能为空", groups = {Create.class, Update.class})
 	@Length(max = 100, message = "账号不能超过100个字符")
 	@Pattern(regexp = "^[\\u4E00-\\u9FA5A-Za-z0-9\\*]*$", message = "账号限制：最多100字符，包含文字、字母和数字")
-	private String username;
+	private String loginname;
     /**
      * 登录密码
      */
@@ -69,10 +70,10 @@ public class User extends BaseEntity<User> {
     /**
      * 昵称
      */
-	@ApiModelProperty(value = "昵称")
-	@TableField("nick_name")
+	@ApiModelProperty(value = "真实姓名")
+	@TableField("name")
 	@NotBlank(message = "昵称不能为空")
-	private String nickName;
+	private String name;
     /**
      * 性别 0:男 1:女
      */
@@ -100,12 +101,18 @@ public class User extends BaseEntity<User> {
 	@ApiModelProperty(value = "头像")
 	@TableField("avatar")
 	private String avatar;
+
     /**
      * 状态
      */
-	@ApiModelProperty(value = "状态")
+	@ApiModelProperty(value = "是否是管理员")
 	@TableField("flag")
 	private String flag;
+
+//	@ApiModelProperty(value = "是否启用")
+//	@TableField("states")
+//	@NotBlank(message = "是否启用不能为空")
+//	private String states;
     /**
      * 盐值
      */
@@ -119,10 +126,30 @@ public class User extends BaseEntity<User> {
 	@TableField("token")
 	private String token;
 
+	@ApiModelProperty(value = "角色ID")
+	@NotBlank(message = "角色ID不能为空")
+	@TableField("roleid")
+	private int roleid;
+
+	@ApiModelProperty(value = "用户权限")
+	@TableField("roleList")
+	@NotBlank(message = "权限不能为空")
+	private String roleList;
+
 
 	@ApiModelProperty(value = "部门ID")
 	@TableField("dept_id")
 	private int deptId;
+
+	@ApiModelProperty(value = "最后登录时间")
+	@TableField("lastLoginTime")
+	@NotBlank(message = "最后登录时间不能为空")
+	private String lastLoginTime;
+
+	@ApiModelProperty(value = "添加时间")
+	@TableField("addtime")
+	@NotBlank(message = "添加时间不能为空")
+	private String addtime;
 
 	@ApiModelProperty(value = "QQ 第三方登录Oppen_ID唯一标识")
 	@TableField("qq_oppen_id")
@@ -131,6 +158,8 @@ public class User extends BaseEntity<User> {
 	@ApiModelProperty(value = "移动办公云 第三方登录Oppen_ID唯一标识")
 	@TableField("mobile_user_id")
 	private String mobileUserId;
+
+
 
 //	@NotBlank(message = "身份证号不能为空")
 //	@IdentityCardNumber(message = "身份证信息有误,请核对后提交")

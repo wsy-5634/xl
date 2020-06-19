@@ -12,14 +12,16 @@ import com.fugu.modules.system.entity.User;
  */
 public interface ILoginService extends IService<User> {
 
-
-    User getLoginedUser(String username);
+    //判断姓名是否为空，不为空则返回user对象
+    User getLoginedUser(String loginname);
 
     User getLoginedUserByToken(String token);
 
     User getLoginedUserById(int userId);
 
-    User getLoginedUserByMobile(String mobile);
+    User getLoginedUserByMobile(String phone);
 
     String insertUser(User user, String deptName, String deptSecret, String role);
+
+
 }

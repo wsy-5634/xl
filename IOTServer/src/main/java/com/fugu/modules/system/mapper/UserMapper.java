@@ -1,10 +1,12 @@
 package com.fugu.modules.system.mapper;
 
 import com.baomidou.mybatisplus.mapper.BaseMapper;
-import com.baomidou.mybatisplus.plugins.pagination.Pagination;
 import com.fugu.modules.system.dto.input.UserQueryPara;
 import com.fugu.modules.system.entity.User;
 import org.apache.ibatis.annotations.Param;
+import tk.mybatis.mapper.common.ExampleMapper;
+import tk.mybatis.mapper.common.Marker;
+import tk.mybatis.mapper.common.RowBoundsMapper;
 
 import java.util.List;
 
@@ -14,15 +16,13 @@ import java.util.List;
  * @author: fugu
  * @date: 2019-08-19
  */
-public interface UserMapper extends BaseMapper<User> {
-
+public interface UserMapper extends BaseMapper<User>, ExampleMapper<User> {
     /**
      * 查询总数
      * @param filter
      * @return
      */
     int count(@Param("filter") UserQueryPara filter);
-
     /**
      * 列表
      *
@@ -30,14 +30,18 @@ public interface UserMapper extends BaseMapper<User> {
      * @return
      */
     List<User> selectUsers(@Param("filter") UserQueryPara filter);
-
     /**
      * 通过账号查找用户信息
      *
      * @param username:
      * @return: com.fugu.modules.system.entity.User
      */
-    User selectUserByUsername(@Param("username") String username);
+    User selectUserByUsername(@Param("loginname") String username);
+
+    /**
+     * 批量删除
+     */
+    boolean deleteBatches(@Param("filter") Integer[] ids);
 
     /**
      * 通过手机号查找用户信息
@@ -54,8 +58,6 @@ public interface UserMapper extends BaseMapper<User> {
      * @return: com.fugu.modules.system.entity.User
      */
     User getUserInfoByToken(@Param("token") String token);
-
-
     /**
      * 通过移动云办公ID查找用户信息
      *
@@ -63,9 +65,6 @@ public interface UserMapper extends BaseMapper<User> {
      * @return: com.fugu.modules.system.entity.User
      */
     User getUserInfoByMobileUserId(@Param("mobile_user_id") String userId);
-
-
-
     /**
      * 通过qq_oppen_id查找用户信息
      *
@@ -73,7 +72,6 @@ public interface UserMapper extends BaseMapper<User> {
      * @return: com.fugu.modules.system.entity.User
      */
     User getUserInfoByQQ(@Param("qq_oppen_id") String qqOppenId);
-
     /**
      * 通过角色ID查询用户集合
      *

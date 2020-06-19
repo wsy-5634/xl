@@ -38,16 +38,15 @@ public class RoleMenuServiceImpl extends ServiceImpl<RoleMenuMapper, RoleMenu> i
 
     @Override
     public void saveRoleMenu(RoleMenuQueryPara para) {
-       Integer roleId = para.getRoleId();
-       String menuIds = para.getMenuIds();
+       Integer roleId = para.getRole_id();
+       String menuIds = para.getMenu_id();
        roleMenuMapper.deleteByRoleId( roleId );
        if(StringUtils.isNotBlank( menuIds )){
           String[] menuIdArrays = menuIds.split( "," );
           if(menuIdArrays.length > 0){
               for (String menuId : menuIdArrays) {
                  RoleMenu roleMenu = new RoleMenu();
-                 roleMenu.setRoleId( roleId );
-                 roleMenu.setMenuId( Integer.parseInt( menuId ) );
+                 roleMenu.setMenu_id( Integer.parseInt( menuId ) );
                  roleMenuMapper.insert( roleMenu );
               }
           }

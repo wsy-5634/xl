@@ -22,8 +22,8 @@ public abstract class BaseEntity<T extends Model> extends BaseAddEntity<T> {
     /**
      * 修改时间 - 过去分词表示被动更新
      */
-    @ApiModelProperty(value = "修改时间")
-    @TableField(value = "gmt_modified", fill = FieldFill.INSERT_UPDATE)
+    @ApiModelProperty(value = "修改时间/更新时间")
+    @TableField(value = "gmtModified", fill = FieldFill.INSERT_UPDATE)
 //    @Future(message = "修改时间必须是将来时间")
     private Date gmtModified;
     /**

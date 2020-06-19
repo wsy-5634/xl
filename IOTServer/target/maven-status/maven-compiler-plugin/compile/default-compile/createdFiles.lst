@@ -3,6 +3,7 @@ com\fugu\modules\system\dto\input\MenuQueryPara.class
 com\fugu\modules\system\api\SysDeptController.class
 com\fugu\modules\system\api\SysUserController.class
 com\fugu\modules\shiro\utils\SHA256Util.class
+META-INF\spring-configuration-metadata.json
 com\fugu\modules\shiro\filter\MyPermissionsAuthorizationFilter.class
 com\fugu\modules\system\service\IUserService.class
 com\fugu\modules\common\interceptor\SystemLogAspect.class
@@ -53,6 +54,7 @@ com\fugu\modules\common\api\BaseController.class
 com\fugu\modules\common\validator\IdCardValidatorUtils.class
 com\fugu\modules\system\service\IUserRoleService.class
 com\fugu\config\MybatisPlusConfig.class
+com\fugu\modules\common\entity\FebsConstant.class
 com\fugu\modules\system\entity\Dept.class
 com\fugu\modules\common\enumeration\EnumDatabaseType.class
 com\fugu\Application.class
@@ -96,6 +98,7 @@ com\fugu\modules\common\validator\IdentityCardNumber.class
 com\fugu\modules\system\dto\input\UserRoleQueryPara.class
 com\fugu\modules\common\annotation\IgnoreToken.class
 com\fugu\modules\system\dto\input\LoginQueryPara.class
+com\fugu\modules\common\exception\RedisConnectException.class
 com\fugu\modules\system\api\SysUserRoleController.class
 com\fugu\utils\ResponseUtils.class
 com\fugu\modules\system\service\IRoleService.class
@@ -104,6 +107,7 @@ com\fugu\modules\system\mapper\MenuMapper.class
 com\fugu\modules\system\mapper\LogMapper.class
 com\fugu\modules\system\dto\input\SysUserFileInput.class
 com\fugu\modules\system\entity\Menu.class
+com\fugu\modules\common\entity\PageResult.class
 com\fugu\modules\system\entity\SysLog.class
 com\fugu\modules\common\dto\input\BasePageQuery.class
 com\fugu\utils\FastJsonHttpMessageConverterEx.class
@@ -119,6 +123,8 @@ com\fugu\config\CorsConfig.class
 com\fugu\config\WebConfig.class
 com\fugu\modules\system\dto\input\RoleQueryPara.class
 com\fugu\modules\shiro\ShiroSessionIdGenerator.class
+com\fugu\utils\VerifyCode.class
+com\fugu\modules\system\util\SpringContextUtil.class
 com\fugu\modules\system\dto\output\MenuTreeNode.class
 com\fugu\modules\common\dto\input\BaseInput.class
 com\fugu\modules\common\validator\FieldRepeatValidatorClass.class

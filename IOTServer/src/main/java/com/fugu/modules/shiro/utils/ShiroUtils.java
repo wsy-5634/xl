@@ -94,7 +94,7 @@ public class ShiroUtils {
           if (sysUserEntity == null) {
               continue;
           }
-          if (Objects.equals(sysUserEntity.getUsername(), username)) {
+          if (Objects.equals(sysUserEntity.getLoginname(), username)) {
               session=sessionInfo;
               // 清除该用户以前登录时保存的session，强制退出  -> 单用户登录处理
               if (isRemoveSession) {
@@ -135,7 +135,7 @@ public class ShiroUtils {
           if (user == null) {
               continue;
           }
-          if (Objects.equals(user.getUsername(), username)) {
+          if (Objects.equals(user.getLoginname(), username)) {
               return session;
           }
        }

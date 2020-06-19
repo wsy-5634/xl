@@ -6,10 +6,10 @@ import com.baomidou.mybatisplus.plugins.Page;
 import com.fugu.modules.common.api.BaseController;
 import com.fugu.modules.shiro.service.ShiroService;
 import com.fugu.modules.system.dto.input.MenuQueryPara;
+import com.fugu.modules.system.dto.output.MenuTreeNode;
 import com.fugu.modules.system.entity.Menu;
 import com.google.common.collect.Lists;
 import com.fugu.modules.common.dto.output.ApiResult;
-import com.fugu.modules.system.dto.output.MenuTreeNode;
 import com.fugu.modules.system.service.IMenuService;
 import com.fugu.utils.TreeBuilder;
 import io.swagger.annotations.Api;
@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -47,26 +46,26 @@ public class SysMenuController extends BaseController {
     @Autowired
     private ShiroService shiroService;
 
-    @PostMapping(value = "/treeMenu", produces = "application/json;charset=utf-8")
-    @ApiOperation(value = "获取菜单树", httpMethod = "POST", response = ApiResult.class)
-    public ApiResult treeMenu() {
-       List<Menu> list = menuService.listTreeMenu();
-       List<MenuTreeNode> menuTreeNodeList = Lists.newArrayList();
-       if( list != null && !list.isEmpty() ){
-          list.forEach(temp->{
-              MenuTreeNode menuTreeNode = new MenuTreeNode();
-              BeanUtil.copyProperties( temp, menuTreeNode);
-              menuTreeNodeList.add( menuTreeNode );
-          });
-       }
-       List<MenuTreeNode> menuTreeNodeList2 = TreeBuilder.buildMenuTree( menuTreeNodeList );
-
-       menuTreeNodeList2.stream().sorted( Comparator.comparing( MenuTreeNode::getSortNo ) ).collect( Collectors.toList());
-       JSONObject json = new JSONObject();
-       json.put( "menuList", list);
-       json.put( "menuTree", menuTreeNodeList2);
-       return ApiResult.ok("获取菜单树成功", json);
-    }
+//    @PostMapping(value = "/treeMenu", produces = "application/json;charset=utf-8")
+//    @ApiOperation(value = "获取菜单树", httpMethod = "POST", response = ApiResult.class)
+//    public ApiResult treeMenu() {
+//       List<Menu> list = menuService.listTreeMenu();
+//       List<MenuTreeNode> menuTreeNodeList = Lists.newArrayList();
+//       if( list != null && !list.isEmpty() ){
+//          list.forEach(temp->{
+//              MenuTreeNode menuTreeNode = new MenuTreeNode();
+//              BeanUtil.copyProperties( temp, menuTreeNode);
+//              menuTreeNodeList.add( menuTreeNode );
+//          });
+//       }
+//       List<MenuTreeNode> menuTreeNodeList2 = TreeBuilder.buildMenuTree( menuTreeNodeList );
+//
+//       menuTreeNodeList2.stream().sorted( Comparator.comparing( MenuTreeNode::getSortNo ) ).collect( Collectors.toList());
+//       JSONObject json = new JSONObject();
+//       json.put( "menuList", list);
+//       json.put( "menuTree", menuTreeNodeList2);
+//       return ApiResult.ok("获取菜单树成功", json);
+//    }
 
     @PostMapping(value = "/save", produces = "application/json;charset=utf-8")
     @ApiOperation(value = "保存菜单 ", httpMethod = "POST", response = ApiResult.class)

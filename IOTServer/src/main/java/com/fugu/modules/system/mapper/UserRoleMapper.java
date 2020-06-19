@@ -16,10 +16,8 @@ import java.util.List;
  * @date : 2019-08-20
  */
 public interface UserRoleMapper extends BaseMapper<UserRole> {
-
     /**
      * 列表
-     *
      * @param filter
      * @return
      */

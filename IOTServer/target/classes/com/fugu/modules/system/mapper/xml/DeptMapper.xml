@@ -4,12 +4,12 @@
 
 	<!-- 通用查询映射结果 -->
 	<resultMap id="ResultMap" type="com.fugu.modules.system.entity.Dept">
-		<id column="dept_id" property="id" />
+		<id column="id" property="id" />
 		<result column="name" property="name" />
-        <result column="parent" property="parent" />
-		<result column="order" property="order" />
-        <result column="org_secret" property="orgSecret" />
-        <result column="flag" property="flag" />
+        <result column="parent_id" property="parent_id" />
+		<!--<result column="order" property="order" />-->
+        <!--<result column="org_secret" property="orgSecret" />-->
+        <!--<result column="flag" property="flag" />-->
 	</resultMap>
 
     <select id="selectDepts" resultMap="ResultMap">
@@ -21,7 +21,7 @@
           AND sr.name LIKE '%${filter.name}%'
        </if>
         <if test="filter.id &gt; 0">
-            AND (sr.parent = #{filter.id} OR sr.dept_id = #{filter.id})
+            AND (sr.parent_id = #{filter.id} OR sr.dept_id = #{filter.id})
         </if>
        ORDER BY sr.dept_id ASC
         <if test="filter.page &gt;= 0 and filter.limit &gt; 0 ">
@@ -32,12 +32,12 @@
 
     <select id="getDeptIdBySecretOrName" resultType="Integer">
         SELECT
-        sr.dept_id FROM  t_sys_dept sr
+        sr.id FROM  t_sys_dept sr
         WHERE
         1 = 1
-        <if test="filter.orgSecret !=null and filter.orgSecret != ''">
-            AND sr.org_secret = '${filter.orgSecret}'
-        </if>
+        <!--<if test="filter.orgSecret !=null and filter.orgSecret != ''">-->
+            <!--AND sr.org_secret = '${filter.orgSecret}'-->
+        <!--</if>-->
         <if test="filter.name !=null and filter.name != ''">
             AND sr.name = '${filter.name}'
         </if>

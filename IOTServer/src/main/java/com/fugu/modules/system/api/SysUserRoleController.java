@@ -44,7 +44,7 @@ public class SysUserRoleController extends BaseController {
     }
 
     @PostMapping(value = "/saveOrUpdate", produces = "application/json;charset=utf-8")
-    @ApiOperation(value = "保存或更新系统管理 - 用户角色关联表 ", httpMethod = "POST", response = ApiResult.class)
+    @ApiOperation(value = "更新系统管理 - 用户角色关联表(为空时直接新增) ", httpMethod = "POST", response = ApiResult.class)
     public ApiResult saveOrUpdate(@RequestBody UserRole input) {
        Integer id = userRoleService.save(input);
        return ApiResult.ok("保存系统管理 - 用户角色关联表 成功", id);
@@ -69,7 +69,7 @@ public class SysUserRoleController extends BaseController {
     public ApiResult saveUserRole(@RequestBody UserRoleQueryPara input) {
        userRoleService.saveUserRole( input );
        // 更新shiro权限
-       shiroService.updatePermissionByRoleId(input.getRoleId(), false);
+       shiroService.updatePermissionByRoleId(input.getRole_id(), false);
        return ApiResult.ok("保存角色相关联用户成功");
     }
 

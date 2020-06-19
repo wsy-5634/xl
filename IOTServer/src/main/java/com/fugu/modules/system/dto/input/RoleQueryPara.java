@@ -17,6 +17,22 @@ import lombok.Data;
 public class RoleQueryPara extends BasePageQuery {
     @ApiModelProperty(value = "角色id")
     private Integer id;
+
     @ApiModelProperty(value = "角色名称")
     private String name;
+
+    @ApiModelProperty(value = "角色编码")
+    private String code;
+
+    @ApiModelProperty(value = "角色描述")
+    private String describe;
+
+    @ApiModelProperty(value = "用户数量")
+    private String userNum;
+
+//    @ApiModelProperty(value = "是否启用")
+//    private Integer states;
+
+    @ApiModelProperty(value = "添加时间")
+    private String addtime;
 }

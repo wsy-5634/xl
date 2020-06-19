@@ -18,10 +18,16 @@ import java.util.Date;
 @ApiModel(description = "用户登录-- 查询参数")
 public class LoginQueryPara extends UserQueryPara{
 
-    @ApiModelProperty(value = "appID")
+    @ApiModelProperty(value = "appId")
     private String appId;
 
-    @ApiModelProperty(value = "appSecret")
+    @ApiModelProperty(value = "秘钥")
     private String appSecret;
+
+    @ApiModelProperty(value = "数字身份")
+    private String OpenId;
+
+    @ApiModelProperty(value = "动态口令")
+    private String AccessToken;
 
 }

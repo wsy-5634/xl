@@ -1,9 +1,18 @@
 package com.fugu.modules.system.dto.input;
 
+import com.baomidou.mybatisplus.annotations.TableField;
 import com.fugu.modules.common.dto.input.BasePageQuery;
+import com.fugu.modules.common.validator.Create;
+import com.fugu.modules.common.validator.Update;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import org.hibernate.validator.constraints.Length;
+
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+import java.util.List;
 
 /**
  * 系统管理-用户基础信息表查询参数
@@ -20,32 +29,64 @@ public class UserQueryPara extends BasePageQuery{
     private Integer id;
 
     @ApiModelProperty(value = "账号")
-    private String username;
+    private String loginname;
 
-    @ApiModelProperty(value = "手机")
-    private String mobile;
-
-    @ApiModelProperty(value = "密码")
+    @ApiModelProperty(value = "登录密码")
     private String password;
 
-    @ApiModelProperty(value = "QQ第三方登录授权认证成功后的openID")
-    private String openId;
+    /**
+     * 明文密码 - QQ第三方授权登录时用
+     */
+    @ApiModelProperty(value = "明文密码")
+    private String pwd;
 
-    @ApiModelProperty(value = "移动办公云第三方登录授权认证成功后的openID")
-    private String userId;
+    @ApiModelProperty(value = "真实姓名")
+    private String name;
 
-    @ApiModelProperty(value = "第三方登录授权认证成功后的token")
-    private String accessToken;
+    @ApiModelProperty(value = "性别 0:男 1:女")
+    private String sex;
+
+    @ApiModelProperty(value = "手机号码")
+    private String phone;
+
+    @ApiModelProperty(value = "邮箱")
+    private String email;
+
+    @ApiModelProperty(value = "头像")
+    private String avatar;
+
+    @ApiModelProperty(value = "是否是管理员")
+    private String flag;
+
+//    @ApiModelProperty(value = "是否启用")
+//    private String states;
+
+    @ApiModelProperty(value = "盐值")
+    private String salt;
+
+    @ApiModelProperty(value = "token")
+    private String token;
 
     @ApiModelProperty(value = "角色ID")
-    private int roleId;
+    private int roleid;
+
+    @ApiModelProperty(value = "用户权限")
+    private String roleList;
+
 
     @ApiModelProperty(value = "部门ID")
     private int deptId;
 
-    @ApiModelProperty(value = "部门密钥")
-    private  String deptSecret;
+    @ApiModelProperty(value = "最后登录时间")
+    private String lastLoginTime;
 
-    @ApiModelProperty(value = "是否是管理员")
-    private int flag;
+    @ApiModelProperty(value = "添加时间")
+    private String addtime;
+
+    @ApiModelProperty(value = "QQ 第三方登录Oppen_ID唯一标识")
+    private String qqOppenId;
+
+    @ApiModelProperty(value = "移动办公云 第三方登录Oppen_ID唯一标识")
+    private String mobileUserId;
+
 }

@@ -5,8 +5,8 @@
 	<!-- 通用查询映射结果 -->
 	<resultMap id="BaseResultMap" type="com.fugu.modules.system.entity.RoleMenu">
 		<id column="id" property="id" />
-		<result column="role_id" property="roleId" />
-		<result column="menu_id" property="menuId" />
+		<result column="role_id" property="role_id" />
+		<result column="menu_id" property="menu_id" />
        <result column="gmt_create" property="gmtCreate" />
        <result column="gmt_modified" property="gmtModified" />
 	</resultMap>
@@ -22,8 +22,8 @@
        <if test="filter.id!=null and filter.id!=''">
           AND	id= #{filter.id}
        </if>
-       <if test="filter.roleId!=null and filter.roleId!=''">
-          AND	role_id= #{filter.roleId}
+       <if test="filter.role_id!=null and filter.role_id!=''">
+          AND	role_id= #{filter.role_id}
        </if>
        ORDER BY id DESC
     </select>
@@ -31,7 +31,7 @@
     <delete id="deleteByRoleId">
        DELETE FROM t_sys_role_menu
        WHERE 1=1
-       <if test="roleId!=null">
+       <if test="role_id!=null">
           AND role_id = #{roleId}
        </if>
     </delete>

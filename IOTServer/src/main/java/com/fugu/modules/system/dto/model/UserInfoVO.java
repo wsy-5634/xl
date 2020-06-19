@@ -10,16 +10,9 @@ import java.util.Set;
 
 @Data
 public class UserInfoVO implements Serializable {
-
     private int id;
-
-    /**
-     * 账号
-     */
-    private String username;
-
-    private String nickName;
-
+    private String loginname;
+    private String name;
     /**
      * 性别：0是男 1是女
      */
@@ -41,7 +34,7 @@ public class UserInfoVO implements Serializable {
     private String avatar;
 
     /**
-     * 状态
+     * 是否是管理员
      */
     private String flag;
 

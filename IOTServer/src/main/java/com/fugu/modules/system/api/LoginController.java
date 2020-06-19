@@ -1,10 +1,13 @@
 package com.fugu.modules.system.api;
 
+
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.fugu.modules.common.api.BaseController;
+import com.fugu.modules.shiro.utils.MD5Util;
 import com.fugu.modules.system.dto.input.LoginQueryPara;
 import com.fugu.modules.system.service.ILoginService;
+import com.fugu.modules.system.service.IUserService;
 import com.fugu.modules.system.util.HttpRequestUtils;
 import com.fugu.config.Constants;
 import com.fugu.modules.common.dto.output.ApiResult;
@@ -22,9 +25,11 @@ import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.validation.constraints.NotBlank;
 import java.util.HashMap;
 import java.util.Map;
-
 
 /**
  *  <p> 授权模块 </p>
@@ -38,74 +43,86 @@ import java.util.Map;
 @Api(description = "系统登录接口")
 @Slf4j
 public class LoginController extends BaseController {
-
     @Autowired
     ILoginService loginService;
-
-    @PostMapping("/sys/login")
-    @ApiOperation(value = "登录管理后台系统", httpMethod = "POST", response = ApiResult.class, notes = "登录管理后台系统")
-    public ApiResult sysLogin(@RequestBody UserQueryPara para) throws Exception {
-        // 账号登录
-        if (StringUtils.isBlank(para.getUsername()) || StringUtils.isBlank(para.getPassword())) {
-            return ApiResult.fail("参数不全");
-        }
-
-        User user = loginService.getLoginedUser(para.getUsername());
-        if (user == null || !user.getFlag().equalsIgnoreCase("1")) {//判断用户是不是管理员和账户状态
-            return ApiResult.fail("该用户不能登陆后台管理系统");
-        }
-
-        return loginWithUserName(para.getUsername(), para.getPassword(), user.getToken());
-    }
+    @Autowired
+    IUserService userService;
+    /**
+     * 管理员登录
+     * 用户名密码不为空，判断是否是管理员身份
+     */
+//    @PostMapping("/sys/login")
+// //   @ApiOperation(value = "登录管理后台系统", httpMethod = "POST", response = ApiResult.class, notes = "登录管理后台系统")
+//    public ApiResult sysLogin(@RequestBody UserQueryPara para) throws Exception {
+//        // 账号登录
+//        if (StringUtils.isBlank(para.getLoginname()) || StringUtils.isBlank(para.getPassword())) {
+//            return ApiResult.fail("请输入正确的账号和密码");
+//        }
+//        User user = loginService.getLoginedUser(para.getLoginname());
+//        //判断用户是不是管理员和账户状态，1是管理员
+//        if (user == null || !user.getFlag().equalsIgnoreCase("1")) {
+//            return ApiResult.fail("该用户不能登陆后台管理系统");
+//        }
+//        return loginWithUserName(para.getLoginname(), para.getPassword());
+//    }
 
     @PostMapping("/login")
     @ApiOperation(value = "登录系统", httpMethod = "POST", response = ApiResult.class, notes = "登录系统")
-    public ApiResult login(@RequestBody LoginQueryPara para) throws Exception {
-        String openID = para.getOpenId();
-        String accessToken = para.getAccessToken();
+    public ApiResult login(@RequestParam("loginname") String loginname,
+                           @RequestParam("password") String password) throws Exception {
+//        String openID = para.getOpenId();
+//        String accessToken = para.getAccessToken();
 
-        log.info("----------------------------------------------  用户开始登录！  ------------------------------");
-
-        if (StringUtils.isNotBlank(openID) && StringUtils.isNotBlank(accessToken)) {
-            // QQ 第三方登录
+//        //从session中获取正确的验证码
+//        String sessionCode = (String) request.getSession().getAttribute("session_vcode");
+//        if(!verifyCode.equalsIgnoreCase(sessionCode)) {  // 进行比较
+//            request.setAttribute("msg", "验证码错误！");
+//            request.getRequestDispatcher(request.getContextPath() + "/api/auth/login.jsp").forward(request, response);
+//            return null;
+//        }
+            log.info("----------------------------------------------  用户开始登录！  ------------------------------");
+//        if (StringUtils.isNotBlank(openID) && StringUtils.isNotBlank(accessToken)) {
+//             QQ 第三方登录
 //            UserQueryPara userQueryPara = qqLogin(openID, accessToken);
 //            if (userQueryPara == null) {
 //                return ApiResult.fail("账号异常,请联系管理员!");
 //            }
 //            para = userQueryPara;
-        } else if (StringUtils.isNotBlank(para.getToken())) {
-//            logout(para.getToken());
-
-            para = mobileCloudLogin(para.getToken(), para.getAppId(), para.getAppSecret());
-            if (para == null) {
-                return ApiResult.fail("登陆令牌失效，请重试！");
-            }
-        }
-
+//        } else if (StringUtils.isNotBlank(para.getToken())) {
+//            //logout(para.getToken());
+//
+//            para = mobileCloudLogin(para.getToken(), para.getAppId(), para.getAppSecret());
+//            if (para == null) {
+//                return ApiResult.fail("登陆令牌失效，请重试！");
+//            }
+//          }
         // 账号登录
-        if (StringUtils.isBlank(para.getUsername()) || StringUtils.isBlank(para.getPassword())) {
-            return ApiResult.fail("参数不全");
+        if (StringUtils.isBlank(loginname) || StringUtils.isBlank(password)) {
+            return ApiResult.fail("请输入正确的账号和密码");
         }
-
-        return loginWithUserName(para.getUsername(), para.getPassword(), "");
+        return loginWithUserName(loginname,password);
     }
 
-    private ApiResult loginWithUserName(String username, String password, String token) {
+
+    private ApiResult loginWithUserName(String loginname, String password){ //}, String token) {
         // 拿到当前用户(可能还是游客，没有登录)
         Subject currentUser = SecurityUtils.getSubject();
         // 如果这个用户没有登录,进行登录功能
-        if (!currentUser.isAuthenticated() || TextUtils.isEmpty(token)) {
+        if (!currentUser.isAuthenticated()){// || TextUtils.isEmpty(token)) {
             try {
+                password = MD5Util.encrypt(loginname.toLowerCase(), password);
                 // 验证身份和登陆
-                UsernamePasswordToken userPwToken = new UsernamePasswordToken(username, password);
+                UsernamePasswordToken token = new UsernamePasswordToken(loginname, password);
                 // String token = MD5Utils.encrypt( String.valueOf( System.currentTimeMillis() ) );
-                currentUser.login(userPwToken);
 
+                currentUser.login(token);
+                User user = userService.findUserByname(loginname);
                 JSONObject json = new JSONObject();
-                json.put("token", ShiroUtils.getSession().getId().toString());
+                json.put("flag",user.getFlag());
+//                json.put("token", ShiroUtils.getSession().getId().toString());
 
                 log.info("----------------------------------------------  登录成功！  ------------------------------");
-                return ApiResult.ok("登录成功", json);
+                return ApiResult.ok("登录成功",json);
             } catch (UnknownAccountException e) {
                 return ApiResult.fail("账号不存在!");
             } catch (IncorrectCredentialsException e) {
@@ -131,7 +148,6 @@ public class LoginController extends BaseController {
         Map<String, String> headers = new HashMap<>();
         headers.put("appId", appId);
         headers.put("appSecret", appSecret);
-
         //请求AccessToken
         byte[] returnBytes = HttpRequestUtils.doPostOrGet(Constants.UBAN_REQUEST_GET_ACCESSTOKEN_URL + "?flags=1", HttpRequestUtils.HTTP_GET, headers);
         if (returnBytes == null) {
@@ -143,8 +159,6 @@ public class LoginController extends BaseController {
         if (jsonObject == null) {
             return null;
         }
-
-
         //Uban登录
         headers.clear();
         headers.put("accessToken", jsonObject.getString("accessToken"));
@@ -176,17 +190,17 @@ public class LoginController extends BaseController {
         User user = loginService.getLoginedUserByMobile(mobile);
         if ( user == null) {//用户没有注册
             user = new User();
-            user.setUsername(mobile);
-            user.setNickName(name);
+            user.setLoginname(mobile);
+            user.setName(name);
             user.setPhone(mobile);
 
             user.setMobileUserId(userId);
             String password = loginService.insertUser(user, deptName, deptSecret, role);
 
-            result.setUsername(user.getUsername());
+            result.setLoginname(user.getLoginname());
             result.setPassword(password);
         } else {
-            result.setUsername(user.getUsername());
+            result.setLoginname(user.getLoginname());
             result.setPassword(user.getPwd());
         }
         return result;
@@ -250,7 +264,7 @@ public class LoginController extends BaseController {
         User user = loginService.getLoginedUserByToken(token);
         if (user != null) {
             ShiroUtils.logout();
-            ShiroUtils.deleteCache(user.getUsername(), true);
+            ShiroUtils.deleteCache(user.getLoginname(), true);
             return ApiResult.ok("退出系统成功");
         }
         return  ApiResult.fail("退出失败！");
@@ -264,7 +278,7 @@ public class LoginController extends BaseController {
     /**
      * 未登录
      */
-    @RequestMapping("/unLogin")
+    @PostMapping("/unLogin")
     @ApiOperation(value = "未登录", response = ApiResult.class, notes = "未登录")
     public ApiResult unLogin(){
        return ApiResult.fail(401, "未登录");
@@ -273,8 +287,8 @@ public class LoginController extends BaseController {
     /**
      * 未授权
      */
-    @RequestMapping("/unauth")
-    @ApiOperation(value = "未授权", response = ApiResult.class, notes = "未授权")
+    @PostMapping("/unauth")
+//    @ApiOperation(value = "未授权", response = ApiResult.class, notes = "未授权")
     public ApiResult unauth(){
         return ApiResult.ok(500,"未授权");
     }
@@ -282,8 +296,8 @@ public class LoginController extends BaseController {
     /**
      * token过期
      */
-    @RequestMapping("/tokenExpired")
-    @ApiOperation(value = "token过期", response = ApiResult.class, notes = "token过期")
+    @PostMapping("/tokenExpired")
+//    @ApiOperation(value = "token过期", response = ApiResult.class, notes = "token过期")
     public ApiResult tokenExpired(){
        return ApiResult.ok(401,"token过期，请重新登录");
     }
@@ -291,8 +305,8 @@ public class LoginController extends BaseController {
     /**
      * 被挤下线
      */
-    @RequestMapping("/downline")
-    @ApiOperation(value = "被挤下线", response = ApiResult.class, notes = "被挤下线")
+    @PostMapping("/downline")
+//    @ApiOperation(value = "被挤下线", response = ApiResult.class, notes = "被挤下线")
     public ApiResult downline() {
         return ApiResult.ok(401, "您的账号已在其他地方登录，被挤下线，请重新登录！");
     }

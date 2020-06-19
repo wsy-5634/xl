@@ -23,7 +23,6 @@ public interface ShiroService {
 
     /**
      * 在对uri权限进行增删改操作时，需要调用此方法进行动态刷新加载数据库中的uri权限
-     *
      * @param shiroFilterFactoryBean
      * @param roleId
      * @param isRemoveSession:
@@ -33,7 +32,6 @@ public interface ShiroService {
 
     /**
      * shiro动态权限加载 -> 原理：删除shiro缓存，重新执行doGetAuthorizationInfo方法授权角色和权限
-     *
      * @param roleId
      * @param isRemoveSession:
      * @return: void

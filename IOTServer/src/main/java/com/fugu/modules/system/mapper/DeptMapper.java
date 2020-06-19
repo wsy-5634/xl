@@ -3,11 +3,8 @@ package com.fugu.modules.system.mapper;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.baomidou.mybatisplus.plugins.pagination.Pagination;
 import com.fugu.modules.system.dto.input.DeptQueryPara;
-import com.fugu.modules.system.dto.input.DeptQueryPara;
-import com.fugu.modules.system.entity.Dept;
 import com.fugu.modules.system.entity.Dept;
 import org.apache.ibatis.annotations.Param;
-
 import java.util.List;
 
 /**
@@ -19,6 +16,15 @@ import java.util.List;
 public interface DeptMapper extends BaseMapper<Dept> {
 
     /**
+     * 列表分页
+     *
+     * @param page
+     * @param filter
+     * @return
+     */
+    List<Dept> selectDepts(Pagination page, @Param("filter") DeptQueryPara filter);
+
+    /**
      * 列表
      *
      * @param filter
@@ -27,4 +33,7 @@ public interface DeptMapper extends BaseMapper<Dept> {
     List<Dept> selectDepts(@Param("filter") DeptQueryPara filter);
 
     Integer getDeptIdBySecretOrName(@Param("filter") DeptQueryPara filter);
+
+
+
 }

@@ -1,14 +1,14 @@
 package com.fugu.modules.shiro.service.impl;
 
 import com.fugu.modules.common.exception.MyException;
-import com.fugu.modules.shiro.service.ShiroService;
 import com.fugu.modules.system.mapper.MenuMapper;
+import com.fugu.modules.system.mapper.RoleMapper;
+import com.fugu.modules.system.mapper.UserMapper;
+import com.fugu.modules.shiro.service.ShiroService;
 import com.fugu.modules.shiro.utils.ShiroUtils;
 import com.fugu.modules.system.entity.Menu;
 import com.fugu.modules.system.entity.Role;
 import com.fugu.modules.system.entity.User;
-import com.fugu.modules.system.mapper.RoleMapper;
-import com.fugu.modules.system.mapper.UserMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
@@ -18,7 +18,6 @@ import org.apache.shiro.web.servlet.AbstractShiroFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
-
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,7 +25,6 @@ import java.util.StringJoiner;
 
 /**
  *  <p> shiro权限处理实现类 </p>
- *
  * @description:
  * @author: fugu
  * @date: 2019/9/7 0007 13:53
@@ -84,7 +82,6 @@ public class ShiroServiceImpl implements ShiroService {
                         zqRoles.add( f.getCode() );
                     });
                  }
-
                  // 注意过滤器配置顺序不能颠倒
                  // ① 认证登录
                  // ② 认证自定义的token过滤器 - 判断token是否有效
@@ -141,7 +138,7 @@ public class ShiroServiceImpl implements ShiroService {
        // 删除当前角色关联的用户缓存信息,用户再次访问接口时会重新授权 ; isRemoveSession为true时删除Session -> 即强制用户退出
        if ( !CollectionUtils.isEmpty( userList ) ) {
           for (User user : userList) {
-              ShiroUtils.deleteCache(user.getUsername(), isRemoveSession);
+              ShiroUtils.deleteCache(user.getLoginname(), isRemoveSession);
           }
        }
        log.info("--------------- 动态修改用户权限成功！ ---------------");

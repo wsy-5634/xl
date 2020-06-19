@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-
 /**
  * <p> 系统管理 - 角色-菜单关联表  接口 </p>
  *
@@ -77,7 +76,7 @@ public class SysRoleMenuController extends BaseController {
     public ApiResult saveRoleMenu(@RequestBody RoleMenuQueryPara input) {
        roleMenuService.saveRoleMenu( input );
        // 更新shiro权限
-       shiroService.updatePermissionByRoleId(input.getRoleId(), false);
+       shiroService.updatePermissionByRoleId(input.getRole_id(), false);
        return ApiResult.ok("保存角色相关联菜单成功");
     }
 

@@ -35,13 +35,13 @@ public class RoleMenu extends BaseEntity {
      */
 	@ApiModelProperty(value = "角色ID")
 	@TableField("role_id")
-	private Integer roleId;
+	private Integer role_id;
     /**
      * 菜单ID
      */
 	@ApiModelProperty(value = "菜单ID")
 	@TableField("menu_id")
-	private Integer menuId;
+	private Integer menu_id;
 
 	@Override
 	protected Serializable pkVal() {

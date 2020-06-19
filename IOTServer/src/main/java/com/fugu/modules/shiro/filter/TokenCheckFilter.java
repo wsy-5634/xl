@@ -2,6 +2,7 @@ package com.fugu.modules.shiro.filter;
 
 import com.fugu.config.Constants;
 import com.fugu.modules.shiro.utils.ShiroUtils;
+
 import com.fugu.modules.system.entity.User;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.web.filter.authc.UserFilter;

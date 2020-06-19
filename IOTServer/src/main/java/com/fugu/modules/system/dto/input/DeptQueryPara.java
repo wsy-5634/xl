@@ -19,7 +19,10 @@ public class DeptQueryPara extends BasePageQuery {
     private Integer id;
     @ApiModelProperty(value = "部门名称")
     private String name;
+    @ApiModelProperty(value = "上级部门ID")
+    private String parent_id;
 
-    @ApiModelProperty(value = "部门Secret")
-    private String orgSecret;
+
+//    @ApiModelProperty(value = "部门Secret")
+//    private String orgSecret;
 }

@@ -4,27 +4,34 @@ import cn.hutool.core.bean.BeanUtil;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.fugu.config.Constants;
+import com.fugu.modules.common.entity.PageResult;
 import com.fugu.modules.common.exception.MyException;
 import com.fugu.modules.shiro.utils.SHA256Util;
+import com.fugu.modules.system.dto.input.DeptQueryPara;
 import com.fugu.modules.system.dto.input.UserQueryPara;
 import com.fugu.modules.system.dto.input.UserRoleQueryPara;
 import com.fugu.modules.system.dto.model.ButtonVO;
+
 import com.fugu.modules.system.dto.model.MenuVO;
 import com.fugu.modules.system.dto.model.UserInfoVO;
 import com.fugu.modules.system.entity.Menu;
 import com.fugu.modules.system.entity.Role;
 import com.fugu.modules.system.entity.User;
+import com.fugu.modules.system.mapper.DeptMapper;
 import com.fugu.modules.system.mapper.RoleMenuMapper;
 import com.fugu.modules.system.mapper.UserMapper;
 import com.fugu.modules.system.mapper.UserRoleMapper;
 import com.fugu.modules.system.service.IUserService;
 import com.fugu.utils.TreeBuilder;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.util.TextUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
+import tk.mybatis.mapper.entity.Example;
 
 import java.util.HashSet;
 import java.util.List;
@@ -47,11 +54,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     UserRoleMapper userRoleMapper;
     @Autowired
     RoleMenuMapper roleMenuMapper;
+    @Autowired
+    DeptMapper deptMapper;
 
     @Override
     public void listPage(Page<User> page, UserQueryPara filter) {
         page.setTotal(userMapper.count(filter));
-
         filter.setPage(page.getCurrent());
         filter.setLimit(page.getSize());
         List<User> preUserList = userMapper.selectUsers(filter);
@@ -107,7 +115,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         userInfoVO.getRoleNames().addAll(roles);
         userInfoVO.getRoles().addAll(roleIds);
         userInfoVO.getButtons().addAll(buttonVOS);
-        userInfoVO.getMenus().addAll(TreeBuilder.buildTree(menuVOS));
+//        userInfoVO.getMenus().addAll(TreeBuilder.buildTree(menuVOS));
         return userInfoVO;
     }
 
@@ -125,15 +133,30 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         return para.getId();
     }
 
+    //批量删除
+    @Override
+    public Integer deleteBatches(Integer[] ids) {
+        if(ids!=null){
+    //判断登录用户权限是否比删除用户权限大，如果权限更大，则可以删除
+          //循环拿到的用户ID，拿到每个用户对应的角色
+            userMapper.deleteBatches(ids);
+
+        }else {
+            throw new MyException("请选择需要删除的用户！");
+        }
+        return null;
+    }
+
     @Override
     public Integer updatePersonalInfo(User para) {
+
         if (para.getId() == null) {
             throw new MyException("用户信息异常丢失，请重新登录尝试修改个人信息！");
         }
-        if (StringUtils.isBlank(para.getUsername())) {
+        if (StringUtils.isBlank(para.getLoginname())) {
             throw new MyException("账号不能为空！");
         }
-        if (StringUtils.isBlank(para.getNickName())) {
+        if (StringUtils.isBlank(para.getName())) {
             throw new MyException("昵称不能为空！");
         }
         User user = userMapper.selectById(para.getId());
@@ -149,10 +172,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
 
         // 验证账号是否重复
         UserQueryPara userQueryPara = new UserQueryPara();
-        userQueryPara.setUsername(para.getUsername());
+        userQueryPara.setLoginname(para.getLoginname());
         List<User> userList = userMapper.selectUsers(userQueryPara);
         if (!CollectionUtils.isEmpty(userList)) {
-            if (!para.getUsername().equals(user.getUsername()) || userList.size() > 1) {
+            if (!para.getLoginname().equals(user.getLoginname()) || userList.size() > 1) {
                 throw new MyException("账号重复，请重新输入！");
             }
         }
@@ -176,5 +199,44 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     public List<User> listByDept(UserQueryPara filter) {
         return userMapper.selectUsersByDept(filter.getDeptId());
     }
+
+    @Override
+    public User findUserByname(String loginname) {
+        return userMapper.selectUserByUsername(loginname);
+    }
+
+    //根据姓名和部门查询用户信息
+    @Override
+    public PageResult<User> NameAndDepPage(String key, DeptQueryPara filter,Integer page, Integer rows) {
+//        page.setTotal(userMapper.count(filter));
+//        filter.setPage(page.getCurrent());
+//        filter.setLimit(page.getSize());
+//        List<User> preUserList = userMapper.selectUsers(filter);
+        //初始化复杂条件example
+        Example example = new Example(User.class);
+        //创建criteria对象，用来封装查询条件，可能是模糊查询，也可能是精确查询
+        Example.Criteria criteria = example.createCriteria();
+        //根据部门名称，查找部门ID
+        Integer deptId = deptMapper.getDeptIdBySecretOrName(filter);
+        //根据name模糊查询，或根据部门ID，key为name输入的关键字
+        if (StringUtils.isNoneBlank(key)){
+            criteria.andLike("name","%"+key+"%").orEqualTo("deptId",deptId);
+        }
+        //添加分页条件，进行分页操作
+        PageHelper.startPage(page, rows);
+        //添加排序条件
+//        if (org.apache.commons.lang.StringUtils.isNotBlank(sortBy)) {
+//            //sortBy为根据ID排序，前端点了排序则不为空，不点则为空
+//            example.setOrderByClause(sortBy + " " + (desc ? "desc" : "asc"));
+//        }
+        //执行查询操作
+        List<User> users = userMapper.selectByExample(example);
+        // 包装成pageInfo
+        PageInfo<User> pageInfo = new PageInfo<>(users);
+        // 将分页好的结果集封装到自定义的 pageResult
+        PageResult<User> pageResult = new PageResult<>(pageInfo.getTotal(), pageInfo.getList());
+        return pageResult;
+    }
+
 
 }

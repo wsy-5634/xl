@@ -2,6 +2,8 @@ package com.fugu.modules.system.service;
 
 import com.baomidou.mybatisplus.plugins.Page;
 import com.baomidou.mybatisplus.service.IService;
+import com.fugu.modules.common.entity.PageResult;
+import com.fugu.modules.system.dto.input.DeptQueryPara;
 import com.fugu.modules.system.dto.model.UserInfoVO;
 import com.fugu.modules.system.entity.User;
 import com.fugu.modules.system.dto.input.UserQueryPara;
@@ -34,6 +36,12 @@ public interface IUserService extends IService<User> {
     Integer save(User input);
 
     /**
+     * 批量删除
+     * @param ids
+     */
+    Integer deleteBatches(Integer[] ids);
+
+    /**
      * 修改用户个人信息
      *
      * @param para:
@@ -60,4 +68,11 @@ public interface IUserService extends IService<User> {
     Integer setUserDept(User para);
 
     List<User> listByDept(UserQueryPara filter);
+
+    //根据账号获取用户
+    User findUserByname(String loginname);
+
+    //根据姓名和部门筛选用户
+    PageResult<User> NameAndDepPage(String key, DeptQueryPara filter, Integer page, Integer rows);
+
 }

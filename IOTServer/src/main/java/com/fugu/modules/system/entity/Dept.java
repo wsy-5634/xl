@@ -26,57 +26,53 @@ public class Dept extends BaseEntity {
 
     private static final long serialVersionUID = 1L;
 
-    /**
-     * 主键ID
-     */
-	@ApiModelProperty(value = "主键ID")
-	@TableId(value="dept_id", type= IdType.AUTO)
+	@ApiModelProperty(value = "主键")
+	@TableId(value="id", type= IdType.AUTO)
 	private Integer id;
 
-    /**
-     * 部门名称
-     */
 	@ApiModelProperty(value = "部门名称")
 	@TableField("name")
 	@NotBlank(message = "部门名称不能为空")
 	private String name;
 
-	/**
-	 * 部门Secret
-	 */
-	@ApiModelProperty(value = "部门Secret")
+	@ApiModelProperty(value = "上级部门ID")
+	@TableField("parent_id")
+	@NotBlank(message = "上级部门不能为空")
+	private Integer parent_id;
 
-	@TableField("org_secret")
-	@NotBlank(message = "部门Secret不能为空")
-	private String orgSecret;
+//	/**
+//	 * 部门Secret
+//	 */
+//	@ApiModelProperty(value = "部门Secret")
+//	@TableField("org_secret")
+//	@NotBlank(message = "部门Secret不能为空")
+//	private String orgSecret;
+//
+//	/**
+//	 * 直属上级
+//	 */
+//	@ApiModelProperty(value = "直属上级")
+//	@TableField("parent")
+//	private int parent;
+//
+//    /**
+//     * 排序
+//     */
+//	@ApiModelProperty(value = "排序")
+//	@TableField("order")
+//	private int order;
 
-
-
-	/**
-	 * 直属上级
-	 */
-	@ApiModelProperty(value = "直属上级")
-	@TableField("parent")
-	private int parent;
-
-    /**
-     * 排序
-     */
-	@ApiModelProperty(value = "排序")
-	@TableField("order")
-	private int order;
-
-
-	/**
-	 * 标志 0--正常，1-删除
-	 */
-	@ApiModelProperty(value = "标志")
-	@TableField("flag")
-	private int flag;
-
-	@ApiModelProperty(value = "备注")
-	@TableField("remarks")
-	private String remarks;//备注
+//
+//	/**
+//	 * 标志 0--正常，1-删除
+//	 */
+//	@ApiModelProperty(value = "标志")
+//	@TableField("flag")
+//	private int flag;
+//
+//	@ApiModelProperty(value = "备注")
+//	@TableField("remarks")
+//	private String remarks;//备注
 
 	@Override
 	protected Serializable pkVal() {

@@ -1,22 +1,25 @@
 package com.fugu.modules.shiro.utils;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.crypto.hash.SimpleHash;
+import org.apache.shiro.util.ByteSource;
 
 /**
- *  <p> 根据传过来的密码进行加密 - 注意：加密算法必须一致(加密算法类型，加密次数，盐值  ex：MD5 10 fugu)</p>
- *
- * @description:
- * @author: fugu
- * @date: 2019/8/24 0024 21:06
+ * @author MrBird
  */
 public class MD5Util {
 
-//    public static final String SALT = "fugu";
-    public static final int HASHITERATIONS = 10;
+    protected MD5Util() {
 
-    public static String createMD5Str(String password, String salt){
-       SimpleHash hash = new SimpleHash("MD5", password, salt, HASHITERATIONS);
-       return hash.toString();
     }
 
+    private static final String ALGORITH_NAME = "md5";
+
+    private static final int HASH_ITERATIONS = 5;
+
+    public static String encrypt(String username, String password) {
+        String source = StringUtils.lowerCase(username);
+        password = StringUtils.lowerCase(password);
+        return new SimpleHash(ALGORITH_NAME, password, ByteSource.Util.bytes(source), HASH_ITERATIONS).toHex();
+    }
 }

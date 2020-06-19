@@ -5,23 +5,23 @@
 	<!-- 通用查询映射结果 -->
 	<resultMap id="BaseResultMap" type="com.fugu.modules.system.entity.User">
 		<id column="id" property="id" />
-		<result column="username" property="username" />
+		<result column="loginname" property="loginname" />
 		<result column="password" property="password" />
 		<result column="pwd" property="pwd" />
-		<result column="nick_name" property="nickName" />
+		<result column="name" property="name" />
 		<result column="sex" property="sex" />
 		<result column="phone" property="phone" />
 		<result column="email" property="email" />
-		<result column="avatar" property="avatar" />
+		<!--<result column="states" property="states" />-->
 		<result column="flag" property="flag" />
 		<result column="salt" property="salt" />
-		<result column="dept_id" property="deptId" />
+		<result column="deptId" property="deptId" />
 		<result column="token" property="token" />
-		<result column="mobile_user_id" property="mobileUserId" />
-		<result column="gmt_create" property="gmtCreate" />
-		<result column="gmt_modified" property="gmtModified" />
+		<result column="lastLoginTime" property="lastLoginTime" />
+		<result column="roleid" property="roleid" />
+		<result column="addtime" property="addtime" />
+		<result column="roleList" property="roleList" />
 	</resultMap>
-
 
 	<select id="selectUsers" resultMap="BaseResultMap">
 		SELECT
@@ -32,11 +32,11 @@
 		<if test="filter.id!=null and filter.id  &gt; 0">
 			AND	id= #{filter.id}
 		</if>
-		<if test="filter.username!=null and filter.username!=''">
-			AND	username LIKE '%${filter.username}%'
+		<if test="filter.loginname!=null and filter.loginname!=''">
+			AND	loginname LIKE '%${filter.loginname}%'
 		</if>
 		<if  test="filter.deptId != 1 and filter.deptId &gt; 0">
-			AND dept_id in (select distinct dept_id from t_sys_dept t where t.dept_id = #{filter.deptId} OR t.parent = #{filter.deptId})
+			AND deptId in (select distinct deptId from t_sys_dept t where t.deptId = #{filter.deptId} OR t.parent_id = #{filter.deptId})
 		</if >
 		ORDER BY id ASC
 		<if test="filter.page &gt;= 0 and filter.limit &gt; 0 ">
@@ -49,10 +49,10 @@
 		WHERE
 		1 = 1
 		<if test="filter.deptId != 1 and filter.deptId &gt; 0">
-			AND dept_id in (select distinct dept_id from t_sys_dept t where t.dept_id = #{filter.deptId} OR t.parent = #{filter.deptId})
+			AND deptid in (select distinct deptid from t_sys_dept t where t.deptid = #{filter.deptId} OR t.parent = #{filter.deptId})
 		</if>
-		<if test="filter.username!=null and filter.username!=''">
-			AND	username LIKE '%${filter.username}%'
+		<if test="filter.loginname!=null and filter.loginname!=''">
+			AND	loginname LIKE '%${filter.loginname}%'
 		</if>
 	</select>
 
@@ -61,8 +61,8 @@
 			*
 		FROM t_sys_user
 		WHERE 1 = 1
-		<if test="username!=null and username!=''">
-			AND	username = #{username}
+		<if test="loginname!=null and loginname!=''">
+			AND	loginname = #{loginname}
 		</if>
 	</select>
 
@@ -98,7 +98,7 @@
 
 	<select id="selectUserByMobile" resultType="com.fugu.modules.system.entity.User">
        SELECT su.* FROM t_sys_user su
-       WHERE su.phone = #{mobile}
+       WHERE su.phone = #{phone}
     </select>
 
 	<select id="selectUserByRoleId" resultType="com.fugu.modules.system.entity.User">
@@ -109,13 +109,19 @@
 
 	<select id="selectUsersByDept" resultType="com.fugu.modules.system.entity.User">
        SELECT su.* FROM t_sys_user su
-       WHERE su.dept_id = #{filter}
+       WHERE su.deptId = #{filter}
     </select>
-
 
     <update id="updateUserDept">
        UPDATE  t_sys_user su set su.dept_id = #{filter.deptId}
        WHERE su.id = #{filter.id}
     </update>
+
+	<delete id="deleteBatches" parameterType="com.fugu.modules.system.entity.User">
+		DELETE FROM  t_sys_user  WHERE id IN
+			<foreach collection="id" item="id" open="(" separator="," close=")">
+				#{id}
+			</foreach>
+	</delete>
 
 </mapper>

@@ -1,12 +1,13 @@
 package com.fugu.modules.shiro;
 
+
 import com.fugu.modules.system.mapper.MenuMapper;
+import com.fugu.modules.system.mapper.RoleMapper;
+import com.fugu.modules.system.mapper.UserMapper;
 import com.fugu.modules.shiro.utils.ShiroUtils;
 import com.fugu.modules.system.entity.Menu;
 import com.fugu.modules.system.entity.Role;
 import com.fugu.modules.system.entity.User;
-import com.fugu.modules.system.mapper.RoleMapper;
-import com.fugu.modules.system.mapper.UserMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
@@ -63,7 +64,7 @@ public class ShiroRealm extends AuthorizingRealm {
               permsSet.add( menu.getResources() );
           }
        }
-       //将查到的权限和角色分别传入authorizationInfo中
+       //将查到的权限和角色分别传入authorizationInfo中            authorization授权
        authorizationInfo.setStringPermissions(permsSet);
        authorizationInfo.setRoles(rolesSet);
        log.info("--------------- 赋予角色和权限成功！ ---------------");
@@ -96,9 +97,9 @@ public class ShiroRealm extends AuthorizingRealm {
        }
 
        // 判断账号是否被冻结
-       if (user.getFlag()==null|| "0".equals(user.getFlag())){
-          throw new LockedAccountException();
-       }
+//       if (user.getFlag()==null|| "0".equals(user.getFlag())){
+//          throw new LockedAccountException();
+//       }
 
        /**
         * 进行验证 -> 注：shiro会自动验证密码
