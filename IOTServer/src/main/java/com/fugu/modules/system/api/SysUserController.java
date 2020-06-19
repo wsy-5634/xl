@@ -181,9 +181,12 @@ public class SysUserController extends BaseController {
 
     @PostMapping(value = "/deleteBatches", produces = "application/json;charset=utf-8")
     @ApiOperation(value = "批量删除", httpMethod = "POST", response = ApiResult.class)
-    public ApiResult deleteBatches(Integer[] ids) {
-        userService.deleteBatches(ids);
-        return ApiResult.ok("删除系统管理-用户基础信息表成功");
+    public ApiResult deleteBatches(List ids) {
+        boolean b = userService.deleteBatches(ids);
+        if(!b){
+            return ApiResult.fail("删除失败");
+        }
+        return ApiResult.ok("批量删除成功");
     }
 
     @PostMapping(value = "/getById", produces = "application/json;charset=utf-8")

@@ -135,21 +135,27 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
 
     //批量删除
     @Override
-    public Integer deleteBatches(Integer[] ids) {
+    public boolean deleteBatches(List<Integer> ids) {
         if(ids!=null){
     //判断登录用户权限是否比删除用户权限大，如果权限更大，则可以删除
-          //循环拿到的用户ID，拿到每个用户对应的角色
-            userMapper.deleteBatches(ids);
-
+          //循环拿到用户ID，拿到每个用户对应的角色
+            ids.forEach(c -> {
+                //将品用户ID的id集合遍历放在自定义的 c 容器中，
+                Integer roleid = userMapper.selectRoleidByID( c);
+                //如果有管理员角色，则剔除角色ID为1的管理员角色，
+                if (roleid>0) {
+                    ids.remove(Integer.valueOf(c));
+                }
+            });
+             userMapper.deleteBatches(ids);
         }else {
             throw new MyException("请选择需要删除的用户！");
         }
-        return null;
+        return true;
     }
 
     @Override
     public Integer updatePersonalInfo(User para) {
-
         if (para.getId() == null) {
             throw new MyException("用户信息异常丢失，请重新登录尝试修改个人信息！");
         }
@@ -208,10 +214,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     //根据姓名和部门查询用户信息
     @Override
     public PageResult<User> NameAndDepPage(String key, DeptQueryPara filter,Integer page, Integer rows) {
-//        page.setTotal(userMapper.count(filter));
-//        filter.setPage(page.getCurrent());
-//        filter.setLimit(page.getSize());
-//        List<User> preUserList = userMapper.selectUsers(filter);
         //初始化复杂条件example
         Example example = new Example(User.class);
         //创建criteria对象，用来封装查询条件，可能是模糊查询，也可能是精确查询

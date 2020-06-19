@@ -118,7 +118,7 @@ public class LoginController extends BaseController {
                 currentUser.login(token);
                 User user = userService.findUserByname(loginname);
                 JSONObject json = new JSONObject();
-                json.put("flag",user.getFlag());
+                json.put("flag",user.getRoleid());
 //                json.put("token", ShiroUtils.getSession().getId().toString());
 
                 log.info("----------------------------------------------  登录成功！  ------------------------------");

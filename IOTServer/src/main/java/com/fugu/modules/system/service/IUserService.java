@@ -39,7 +39,7 @@ public interface IUserService extends IService<User> {
      * 批量删除
      * @param ids
      */
-    Integer deleteBatches(Integer[] ids);
+    boolean deleteBatches(List<Integer> ids);
 
     /**
      * 修改用户个人信息

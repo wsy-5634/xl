@@ -41,7 +41,10 @@ public interface UserMapper extends BaseMapper<User>, ExampleMapper<User> {
     /**
      * 批量删除
      */
-    boolean deleteBatches(@Param("filter") Integer[] ids);
+    Integer deleteBatches(@Param("filter") List<Integer> ids);
+
+    //根据用户ID查找角色ID
+    Integer selectRoleidByID(@Param("id") Integer id);
 
     /**
      * 通过手机号查找用户信息

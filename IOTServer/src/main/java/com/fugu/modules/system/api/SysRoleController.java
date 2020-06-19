@@ -63,11 +63,14 @@ public class SysRoleController extends BaseController {
        return ApiResult.ok("删除角色成功");
     }
 
+    //通过ID获取角色信息
     @PostMapping(value = "/detail", produces = "application/json;charset=utf-8")
     @ApiOperation(value = "获取角色信息", httpMethod = "POST", response = ApiResult.class)
     public ApiResult detail(@RequestBody RoleQueryPara input) {
        Role entity = roleService.selectById(input.getId());
        return ApiResult.ok("获取角色信息成功", entity);
     }
+
+    //
 
 }

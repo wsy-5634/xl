@@ -131,7 +131,7 @@ public class User extends BaseEntity<User> {
 	@TableField("roleid")
 	private int roleid;
 
-	@ApiModelProperty(value = "用户权限")
+	@ApiModelProperty(value = "用户角色")
 	@TableField("roleList")
 	@NotBlank(message = "权限不能为空")
 	private String roleList;
