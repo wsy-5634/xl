@@ -4,8 +4,6 @@ import com.fugu.deviceServer.common.CustomProtocol;
 import com.fugu.deviceServer.util.NettySocketHolder;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
-import io.netty.channel.ChannelFuture;
-import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.channel.socket.nio.NioSocketChannel;
@@ -14,6 +12,7 @@ import io.netty.handler.timeout.IdleStateEvent;
 import io.netty.util.CharsetUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 
 /**
  *
@@ -39,8 +38,19 @@ public class HeartBeatSimpleHandle extends SimpleChannelInboundHandler<CustomPro
             IdleStateEvent idleStateEvent = (IdleStateEvent) evt;
             if (idleStateEvent.state() == IdleState.READER_IDLE) {
                 LOGGER.info("已经5秒没有收到信息！");
+
+                NioSocketChannel channel = (NioSocketChannel) ctx.channel();
+                Long id = NettySocketHolder.get(channel);
+
+                int number = NettySocketHolder.getTimoutNum(id);
+                if (number > 2) {
+                    //已经是第三次未收到心跳包了，将设备只为离线状态
+                    NettySocketHolder.removeTimeOut(id);
+
+
+                }
                 //向客户端发送消息
-                ctx.writeAndFlush(HEART_BEAT).addListener(ChannelFutureListener.CLOSE_ON_FAILURE);
+//                ctx.writeAndFlush(HEART_BEAT).addListener(ChannelFutureListener.CLOSE_ON_FAILURE);
             }
         }
         super.userEventTriggered(ctx, evt);
@@ -53,4 +63,6 @@ public class HeartBeatSimpleHandle extends SimpleChannelInboundHandler<CustomPro
         //保存客户端与 Channel 之间的关系
         NettySocketHolder.put(customProtocol.getId(), (NioSocketChannel) ctx.channel());
     }
+
+
 }

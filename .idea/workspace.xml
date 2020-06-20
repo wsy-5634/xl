@@ -26,310 +26,19 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9462fe9d-2c98-4d75-9b9d-f83c6d6ac628" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/.classpath" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/.project" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/.settings/org.eclipse.core.resources.prefs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/.settings/org.eclipse.jdt.core.prefs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/.settings/org.eclipse.wst.common.project.facet.core.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/.settings/org.springframework.ide.eclipse.prefs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/docker/._study-app.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/docker/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/docker/Study-Api-0.0.1-SNAPSHOT.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/docker/study-app.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/Application.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/config/Constants.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/config/CorsConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/config/MyMetaObjectHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/config/MyProperties.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/config/MybatisPlusConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/config/SwaggerConfiguration.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/config/WebConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/common/annotation/IgnoreToken.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/common/annotation/UIColumn.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/common/api/BaseController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/common/dto/input/BaseInput.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/common/dto/input/BasePageQuery.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/common/dto/input/BaseQuery.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/common/dto/output/ApiResult.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/common/entity/BaseAddEntity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/common/entity/BaseEntity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/common/entity/BaseEntity_bak.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/common/enumeration/EnumDatabaseType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/common/enumeration/ResultCode.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/common/exception/MyException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/common/exception/MyGlobalExceptionHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/common/filter/LogRequestFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/common/interceptor/SystemLogAspect.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/common/service/ICosFileService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/common/service/impl/CosFileServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/common/validator/Create.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/common/validator/FieldRepeatValidator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/common/validator/FieldRepeatValidatorClass.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/common/validator/FieldRepeatValidatorUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/common/validator/IdCardValidatorUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/common/validator/IdentityCardNumber.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/common/validator/IdentityCardNumberValidator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/common/validator/Update.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/device/api/FileApi.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/device/dto/input/CategoryInput.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/device/dto/input/FileInput.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/device/dto/input/FileUploadInput.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/device/entity/Category.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/device/entity/FileEntity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/device/mapper/CategoryMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/device/mapper/FileMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/device/mapper/xml/CategoryMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/device/mapper/xml/FileMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/device/service/CategoryService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/device/service/FileService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/device/service/impl/CategoryServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/device/service/impl/FileServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/netty/BootNettyServer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/shiro/ShiroRealm.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/shiro/ShiroSessionIdGenerator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/shiro/ShiroSessionManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/shiro/config/ShiroConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/shiro/constant/RedisConstant.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/shiro/filter/MyPermissionsAuthorizationFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/shiro/filter/MyRolesAuthorizationFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/shiro/filter/TokenCheckFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/shiro/service/ShiroService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/shiro/service/impl/ShiroServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/shiro/utils/MD5Util.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/shiro/utils/SHA256Util.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/shiro/utils/ShiroUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/shiro/utils/SpringUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/system/api/LoginController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/system/api/SysLogController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/system/api/SysMenuController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/system/api/SysRoleController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/system/api/SysRoleMenuController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/system/api/SysUserController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/system/api/SysUserRoleController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/system/dto/input/LogQueryPara.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/system/dto/input/MenuQueryPara.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/system/dto/input/RoleMenuQueryPara.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/system/dto/input/RoleQueryPara.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/system/dto/input/SysRoleFileInput.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/system/dto/input/SysRoleFileInsertInput.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/system/dto/input/UserQueryPara.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/system/dto/input/UserRoleQueryPara.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/system/dto/model/ButtonVO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/system/dto/model/MenuVO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/system/dto/model/UserInfoVO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/system/dto/output/MenuTreeNode.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/system/dto/output/RoleView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/system/dto/output/UserTreeNode.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/system/entity/Menu.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/system/entity/Role.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/system/entity/RoleMenu.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/system/entity/SysLog.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/system/entity/SysRoleFile.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/system/entity/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/system/entity/UserRole.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/system/mapper/LogMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/system/mapper/MenuMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/system/mapper/RoleMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/system/mapper/RoleMenuMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/system/mapper/SysRoleFileMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/system/mapper/UserMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/system/mapper/UserRoleMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/system/mapper/xml/LogMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/system/mapper/xml/MenuMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/system/mapper/xml/RoleMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/system/mapper/xml/RoleMenuMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/system/mapper/xml/SysRoleFileMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/system/mapper/xml/UserMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/system/mapper/xml/UserRoleMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/system/service/ILogService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/system/service/IMenuService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/system/service/IRoleMenuService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/system/service/IRoleService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/system/service/IUserRoleService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/system/service/IUserService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/system/service/impl/LogServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/system/service/impl/MenuServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/system/service/impl/RoleMenuServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/system/service/impl/RoleServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/system/service/impl/UserRoleServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/modules/system/service/impl/UserServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/utils/Arith.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/utils/DateTimeUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/utils/FastJsonHttpMessageConverterEx.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/utils/FileTypeEnum.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/utils/FileTypeUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/utils/FileUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/utils/IpUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/utils/JacksonAnnotationIntrospectorEx.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/utils/MD5Utils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/utils/MultipartFileToFile.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/utils/MyStringUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/utils/ResponseUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/utils/SwaggerJsonSerializer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/utils/TimeUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/utils/TreeBuilder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/codingcat/utils/ZipFileUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/resources/banner.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/resources/config/application-dev.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/resources/config/application-prod.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/resources/config/application-test.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/resources/config/application.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/resources/config/fast_client.conf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/resources/logback-spring.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/resources/qqconnectconfig.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sequence.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-seckill/src/main/java/com/jesper/seckill/controller/DemoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-seckill/src/main/java/com/jesper/seckill/controller/DemoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/springboot-seckill/src/main/java/com/jesper/seckill/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/springboot-seckill/src/main/java/com/jesper/seckill/controller/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/docker/Dockerfile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/docker/Study-Api-0.0.1-SNAPSHOT.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/docker/study-app.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/Application.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/config/Constants.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/config/CorsConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/config/MyMetaObjectHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/config/MyProperties.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/config/MybatisPlusConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/config/SwaggerConfiguration.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/config/WebConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/common/annotation/IgnoreToken.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/common/annotation/UIColumn.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/common/api/BaseController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/common/dto/input/BaseInput.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/common/dto/input/BasePageQuery.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/common/dto/input/BaseQuery.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/common/dto/output/ApiResult.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/common/entity/BaseAddEntity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/common/entity/BaseEntity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/common/entity/BaseEntity_bak.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/common/enumeration/EnumDatabaseType.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/common/enumeration/ResultCode.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/common/exception/MyException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/common/exception/MyGlobalExceptionHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/common/filter/LogRequestFilter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/common/interceptor/SystemLogAspect.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/common/service/ICosFileService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/common/service/impl/CosFileServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/common/validator/Create.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/common/validator/FieldRepeatValidator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/common/validator/FieldRepeatValidatorClass.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/common/validator/FieldRepeatValidatorUtils.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/common/validator/IdCardValidatorUtils.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/common/validator/IdentityCardNumber.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/common/validator/IdentityCardNumberValidator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/common/validator/Update.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/content/api/CategoryApi.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/content/api/FileApi.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/content/dto/input/CategoryInput.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/content/dto/input/FileInput.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/content/dto/input/FileUploadInput.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/content/entity/Category.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/content/entity/FileEntity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/content/mapper/CategoryMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/content/mapper/FileMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/content/mapper/xml/CategoryMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/content/mapper/xml/FileMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/content/service/CategoryService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/content/service/FileService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/content/service/impl/CategoryServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/content/service/impl/FileServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/shiro/ShiroRealm.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/shiro/ShiroSessionIdGenerator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/shiro/ShiroSessionManager.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/shiro/config/ShiroConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/shiro/constant/RedisConstant.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/shiro/filter/MyPermissionsAuthorizationFilter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/shiro/filter/MyRolesAuthorizationFilter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/shiro/filter/TokenCheckFilter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/shiro/service/ShiroService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/shiro/service/impl/ShiroServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/shiro/utils/MD5Util.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/shiro/utils/SHA256Util.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/shiro/utils/ShiroUtils.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/shiro/utils/SpringUtil.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/system/api/LoginController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/system/api/SysLogController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/system/api/SysMenuController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/system/api/SysRoleController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/system/api/SysRoleMenuController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/system/api/SysUserController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/system/api/SysUserRoleController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/system/dto/input/LogQueryPara.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/system/dto/input/MenuQueryPara.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/system/dto/input/RoleMenuQueryPara.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/system/dto/input/RoleQueryPara.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/system/dto/input/SysRoleFileInput.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/system/dto/input/SysRoleFileInsertInput.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/system/dto/input/UserQueryPara.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/system/dto/input/UserRoleQueryPara.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/system/dto/model/ButtonVO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/system/dto/model/MenuVO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/system/dto/model/UserInfoVO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/system/dto/output/MenuTreeNode.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/system/dto/output/RoleView.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/system/dto/output/UserTreeNode.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/system/entity/Menu.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/system/entity/Role.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/system/entity/RoleMenu.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/system/entity/SysLog.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/system/entity/SysRoleFile.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/system/entity/User.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/system/entity/UserRole.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/system/mapper/LogMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/system/mapper/MenuMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/system/mapper/RoleMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/system/mapper/RoleMenuMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/system/mapper/SysRoleFileMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/system/mapper/UserMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/system/mapper/UserRoleMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/system/mapper/xml/LogMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/system/mapper/xml/MenuMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/system/mapper/xml/RoleMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/system/mapper/xml/RoleMenuMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/system/mapper/xml/SysRoleFileMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/system/mapper/xml/UserMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/system/mapper/xml/UserRoleMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/system/service/ILogService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/system/service/IMenuService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/system/service/IRoleMenuService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/system/service/IRoleService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/system/service/IUserRoleService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/system/service/IUserService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/system/service/impl/LogServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/system/service/impl/MenuServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/system/service/impl/RoleMenuServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/system/service/impl/RoleServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/system/service/impl/UserRoleServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/modules/system/service/impl/UserServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/utils/Arith.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/utils/DateTimeUtils.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/utils/FastJsonHttpMessageConverterEx.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/utils/FileTypeEnum.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/utils/FileTypeUtil.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/utils/FileUtils.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/utils/IpUtils.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/utils/JacksonAnnotationIntrospectorEx.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/utils/MD5Utils.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/utils/MultipartFileToFile.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/utils/MyStringUtils.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/utils/ResponseUtils.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/utils/SwaggerJsonSerializer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/utils/TimeUtil.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/utils/TreeBuilder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/java/com/codingcat/utils/ZipFileUtils.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/resources/banner.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/resources/config/application-dev.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/resources/config/application-prod.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/resources/config/application-test.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/resources/config/application.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/resources/config/fast_client.conf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/resources/logback-spring.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/src/main/resources/qqconnectconfig.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-api/velocity.log.1" beforeDir="false" />
+    <list default="true" id="67847912-20a1-4ff0-a1d2-09e782f6178b" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/fugu/deviceServer/common/ByteUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/fugu/deviceServer/common/DeviceManageUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DeviceMonitor/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/DeviceMonitor/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/fugu/deviceServer/encode/HeartbeatDecoder.java" beforeDir="false" afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/fugu/deviceServer/encode/HeartbeatDecoder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/fugu/deviceServer/handle/HeartBeatSimpleHandle.java" beforeDir="false" afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/fugu/deviceServer/handle/HeartBeatSimpleHandle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/fugu/deviceServer/util/NettySocketHolder.java" beforeDir="false" afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/java/com/fugu/deviceServer/util/NettySocketHolder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DeviceMonitor/src/main/resources/config/application-dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/resources/config/application-dev.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DeviceMonitor/src/main/resources/config/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/DeviceMonitor/src/main/resources/config/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IOTServer/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/IOTServer/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -357,20 +66,78 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../springboot-netty" />
-    <property name="settings.editor.selected.configurable" value="MavenSettings" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\FuguIOT\DeviceMonitor" />
     </key>
   </component>
+  <component name="RunManager" selected="Maven.[clean,package]">
+    <configuration name="DeviceMonitor" type="MavenRunConfiguration" factoryName="Maven">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list>
+                <option value="clean" />
+                <option value="package" />
+              </list>
+            </option>
+            <option name="pomFileName" />
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="$PROJECT_DIR$/DeviceMonitor" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method v="2" />
+    </configuration>
+    <configuration name="[clean,package]" type="MavenRunConfiguration" factoryName="Maven" nameIsGenerated="true">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list>
+                <option value="clean" />
+                <option value="package" />
+              </list>
+            </option>
+            <option name="pomFileName" />
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="$PROJECT_DIR$" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Maven.[clean,package]" />
+      <item itemvalue="Maven.DeviceMonitor" />
+    </list>
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="9462fe9d-2c98-4d75-9b9d-f83c6d6ac628" name="Default Changelist" comment="" />
+      <changelist id="67847912-20a1-4ff0-a1d2-09e782f6178b" name="Default Changelist" comment="" />
       <created>1589336564017</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -380,6 +147,8 @@
       <workItem from="1589338573974" duration="268000" />
       <workItem from="1589338901757" duration="917000" />
       <workItem from="1590974963432" duration="52000" />
+      <workItem from="1592639105764" duration="1301000" />
+      <workItem from="1592640416837" duration="89000" />
     </task>
     <servers />
   </component>
@@ -410,23 +179,49 @@
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$/springboot-seckill" />
+      <path value="$PROJECT_DIR$/xxpay-master" />
+    </ignored-roots>
+  </component>
   <component name="WindowStateProjectService">
-    <state x="457" y="198" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1589338662231">
+    <state x="457" y="198" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1592640117113">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="457" y="198" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1589338662231" />
+    <state x="457" y="198" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1592640117113" />
     <state x="699" y="79" key="#docker/Dockerfile" timestamp="1589338375083">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="699" y="79" key="#docker/Dockerfile/0.0.1920.1040@0.0.1920.1040" timestamp="1589338375083" />
-    <state x="1162" y="249" key="FileChooserDialogImpl" timestamp="1590975007872">
+    <state x="1162" y="249" key="FileChooserDialogImpl" timestamp="1592640091979">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="1162" y="249" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1590975007872" />
-    <state x="794" y="119" key="SettingsEditor" timestamp="1589338753618">
+    <state x="1162" y="249" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1592640091979" />
+    <state width="912" height="275" key="GridCell.Tab.0.bottom" timestamp="1592640407489">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="794" y="119" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1589338753618" />
+    <state width="912" height="275" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1592640407489" />
+    <state width="912" height="275" key="GridCell.Tab.0.center" timestamp="1592640407489">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="912" height="275" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1592640407489" />
+    <state width="912" height="275" key="GridCell.Tab.0.left" timestamp="1592640407489">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="912" height="275" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1592640407489" />
+    <state width="912" height="275" key="GridCell.Tab.0.right" timestamp="1592640407489">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="912" height="275" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1592640407489" />
+    <state x="794" y="119" key="SettingsEditor" timestamp="1592640430369">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="794" y="119" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1592640430369" />
+    <state x="689" y="387" key="git4idea.merge.GitPullDialog" timestamp="1592639279070">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="689" y="387" key="git4idea.merge.GitPullDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1592639279070" />
     <state x="536" y="230" key="new project wizard" timestamp="1589338211430">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

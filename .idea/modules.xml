@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/DeviceMonitor/DeviceMonitor.iml" filepath="$PROJECT_DIR$/DeviceMonitor/DeviceMonitor.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/FuguIOT.iml" filepath="$PROJECT_DIR$/.idea/FuguIOT.iml" />
     </modules>
   </component>

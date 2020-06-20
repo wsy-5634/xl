@@ -1,5 +1,5 @@
 spring:
     application:
-       name: Study-Api
+       name: IOTServer
     profiles:
      active: dev

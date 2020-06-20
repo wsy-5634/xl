@@ -119,9 +119,14 @@
 
 	<delete id="deleteBatches" parameterType="com.fugu.modules.system.entity.User">
 		DELETE FROM  t_sys_user  WHERE id IN
-			<foreach collection="id" item="id" open="(" separator="," close=")">
-				#{id}
+			<foreach collection="list" item="ids" open="(" separator="," close=")">
+				#{ids}
 			</foreach>
 	</delete>
+
+	<select id="selectRoleidByID" resultMap="BaseResultMap">
+		SELECT roleid FROM t_sys_user
+		WHERE id =#{id}
+	</select>
 
 </mapper>

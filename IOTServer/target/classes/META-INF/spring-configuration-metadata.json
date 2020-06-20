@@ -1,0 +1,23 @@
+{
+  "groups": [
+    {
+      "name": "fugu",
+      "type": "com.fugu.config.MyProperties",
+      "sourceType": "com.fugu.config.MyProperties"
+    },
+    {
+      "name": "fugu.swagger",
+      "type": "com.fugu.config.MyProperties$Swagger",
+      "sourceType": "com.fugu.config.MyProperties",
+      "sourceMethod": "getSwagger()"
+    },
+    {
+      "name": "fugu.upload",
+      "type": "com.fugu.config.MyProperties$Upload",
+      "sourceType": "com.fugu.config.MyProperties",
+      "sourceMethod": "getUpload()"
+    }
+  ],
+  "properties": [],
+  "hints": []
+}
