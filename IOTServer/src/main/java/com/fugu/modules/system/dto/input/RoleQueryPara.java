@@ -30,9 +30,9 @@ public class RoleQueryPara extends BasePageQuery {
     @ApiModelProperty(value = "用户数量")
     private String userNum;
 
-//    @ApiModelProperty(value = "是否启用")
-//    private Integer states;
-
     @ApiModelProperty(value = "添加时间")
     private String addtime;
+
+    @ApiModelProperty(value = "是否启用该菜单")
+    private Integer states;
 }

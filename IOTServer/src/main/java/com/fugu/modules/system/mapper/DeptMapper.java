@@ -35,5 +35,9 @@ public interface DeptMapper extends BaseMapper<Dept> {
     Integer getDeptIdBySecretOrName(@Param("filter") DeptQueryPara filter);
 
 
+    //根据部门名称查找部门ID
+    Integer getDeptIdByName(@Param("filter") String name);
+
+
 
 }

@@ -6,6 +6,7 @@ import com.fugu.modules.system.entity.RoleMenu;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.baomidou.mybatisplus.plugins.pagination.Pagination;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 
@@ -42,6 +43,11 @@ public interface RoleMenuMapper extends BaseMapper<RoleMenu> {
      */
     void deleteByRoleId(@Param("roleId") Integer roleId);
 
+
+
+    //根据角色菜单 的ID 修改启动状态states
+    @Update("UPDATE t_sys_role_menu SET states =#{states} WHERE id =#{id}")
+    void updatestates(@Param(value = "id")Integer id, @Param(value = "states")Integer states);
 
     /**
      * 根据角色ID查询关联菜单

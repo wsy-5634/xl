@@ -68,17 +68,20 @@ public class UserQueryPara extends BasePageQuery{
     private String token;
 
     @ApiModelProperty(value = "角色ID")
-    private int roleid;
+    private int role_id;
 
     @ApiModelProperty(value = "用户权限")
     private String roleList;
 
 
     @ApiModelProperty(value = "部门ID")
-    private int deptId;
+    private int dept_id;
 
     @ApiModelProperty(value = "最后登录时间")
     private String lastLoginTime;
+
+    @ApiModelProperty(value = "用户编号")
+    private Integer code;
 
     @ApiModelProperty(value = "添加时间")
     private String addtime;

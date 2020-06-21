@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.fugu.modules.system.dto.input.UserQueryPara;
 import com.fugu.modules.system.entity.User;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 import tk.mybatis.mapper.common.ExampleMapper;
 import tk.mybatis.mapper.common.Marker;
 import tk.mybatis.mapper.common.RowBoundsMapper;
@@ -23,6 +24,20 @@ public interface UserMapper extends BaseMapper<User>, ExampleMapper<User> {
      * @return
      */
     int count(@Param("filter") UserQueryPara filter);
+
+
+    /**
+     * 注册或新增用户数账号查重
+     * @param loginname
+     * @return
+     */
+    @Select("select count(id) from t_sys_user where username=#{loginname}")
+    int countBy(String loginname);
+
+//    @Select("SELECT CODE FROM t_sys_user WHERE id=#{}")
+//    Integer selectCodeByid(Integer id);
+
+
     /**
      * 列表
      *

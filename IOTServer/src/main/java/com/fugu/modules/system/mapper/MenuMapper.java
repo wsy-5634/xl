@@ -49,4 +49,7 @@ public interface MenuMapper extends BaseMapper<Menu> {
      */
     List<Menu> selectMenuByRoleId(@Param("roleId") Integer roleId);
 
+//通过父ID查询子菜单
+    List<Menu> selectByPid(Integer id);
+
 }

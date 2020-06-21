@@ -41,8 +41,8 @@ public class MenuQueryPara extends BasePageQuery{
     /**
      * 菜单图标
      */
-    @ApiModelProperty(value = "菜单图标")
-    private String icon;
+    @ApiModelProperty(value = "是否开启")
+    private String 是否开启;
 
     @ApiModelProperty(value = "类型 menu、button")
     private String type;

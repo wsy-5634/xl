@@ -84,7 +84,7 @@ public class LoginServiceImpl extends ServiceImpl<UserMapper, User> implements I
 //        queryPara.setOrgSecret(deptSecret);
         Integer deptId = deptMapper.getDeptIdBySecretOrName(queryPara);
         if (deptId != null && deptId.intValue() > 0) {
-            user.setDeptId(deptId);
+            user.setDept_id(deptId);
         } else {
             Dept dept = new Dept();
             dept.setName(deptName);
@@ -94,7 +94,7 @@ public class LoginServiceImpl extends ServiceImpl<UserMapper, User> implements I
             int number = deptMapper.insert(dept);
             if (number > 0) {
                 deptId = deptMapper.getDeptIdBySecretOrName(queryPara);
-                user.setDeptId(deptId);
+                user.setDept_id(deptId);
             } else {
                 return  null;
             }

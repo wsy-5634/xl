@@ -17,10 +17,8 @@ import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -108,5 +106,13 @@ public class SysMenuController extends BaseController {
        Menu entity = menuService.selectById(input.getId());
        return ApiResult.ok("获取系统管理-菜单表 信息成功", entity);
     }
+
+    @PostMapping(value = "/getByPid", produces = "application/json;charset=utf-8")
+    @ApiOperation(value = "根据父ID获取子菜单表信息(用于角色分配菜单)", httpMethod = "POST", response = ApiResult.class)
+    public ApiResult getByPid(@RequestParam(value = "id" ,defaultValue = "1")Integer id) {
+        List<Menu> list = menuService.selectByPid(id);
+        return ApiResult.ok("获取分配菜单表 信息成功", list);
+    }
+
 
 }

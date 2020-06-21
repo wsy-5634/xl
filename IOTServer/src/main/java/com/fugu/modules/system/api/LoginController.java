@@ -69,7 +69,7 @@ public class LoginController extends BaseController {
     @PostMapping("/login")
     @ApiOperation(value = "登录系统", httpMethod = "POST", response = ApiResult.class, notes = "登录系统")
     public ApiResult login(@RequestParam("loginname") String loginname,
-                           @RequestParam("password") String password) throws Exception {
+                           @RequestParam("pwd") String pwd) throws Exception {
 //        String openID = para.getOpenId();
 //        String accessToken = para.getAccessToken();
 
@@ -97,20 +97,21 @@ public class LoginController extends BaseController {
 //            }
 //          }
         // 账号登录
-        if (StringUtils.isBlank(loginname) || StringUtils.isBlank(password)) {
+        if (StringUtils.isBlank(loginname) || StringUtils.isBlank(pwd)) {
             return ApiResult.fail("请输入正确的账号和密码");
         }
-        return loginWithUserName(loginname,password);
+        return loginWithUserName(loginname,pwd);
     }
 
 
-    private ApiResult loginWithUserName(String loginname, String password){ //}, String token) {
+    private ApiResult loginWithUserName(String loginname, String pwd){ //}, String token) {
         // 拿到当前用户(可能还是游客，没有登录)
         Subject currentUser = SecurityUtils.getSubject();
         // 如果这个用户没有登录,进行登录功能
         if (!currentUser.isAuthenticated()){// || TextUtils.isEmpty(token)) {
             try {
-                password = MD5Util.encrypt(loginname.toLowerCase(), password);
+                //将明文密码加密，用于登录
+                String password = MD5Util.encrypt(loginname.toLowerCase(), pwd);
                 // 验证身份和登陆
                 UsernamePasswordToken token = new UsernamePasswordToken(loginname, password);
                 // String token = MD5Utils.encrypt( String.valueOf( System.currentTimeMillis() ) );
@@ -118,7 +119,7 @@ public class LoginController extends BaseController {
                 currentUser.login(token);
                 User user = userService.findUserByname(loginname);
                 JSONObject json = new JSONObject();
-                json.put("flag",user.getRoleid());
+                json.put("flag",user.getRole_id());
 //                json.put("token", ShiroUtils.getSession().getId().toString());
 
                 log.info("----------------------------------------------  登录成功！  ------------------------------");

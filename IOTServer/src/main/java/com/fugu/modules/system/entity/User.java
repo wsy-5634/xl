@@ -128,8 +128,8 @@ public class User extends BaseEntity<User> {
 
 	@ApiModelProperty(value = "角色ID")
 	@NotBlank(message = "角色ID不能为空")
-	@TableField("roleid")
-	private int roleid;
+	@TableField("role_id")
+	private int role_id;
 
 	@ApiModelProperty(value = "用户角色")
 	@TableField("roleList")
@@ -139,7 +139,7 @@ public class User extends BaseEntity<User> {
 
 	@ApiModelProperty(value = "部门ID")
 	@TableField("dept_id")
-	private int deptId;
+	private int dept_id;
 
 	@ApiModelProperty(value = "最后登录时间")
 	@TableField("lastLoginTime")
@@ -158,6 +158,10 @@ public class User extends BaseEntity<User> {
 	@ApiModelProperty(value = "移动办公云 第三方登录Oppen_ID唯一标识")
 	@TableField("mobile_user_id")
 	private String mobileUserId;
+
+	@ApiModelProperty(value = "用户编号")
+	@TableField("code")
+	private Integer code;
 
 
 

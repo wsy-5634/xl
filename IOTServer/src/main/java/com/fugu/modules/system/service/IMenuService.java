@@ -46,4 +46,11 @@ public interface IMenuService extends IService<Menu> {
      * @return
      */
     List<Menu> list(MenuQueryPara filter);
+
+    /**
+     * 通过父ID查找子菜单（用于角色分配菜单）
+     * @param id
+     * @return
+     */
+    List<Menu> selectByPid(Integer id);
 }

@@ -41,6 +41,12 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements IM
     }
 
     @Override
+    public List<Menu> selectByPid(Integer id) {
+        List<Menu> menus = menuMapper.selectByPid(id);
+        return menus;
+    }
+
+    @Override
     public Integer save(Menu para) {
        if (para.getId()!=null) {
           menuMapper.updateById(para);

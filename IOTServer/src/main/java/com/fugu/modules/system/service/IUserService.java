@@ -73,6 +73,6 @@ public interface IUserService extends IService<User> {
     User findUserByname(String loginname);
 
     //根据姓名和部门筛选用户
-    PageResult<User> NameAndDepPage(String key, DeptQueryPara filter, Integer page, Integer rows);
+    PageResult<User> NameAndDepPage(String key, String name,Integer page, Integer rows);
 
 }

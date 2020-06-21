@@ -2,18 +2,18 @@ package com.fugu.modules.system.api;
 
 import com.baomidou.mybatisplus.plugins.Page;
 import com.fugu.modules.common.api.BaseController;
+import com.fugu.modules.common.entity.PageResult;
 import com.fugu.modules.shiro.service.ShiroService;
 import com.fugu.modules.system.dto.input.UserRoleQueryPara;
+import com.fugu.modules.system.entity.User;
 import com.fugu.modules.system.service.IUserRoleService;
 import com.fugu.modules.common.dto.output.ApiResult;
 import com.fugu.modules.system.entity.UserRole;
+import com.fugu.modules.system.service.IUserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -35,6 +35,8 @@ public class SysUserRoleController extends BaseController {
     IUserRoleService userRoleService;
     @Autowired
     private ShiroService shiroService;
+    @Autowired
+    IUserService userService;
 
     @PostMapping(value = "/list", produces = "application/json;charset=utf-8")
     @ApiOperation(value = "获取系统管理 - 用户角色关联表 列表", httpMethod = "POST", response = ApiResult.class)
@@ -71,6 +73,23 @@ public class SysUserRoleController extends BaseController {
        // 更新shiro权限
        shiroService.updatePermissionByRoleId(input.getRole_id(), false);
        return ApiResult.ok("保存角色相关联用户成功");
+    }
+
+    /**
+     * @param key  要查询的关键字
+     * @param page    起始页码，默认为1
+     * @param rows    行数，默认为4
+     * @return
+     */
+    @PostMapping(value = "/listByLoginname", produces = "application/json;charset=utf-8")
+    @ApiOperation(value = "根据登录名查询用户角色基本信息", httpMethod = "POST", response = ApiResult.class)
+    public ApiResult listByLoginname(@RequestParam(value = "key", required = false)String key,
+                                    @RequestParam(value = "page", defaultValue = "1")Integer page,
+                                    @RequestParam(value = "rows",defaultValue = "4")Integer rows) {
+//        Page<User> page = new Page<>(filter.getPage(), filter.getLimit());
+        String name = null;
+        PageResult<User> users = userService.NameAndDepPage(key,name,page,rows);
+        return ApiResult.ok("获取用户基础信息表列表分页成功", users);
     }
 
 }

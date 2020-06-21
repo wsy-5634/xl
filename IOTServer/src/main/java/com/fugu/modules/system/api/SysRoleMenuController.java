@@ -10,12 +10,10 @@ import com.fugu.modules.system.service.IRoleMenuService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p> 系统管理 - 角色-菜单关联表  接口 </p>
@@ -44,17 +42,20 @@ public class SysRoleMenuController extends BaseController {
     }
 
     @PostMapping(value = "/list", produces = "application/json;charset=utf-8")
-    @ApiOperation(value = "获取系统管理 - 角色-菜单关联表 列表", httpMethod = "POST", response = ApiResult.class)
+    @ApiOperation(value = "分配菜单 - 角色-菜单关联表 列表", httpMethod = "POST", response = ApiResult.class)
     public ApiResult list(@RequestBody RoleMenuQueryPara filter) {
        List<RoleMenu> result = roleMenuService.list(filter);
        return ApiResult.ok("获取系统管理 - 角色-菜单关联表 列表成功",result);
     }
 
-    @PostMapping(value = "/saveOrUpdate", produces = "application/json;charset=utf-8")
-    @ApiOperation(value = "保存或更新系统管理 - 角色-菜单关联表 ", httpMethod = "POST", response = ApiResult.class)
-    public ApiResult saveOrUpdate(@RequestBody RoleMenu input) {
-       Integer id = roleMenuService.save(input);
-       return ApiResult.ok("保存系统管理 - 角色-菜单关联表 成功", id);
+    @PostMapping(value = "/update", produces = "application/json;charset=utf-8")
+    @ApiOperation(value = "修改角色菜单--分配菜单功能 ", httpMethod = "POST", response = ApiResult.class)
+    public ApiResult saveOrUpdate(@RequestBody Map<Integer,Integer> map) {
+       boolean b = roleMenuService.update(map);
+        if (!b){
+            return ApiResult.fail("修改失败");
+        }
+       return ApiResult.ok("修改角色菜单成功");
     }
 
     @PostMapping(value = "/delete", produces = "application/json;charset=utf-8")

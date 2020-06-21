@@ -6,6 +6,7 @@ import com.fugu.modules.system.dto.input.RoleMenuQueryPara;
 import com.fugu.modules.system.entity.RoleMenu;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>  系统管理 - 角色-菜单关联表  服务类 </p>
@@ -25,11 +26,9 @@ public interface IRoleMenuService extends IService<RoleMenu> {
     void listPage(Page<RoleMenu> page, RoleMenuQueryPara filter);
 
     /**
-     * 保存系统管理 - 角色-菜单关联表
-     *
-     * @param input
+     * 修改角色菜单--分配菜单功能
      */
-    Integer save(RoleMenu input);
+    boolean update(Map<Integer,Integer> map);
 
     /**
      * 系统管理 - 角色-菜单关联表 列表

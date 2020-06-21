@@ -3,6 +3,7 @@ package com.fugu.modules.system.service;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.baomidou.mybatisplus.service.IService;
 import com.fugu.modules.system.dto.input.UserRoleQueryPara;
+import com.fugu.modules.system.entity.User;
 import com.fugu.modules.system.entity.UserRole;
 
 import java.util.List;
@@ -29,6 +30,7 @@ public interface IUserRoleService extends IService<UserRole> {
      * @return
      */
     List<UserRole> list(UserRoleQueryPara filter);
+
 
     /**
      * 保存角色相关联用户

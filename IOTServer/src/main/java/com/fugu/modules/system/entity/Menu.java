@@ -24,7 +24,7 @@ import java.io.Serializable;
 @ApiModel(description = "系统管理-菜单表 ")
 @TableName("t_sys_menu")
 @FieldRepeatValidator(field = "resources", message = "菜单编码重复！")
-public class Menu extends BaseEntity {
+public class Menu  {
     private static final long serialVersionUID = 1L;
 
 	@ApiModelProperty(value = "主键")
@@ -57,10 +57,6 @@ public class Menu extends BaseEntity {
 	@ApiModelProperty(value = "排序")
 	@TableField("sortNo")
 	private Integer sortNo;
-
-	@ApiModelProperty(value = "菜单图标")
-	@TableField("icon")
-	private String icon;
     /**
      * 类型 menu、button
      */
@@ -69,13 +65,10 @@ public class Menu extends BaseEntity {
 	@NotBlank(message = "类型不能为空")
 	private String type;
 
-	@ApiModelProperty(value = "备注")
-	@TableField("remarks")
-	private String remarks;
+	@ApiModelProperty(value = "是否开启")
+	@TableField("states")
+	private String states;
 
-	@Override
-	protected Serializable pkVal() {
-		return this.id;
-	}
+
 
 }

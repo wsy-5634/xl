@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.fugu.config.Constants;
 import com.fugu.modules.common.entity.PageResult;
 import com.fugu.modules.common.exception.MyException;
+import com.fugu.modules.shiro.utils.MD5Util;
 import com.fugu.modules.shiro.utils.SHA256Util;
 import com.fugu.modules.system.dto.input.DeptQueryPara;
 import com.fugu.modules.system.dto.input.UserQueryPara;
@@ -60,7 +61,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     @Override
     public void listPage(Page<User> page, UserQueryPara filter) {
         page.setTotal(userMapper.count(filter));
-        filter.setPage(page.getCurrent());
+        filter.setPage(page.getCurrent());  //放入默认为1的当前页
         filter.setLimit(page.getSize());
         List<User> preUserList = userMapper.selectUsers(filter);
         page.setRecords(preUserList);
@@ -119,17 +120,23 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         return userInfoVO;
     }
 
+    /**
+     * 新增用户，用户注册
+     * @param para
+     * @return
+     */
     @Override
     public Integer save(User para) {
-        if (para.getId() != null) {
-            User user = userMapper.selectById(para.getId());
-            para.setPassword(SHA256Util.sha256(para.getPwd(), user.getSalt()));
-            userMapper.updateById(para);
-        } else {
-            para.setSalt(Constants.SALT);
-            para.setPassword(SHA256Util.sha256(para.getPwd(), Constants.SALT));
-            userMapper.insert(para);
+        //判断填入的登录账号是否和数据库中的有重复
+        int count = userMapper.countBy(para.getLoginname());
+        if (count>=0){
+            throw new MyException("该账号昵称已被占用，请重新输入");
         }
+        userMapper.insertAllColumn(para);
+        //自动生成用户编号
+        para.setCode(para.getId()+1000);
+        //对明文密码加密
+        para.setPassword(MD5Util.encrypt(para.getLoginname().toLowerCase(), para.getPwd()));
         return para.getId();
     }
 
@@ -194,7 +201,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
             throw new MyException("用户信息异常丢失，请重新登录尝试修改个人信息！");
         }
 
-        if (para.getDeptId() == 0) {
+        if (para.getDept_id() == 0) {
             throw new MyException("用户信息异常丢失，请重新登录尝试修改个人信息！");
         }
 
@@ -203,7 +210,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
 
     @Override
     public List<User> listByDept(UserQueryPara filter) {
-        return userMapper.selectUsersByDept(filter.getDeptId());
+        return userMapper.selectUsersByDept(filter.getDept_id());
     }
 
     @Override
@@ -213,18 +220,20 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
 
     //根据姓名和部门查询用户信息
     @Override
-    public PageResult<User> NameAndDepPage(String key, DeptQueryPara filter,Integer page, Integer rows) {
+    public PageResult<User> NameAndDepPage(String key, String name,Integer page, Integer rows) {
         //初始化复杂条件example
         Example example = new Example(User.class);
         //创建criteria对象，用来封装查询条件，可能是模糊查询，也可能是精确查询
         Example.Criteria criteria = example.createCriteria();
         //根据部门名称，查找部门ID
-        Integer deptId = deptMapper.getDeptIdBySecretOrName(filter);
+        if(!StringUtils.isNoneBlank(name)){
+            Integer deptId = deptMapper.getDeptIdByName(name);
+            criteria.orEqualTo("deptId",deptId);    //orEqualTo方法必须写在前面
+        }
         //根据name模糊查询，或根据部门ID，key为name输入的关键字
         if (StringUtils.isNoneBlank(key)){
-            criteria.andLike("name","%"+key+"%").orEqualTo("deptId",deptId);
+            criteria.andLike("name","%"+key+"%");
         }
-        //添加分页条件，进行分页操作
         PageHelper.startPage(page, rows);
         //添加排序条件
 //        if (org.apache.commons.lang.StringUtils.isNotBlank(sortBy)) {
