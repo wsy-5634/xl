@@ -2,18 +2,18 @@ package com.fugu.modules.system.api;
 
 import com.baomidou.mybatisplus.plugins.Page;
 import com.fugu.modules.common.api.BaseController;
+import com.fugu.modules.system.dto.input.UserQueryPara;
+import com.fugu.modules.system.entity.User;
 import com.fugu.modules.system.service.IRoleService;
 import com.fugu.modules.common.dto.output.ApiResult;
 import com.fugu.modules.system.dto.input.RoleQueryPara;
 import com.fugu.modules.system.entity.Role;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -65,10 +65,29 @@ public class SysRoleController extends BaseController {
 
     //通过ID获取角色信息
     @PostMapping(value = "/detail", produces = "application/json;charset=utf-8")
-    @ApiOperation(value = "获取角色信息", httpMethod = "POST", response = ApiResult.class)
+    @ApiOperation(value = "根据ID获取角色信息", httpMethod = "POST", response = ApiResult.class)
     public ApiResult detail(@RequestBody RoleQueryPara input) {
        Role entity = roleService.selectById(input.getId());
        return ApiResult.ok("获取角色信息成功", entity);
+    }
+
+    /**
+     * 根据角色名称查询角色
+     */
+    @PostMapping(value = "/findByName", produces = "application/json;charset=utf-8")
+    @ApiOperation(value = "根据角色名称查询角色", httpMethod = "POST", response = ApiResult.class)
+    public ApiResult findByName(@RequestParam(value = "key", required = false)String key) {
+        if (StringUtils.isNoneBlank(key)) {
+            List<Role> roles = roleService.findByName(key);
+            return ApiResult.ok("获取角色信息成功", roles);
+        }
+        if (StringUtils.isBlank(key)){
+            RoleQueryPara filter = new RoleQueryPara();
+            Page<Role> page = new Page<>(filter.getPage(),filter.getLimit());
+            roleService.listPage(page, filter);
+            return ApiResult.ok("获取角色信息成功", page);
+        }
+        return ApiResult.fail("获取失败");
     }
 
     //

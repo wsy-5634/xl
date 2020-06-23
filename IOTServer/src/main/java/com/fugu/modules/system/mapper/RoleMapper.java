@@ -4,7 +4,9 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.baomidou.mybatisplus.plugins.pagination.Pagination;
 import com.fugu.modules.system.dto.input.RoleQueryPara;
 import com.fugu.modules.system.entity.Role;
+import com.fugu.modules.system.entity.User;
 import org.apache.ibatis.annotations.Param;
+import tk.mybatis.mapper.common.ExampleMapper;
 
 import java.util.List;
 
@@ -14,7 +16,7 @@ import java.util.List;
  * @author : fugu
  * @date : 2019-08-20
  */
-public interface RoleMapper extends BaseMapper<Role> {
+public interface RoleMapper extends BaseMapper<Role>, ExampleMapper<Role> {
 
     /**
      * 列表分页
@@ -44,9 +46,9 @@ public interface RoleMapper extends BaseMapper<Role> {
     /**
      * 通过菜单ID查询角色集合
      *
-     * @param menuId:
+     * @param menu_id:
      * @return: java.util.List<Role>
      */
-    List<Role> selectRoleByMenuId(@Param("menuId") Integer menuId);
+    List<Role> selectRoleByMenuId(@Param("menu_id") Integer menu_id);
 
 }

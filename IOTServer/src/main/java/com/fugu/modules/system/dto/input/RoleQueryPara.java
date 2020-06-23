@@ -19,7 +19,7 @@ public class RoleQueryPara extends BasePageQuery {
     private Integer id;
 
     @ApiModelProperty(value = "角色名称")
-    private String name;
+    private String rolename;
 
     @ApiModelProperty(value = "角色编码")
     private String code;

@@ -3,6 +3,8 @@ package com.fugu.modules.system.service.impl;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.fugu.modules.system.dto.input.UserRoleQueryPara;
+import com.fugu.modules.system.entity.User;
+import com.fugu.modules.system.mapper.UserMapper;
 import com.fugu.modules.system.mapper.UserRoleMapper;
 import com.fugu.modules.system.entity.UserRole;
 import com.fugu.modules.system.service.IUserRoleService;
@@ -25,6 +27,8 @@ public class UserRoleServiceImpl extends ServiceImpl<UserRoleMapper, UserRole> i
 
     @Autowired
     UserRoleMapper userRoleMapper;
+    @Autowired
+    UserMapper userMapper;
 
     @Override
     public List<UserRole> list(UserRoleQueryPara filter) {
@@ -41,6 +45,7 @@ public class UserRoleServiceImpl extends ServiceImpl<UserRoleMapper, UserRole> i
        return para.getId();
     }
 
+    //修改用户权限
     @Override
     public void saveUserRole(UserRoleQueryPara para) {
        Integer roleId = para.getRole_id();
@@ -57,6 +62,13 @@ public class UserRoleServiceImpl extends ServiceImpl<UserRoleMapper, UserRole> i
               }
           }
        }
+    }
+
+    //重置用户密码
+    @Override
+    public boolean restPwd(Integer id) {
+       userMapper.updatePwd(id);
+        return true;
     }
 
 }

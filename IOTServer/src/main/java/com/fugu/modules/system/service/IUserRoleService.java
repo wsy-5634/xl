@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.service.IService;
 import com.fugu.modules.system.dto.input.UserRoleQueryPara;
 import com.fugu.modules.system.entity.User;
 import com.fugu.modules.system.entity.UserRole;
+import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 
@@ -39,5 +40,8 @@ public interface IUserRoleService extends IService<UserRole> {
      * @return: void
      */
     void saveUserRole(UserRoleQueryPara filter);
+
+    //重置用户密码
+    boolean restPwd(Integer id);
 
 }

@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.plugins.Page;
 import com.baomidou.mybatisplus.service.IService;
 import com.fugu.modules.system.entity.Role;
 import com.fugu.modules.system.dto.input.RoleQueryPara;
+import com.fugu.modules.system.entity.User;
 
 import java.util.List;
 
@@ -38,4 +39,9 @@ public interface IRoleService extends IService<Role> {
      * @return
      */
     List<Role> list(RoleQueryPara filter);
+
+    /**
+     * 根据角色名称模糊查询角色信息
+     */
+    List<Role> findByName(String key);
 }

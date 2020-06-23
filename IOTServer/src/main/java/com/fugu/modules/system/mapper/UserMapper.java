@@ -5,6 +5,7 @@ import com.fugu.modules.system.dto.input.UserQueryPara;
 import com.fugu.modules.system.entity.User;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 import tk.mybatis.mapper.common.ExampleMapper;
 import tk.mybatis.mapper.common.Marker;
 import tk.mybatis.mapper.common.RowBoundsMapper;
@@ -61,6 +62,10 @@ public interface UserMapper extends BaseMapper<User>, ExampleMapper<User> {
     //根据用户ID查找角色ID
     Integer selectRoleidByID(@Param("id") Integer id);
 
+    //重置用户密码
+    @Update("UPDATE t_sys_user SET pwd = '123456' WHERE id = #{id}")
+    void updatePwd(Integer id);
+
     /**
      * 通过手机号查找用户信息
      *
@@ -101,4 +106,6 @@ public interface UserMapper extends BaseMapper<User>, ExampleMapper<User> {
     Integer updateUserDept(@Param("filter") User user);
 
     List<User> selectUsersByDept(@Param("filter") Integer deptId);
+
+
 }

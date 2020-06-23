@@ -36,9 +36,9 @@ public class Role extends BaseEntity {
 	private String code;
 
 	@ApiModelProperty(value = "角色名称")
-	@TableField("name")
+	@TableField("rolename")
 	@NotBlank(message = "角色名称不能为空")
-	private String name;
+	private String rolename;
 
 	@ApiModelProperty(value = "角色描述")
 	@TableField("describe")

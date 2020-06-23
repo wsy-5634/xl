@@ -35,9 +35,19 @@
         sr.id FROM  t_sys_dept sr
         WHERE
         1 = 1
-        <!--<if test="filter.orgSecret !=null and filter.orgSecret != ''">-->
-            <!--AND sr.org_secret = '${filter.orgSecret}'-->
-        <!--</if>-->
+        <if test="filter.orgSecret !=null and filter.orgSecret != ''">
+            AND sr.org_secret = '${filter.orgSecret}'
+        </if>
+        <if test="filter.name !=null and filter.name != ''">
+            AND sr.name = '${filter.name}'
+        </if>
+    </select>
+
+    <select id="getDeptIdByName" resultType="Integer">
+        SELECT
+        sr.id FROM  t_sys_dept sr
+        WHERE
+        1 = 1
         <if test="filter.name !=null and filter.name != ''">
             AND sr.name = '${filter.name}'
         </if>
