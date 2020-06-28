@@ -3,14 +3,11 @@ package com.fugu.modules.system.service.impl;
 import cn.hutool.core.bean.BeanUtil;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
-import com.fugu.config.Constants;
 import com.fugu.modules.common.entity.PageResult;
 import com.fugu.modules.common.exception.MyException;
-import com.fugu.modules.shiro.utils.MD5Util;
+import com.fugu.modules.system.util.MD5Util;
 import com.fugu.modules.shiro.utils.SHA256Util;
-import com.fugu.modules.system.dto.input.DeptQueryPara;
 import com.fugu.modules.system.dto.input.UserQueryPara;
-import com.fugu.modules.system.dto.input.UserRoleQueryPara;
 import com.fugu.modules.system.dto.model.ButtonVO;
 
 import com.fugu.modules.system.dto.model.MenuVO;
@@ -23,7 +20,6 @@ import com.fugu.modules.system.mapper.RoleMenuMapper;
 import com.fugu.modules.system.mapper.UserMapper;
 import com.fugu.modules.system.mapper.UserRoleMapper;
 import com.fugu.modules.system.service.IUserService;
-import com.fugu.utils.TreeBuilder;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.apache.commons.lang3.StringUtils;
@@ -249,5 +245,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         return pageResult;
     }
 
+    @Override
+    public User getById(Integer id) {
+        System.out.println("aaa");
+        User user = userMapper.getById(id);
+        System.out.println("123");
+        return user;
+    }
 
 }

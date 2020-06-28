@@ -2,36 +2,40 @@ package com.fugu.modules.shiro.config;
 
 import com.fugu.modules.shiro.ShiroRealm;
 import com.fugu.modules.shiro.ShiroSessionIdGenerator;
-import com.fugu.modules.shiro.ShiroSessionManager;
 import com.fugu.modules.shiro.filter.MyPermissionsAuthorizationFilter;
 import com.fugu.modules.shiro.filter.MyRolesAuthorizationFilter;
-import com.fugu.modules.shiro.filter.TokenCheckFilter;
 import com.fugu.modules.shiro.service.impl.ShiroServiceImpl;
+import com.fugu.modules.system.util.MD5Util;
 import com.fugu.modules.shiro.utils.SHA256Util;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
+import org.apache.shiro.codec.Base64;
 import org.apache.shiro.mgt.SecurityManager;
-import org.apache.shiro.session.mgt.SessionManager;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
+import org.apache.shiro.web.mgt.CookieRememberMeManager;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
-import org.crazycake.shiro.RedisCacheManager;
-import org.crazycake.shiro.RedisManager;
+import org.apache.shiro.web.servlet.SimpleCookie;
+import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
 import org.crazycake.shiro.RedisSessionDAO;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.util.Base64Utils;
 
 import javax.servlet.Filter;
+import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
  *  <p> Shiro配置类 </p>
- *
- * @description :
- * @author : fugu
- * @date : 2019/8/23 15:52
+ /**
+ * ShiroFilterFactoryBean 处理拦截资源文件问题。
+ * 注意：初始化ShiroFilterFactoryBean的时候需要注入：SecurityManager
+ * Web应用中,Shiro可控制的Web请求必须经过Shiro主过滤器的拦截
+ * @date 2020/6/24
  */
+
 @Configuration
 public class ShiroConfig {
 
@@ -66,26 +70,38 @@ public class ShiroConfig {
      */
     @Bean
     public ShiroFilterFactoryBean shiroFilterFactory(SecurityManager securityManager, ShiroServiceImpl shiroConfig){
+       //定义返回对象
        ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
        shiroFilterFactoryBean.setSecurityManager(securityManager);
+//        //未授权界面,该配置无效，并不会进行页面跳转
+//        shiroFilterFactoryBean.setUnauthorizedUrl("/sessionInvalid");
 
-       // 自定义过滤器
+    /**
+     * 自定义过滤器
+     * 配置访问权限 必须是LinkedHashMap，必须保证有序
+     * 过滤链定义，从上向下顺序执行，一般将 /**放在最为下边 ，注意顺序
+     */
        Map<String, Filter> filtersMap = new LinkedHashMap<>();
-       // 定义过滤器名称 【注：map里面key值对于的value要为authc才能使用自定义的过滤器】
+       // 定义过滤器名称 【注：map里面key值对应的value要为authc才能使用自定义的过滤器】
+        //过滤请求头
        filtersMap.put( "zqPerms", new MyPermissionsAuthorizationFilter() );
+       //过滤角色权限
        filtersMap.put( "zqRoles", new MyRolesAuthorizationFilter() );
-       filtersMap.put( "token", new TokenCheckFilter() );
+       //过滤token
+//       filtersMap.put( "token", new TokenCheckFilter() );
        shiroFilterFactoryBean.setFilters(filtersMap);
 
-       // 登录的路径: 如果你没有登录则会跳到这个页面中 - 如果没有设置值则会默认跳转到工程根目录下的"/login.jsp"页面 或 "/login" 映射
-       shiroFilterFactoryBean.setLoginUrl("/api/auth/unLogin");
-       // 登录成功后跳转的主页面 （这里没用，前端vue控制了跳转）
-                //       shiroFilterFactoryBean.setSuccessUrl("/index");
-       // 设置没有权限时跳转的url
-       shiroFilterFactoryBean.setUnauthorizedUrl("/api/auth/unauth");
+        //拦截器.拦截具体url已放置shiroservice里处理
 
-       shiroFilterFactoryBean.setFilterChainDefinitionMap( shiroConfig.loadFilterChainDefinitionMap() );
-       return shiroFilterFactoryBean;
+        // 登录的路径: 如果你没有登录则会跳到这个页面中 - 如果没有设置值则会默认跳转到工程根目录下的"/login.jsp"页面 或 "/login" 映射
+        shiroFilterFactoryBean.setLoginUrl("/api/auth/unLogin");
+        // 登录成功后跳转的主页面 （这里没用，前端vue控制了跳转）
+        //       shiroFilterFactoryBean.setSuccessUrl("/index");
+        // 设置没有权限时跳转的url
+        shiroFilterFactoryBean.setUnauthorizedUrl("/api/auth/unauth");
+        shiroFilterFactoryBean.setFilterChainDefinitionMap( shiroConfig.loadFilterChainDefinitionMap() );
+
+        return shiroFilterFactoryBean;
     }
 
     /**
@@ -101,6 +117,13 @@ public class ShiroConfig {
        // 自定义Realm验证
        securityManager.setRealm(shiroRealm());
        return securityManager;
+    }
+
+
+    @Bean
+    public MyRolesAuthorizationFilter roleFilter(){
+        MyRolesAuthorizationFilter roleFilter=new MyRolesAuthorizationFilter();
+        return roleFilter;
     }
 
     /**
@@ -137,6 +160,46 @@ public class ShiroConfig {
 //       redisManager.setPassword(redisProperties.getPassword());
 //       return redisManager;
 //    }
+
+
+    /**
+     * cookie管理对象;记住我功能,rememberMe管理器
+     * @return org.apache.shiro.web.mgt.CookieRememberMeManager
+     */
+    @Bean
+    public CookieRememberMeManager cookieRememberMeManager() {
+        CookieRememberMeManager cookieRememberMeManager = new CookieRememberMeManager();
+        cookieRememberMeManager.setCookie(rememberMeCookie());
+        // rememberMe cookie 加密的密钥
+        String encryptKey = "fuguiot_shiro_key";
+        byte[] encryptKeyBytes = encryptKey.getBytes(StandardCharsets.UTF_8);
+        String rememberKey = Base64Utils.encodeToString(Arrays.copyOf(encryptKeyBytes, 16));
+        cookieRememberMeManager.setCipherKey(Base64.decode(rememberKey));
+        return cookieRememberMeManager;
+    }
+
+    /**
+     * rememberMe cookie 效果是重开浏览器后无需重新登录
+     *
+     * @return SimpleCookie
+     */
+    private SimpleCookie rememberMeCookie() {
+        // 设置 cookie 名称，对应 login.html 页面的 <input type="checkbox" name="rememberMe"/>
+        SimpleCookie cookie = new SimpleCookie("rememberMe");
+        // 设置 cookie 的过期时间，单位为ms
+        cookie.setMaxAge(1800000);
+        return cookie;
+    }
+
+
+    //会话管理器
+    @Bean
+    public DefaultWebSessionManager sessionManager(){
+        DefaultWebSessionManager sessionManager=new DefaultWebSessionManager();
+        sessionManager.setGlobalSessionTimeout(1800000);//单位是ms
+        return sessionManager;
+    }
+
 
     /**
      * 配置Redis管理器：使用的是shiro-redis开源插件

@@ -48,11 +48,9 @@ public interface UserMapper extends BaseMapper<User>, ExampleMapper<User> {
     List<User> selectUsers(@Param("filter") UserQueryPara filter);
     /**
      * 通过账号查找用户信息
-     *
-     * @param username:
      * @return: com.fugu.modules.system.entity.User
      */
-    User selectUserByUsername(@Param("loginname") String username);
+    User selectUserByUsername(@Param("loginname") String loginname);
 
     /**
      * 批量删除
@@ -107,5 +105,17 @@ public interface UserMapper extends BaseMapper<User>, ExampleMapper<User> {
 
     List<User> selectUsersByDept(@Param("filter") Integer deptId);
 
+//    @Select("SELECT * FROM t_sys_user WHERE id = #{id}")
+    User getById(@Param("filter") Integer id);
+
+
+    //通过loginname查找对应密码
+    @Select("SELECT PASSWORD FROM t_sys_user WHERE loginname = #{loginname}")
+    String passwordEncoder(String loginname);
+
+
+    //根据loginname查找对应状态
+    @Select("SELECT status FROM t_sys_user WHERE loginname = #{loginname}")
+    int statusByloginname(String loginname);
 
 }

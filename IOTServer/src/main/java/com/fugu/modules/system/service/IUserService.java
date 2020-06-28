@@ -75,4 +75,7 @@ public interface IUserService extends IService<User> {
     //根据姓名和部门筛选用户
     PageResult<User> NameAndDepPage(String key, String name,Integer page, Integer rows);
 
+    User getById(Integer id);
+
+
 }

@@ -1,15 +1,18 @@
 package com.fugu;
 
 import com.fugu.config.MyProperties;
+import org.apache.ibatis.annotations.Mapper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import tk.mybatis.spring.annotation.MapperScan;
 
 
 @EnableConfigurationProperties({MyProperties.class})
 @EnableTransactionManagement
 @SpringBootApplication
+@MapperScan("com.fugu.modules.system.mapper")
 public class ServerApplication {
 
 //    /**

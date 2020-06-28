@@ -1,6 +1,7 @@
 package com.fugu.modules.shiro;
 
 
+import com.fugu.modules.shiro.utils.SpringUtil;
 import com.fugu.modules.system.mapper.MenuMapper;
 import com.fugu.modules.system.mapper.RoleMapper;
 import com.fugu.modules.system.mapper.UserMapper;
@@ -8,6 +9,7 @@ import com.fugu.modules.shiro.utils.ShiroUtils;
 import com.fugu.modules.system.entity.Menu;
 import com.fugu.modules.system.entity.Role;
 import com.fugu.modules.system.entity.User;
+import com.fugu.modules.system.service.IUserService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
@@ -51,7 +53,8 @@ public class ShiroRealm extends AuthorizingRealm {
        SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
        // 获取用户
        User user = (User) principalCollection.getPrimaryPrincipal();
-       Integer userId =user.getId();
+
+        Integer userId =user.getId();
        // 这里可以进行授权和处理
        Set<String> rolesSet = new HashSet<>();
        Set<String> permsSet = new HashSet<>();
@@ -78,28 +81,29 @@ public class ShiroRealm extends AuthorizingRealm {
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
        UsernamePasswordToken tokenInfo = (UsernamePasswordToken)authenticationToken;
        // 获取用户输入的账号
-       String username = tokenInfo.getUsername();
+       String loginname = tokenInfo.getUsername();
        // 获取用户输入的密码
        String password = String.valueOf( tokenInfo.getPassword() );
 
        // 通过username从数据库中查找 User对象，如果找到进行验证
        // 实际项目中,这里可以根据实际情况做缓存,如果不做,Shiro自己也是有时间间隔机制,2分钟内不会重复执行该方法
-       User user = userMapper.selectUserByUsername(username);
+       User user = userMapper.selectUserByUsername(loginname);
        // 判断账号是否存在
-       if (user == null) {
-          //返回null -> shiro就会知道这是用户不存在的异常
-          return null;
-//          throw new UnknownAccountException();
-       }
-       // 验证密码 【注：这里不采用shiro自身密码验证 ， 采用的话会导致用户登录密码错误时，已登录的账号也会自动下线！  如果采用，移除下面的清除缓存到登录处 处理】
-       if ( !password.equals( user.getPwd() ) ){
-          throw new IncorrectCredentialsException("用户名或者密码错误");
-       }
-
-       // 判断账号是否被冻结
-//       if (user.getFlag()==null|| "0".equals(user.getFlag())){
-//          throw new LockedAccountException();
+        if (loginname == null) {
+            throw new UnknownAccountException("用户名不存在");
+        }
+//       // 验证密码 【注：这里不采用shiro自身密码验证 ， 采用的话会导致用户登录密码错误时，已登录的账号也会自动下线！  如果采用，移除下面的清除缓存到登录处 处理】
+//       if ( !password.equals( user.getPwd() ) ){
+//          throw new IncorrectCredentialsException("用户名或者密码错误");
 //       }
+        if (!user.getPassword()
+                .equals(userMapper.passwordEncoder(loginname)) ){
+            throw new IncorrectCredentialsException("密码错误");
+        }
+        if (user.getStatus() != userMapper.statusByloginname(loginname)) {
+            throw new IncorrectCredentialsException("用户被冻结，请联系管理员");
+        }
+
 
        /**
         * 进行验证 -> 注：shiro会自动验证密码
@@ -110,7 +114,7 @@ public class ShiroRealm extends AuthorizingRealm {
         */
        SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(user, user.getPassword(), ByteSource.Util.bytes(user.getSalt()), getName());
        // 验证成功开始踢人(清除缓存和Session)
-       ShiroUtils.deleteCache(username,true);
+       ShiroUtils.deleteCache(loginname,true);
 
        // 认证成功后更新token
        String token = ShiroUtils.getSession().getId().toString();

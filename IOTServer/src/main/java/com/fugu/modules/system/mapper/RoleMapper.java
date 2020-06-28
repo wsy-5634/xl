@@ -6,6 +6,7 @@ import com.fugu.modules.system.dto.input.RoleQueryPara;
 import com.fugu.modules.system.entity.Role;
 import com.fugu.modules.system.entity.User;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 import tk.mybatis.mapper.common.ExampleMapper;
 
 import java.util.List;
@@ -45,10 +46,10 @@ public interface RoleMapper extends BaseMapper<Role>, ExampleMapper<Role> {
 
     /**
      * 通过菜单ID查询角色集合
-     *
      * @param menu_id:
      * @return: java.util.List<Role>
      */
-    List<Role> selectRoleByMenuId(@Param("menu_id") Integer menu_id);
+    @Select("SELECT role_id FROM t_sys_role_menu WHERE menu_id = #{menu_id} AND states ='1'")
+    List<Role> selectRoleByMenuId(Integer menu_id);
 
 }

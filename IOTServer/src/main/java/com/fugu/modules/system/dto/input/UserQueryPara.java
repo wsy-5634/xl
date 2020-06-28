@@ -58,8 +58,8 @@ public class UserQueryPara extends BasePageQuery{
     @ApiModelProperty(value = "是否是管理员")
     private String flag;
 
-//    @ApiModelProperty(value = "是否启用")
-//    private String states;
+    @ApiModelProperty(value = "是否启用")
+    private Integer status;
 
     @ApiModelProperty(value = "盐值")
     private String salt;

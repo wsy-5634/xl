@@ -34,41 +34,47 @@ public class SysRoleController extends BaseController {
     @Autowired
     IRoleService roleService;
 
+    public static void main(String[] args) {
+        SysUserController sysUserController = new SysUserController();
+        User user = sysUserController.getById();
+        System.out.println(user);
+    }
+
     @PostMapping(value = "/listPage", produces = "application/json;charset=utf-8")
     @ApiOperation(value = "获取-角色表 列表分页", httpMethod = "POST", response = ApiResult.class)
     public ApiResult listPage(@RequestBody RoleQueryPara filter) {
-       Page<Role> page = new Page<>(filter.getPage(),filter.getLimit());
-       roleService.listPage(page, filter);
-       return ApiResult.ok("获取-角色表 列表分页成功", page);
+        Page<Role> page = new Page<>(filter.getPage(), filter.getLimit());
+        roleService.listPage(page, filter);
+        return ApiResult.ok("获取-角色表 列表分页成功", page);
     }
 
-    @PostMapping(value = "/list", produces = "application/json;charset=utf-8")
+    @RequestMapping(value = "/list", produces = "application/json;charset=utf-8")
     @ApiOperation(value = "获取-角色表 列表", httpMethod = "POST", response = ApiResult.class)
     public ApiResult list(@RequestBody RoleQueryPara filter) {
-       List<Role> result = roleService.list(filter);
-       return ApiResult.ok("获取-角色表 列表成功",result);
+        List<Role> result = roleService.list(filter);
+        return ApiResult.ok("获取-角色表 列表成功", result);
     }
 
     @PostMapping(value = "/saveOrUpdate", produces = "application/json;charset=utf-8")
     @ApiOperation(value = "保存或更新角色", httpMethod = "POST", response = ApiResult.class)
     public ApiResult saveOrUpdate(@RequestBody @Validated Role input) {
-       Integer id = roleService.save(input);
-       return ApiResult.ok("保存角色成功", id);
+        Integer id = roleService.save(input);
+        return ApiResult.ok("保存角色成功", id);
     }
 
     @PostMapping(value = "/delete", produces = "application/json;charset=utf-8")
     @ApiOperation(value = "删除角色 ", httpMethod = "POST", response = ApiResult.class)
     public ApiResult delete(@RequestBody RoleQueryPara input) {
-       roleService.deleteById(input.getId());
-       return ApiResult.ok("删除角色成功");
+        roleService.deleteById(input.getId());
+        return ApiResult.ok("删除角色成功");
     }
 
     //通过ID获取角色信息
     @PostMapping(value = "/detail", produces = "application/json;charset=utf-8")
     @ApiOperation(value = "根据ID获取角色信息", httpMethod = "POST", response = ApiResult.class)
     public ApiResult detail(@RequestBody RoleQueryPara input) {
-       Role entity = roleService.selectById(input.getId());
-       return ApiResult.ok("获取角色信息成功", entity);
+        Role entity = roleService.selectById(input.getId());
+        return ApiResult.ok("获取角色信息成功", entity);
     }
 
     /**
@@ -76,20 +82,20 @@ public class SysRoleController extends BaseController {
      */
     @PostMapping(value = "/findByName", produces = "application/json;charset=utf-8")
     @ApiOperation(value = "根据角色名称查询角色", httpMethod = "POST", response = ApiResult.class)
-    public ApiResult findByName(@RequestParam(value = "key", required = false)String key) {
+    public ApiResult findByName(@RequestParam(value = "key", required = false) String key) {
         if (StringUtils.isNoneBlank(key)) {
             List<Role> roles = roleService.findByName(key);
             return ApiResult.ok("获取角色信息成功", roles);
         }
-        if (StringUtils.isBlank(key)){
+        if (StringUtils.isBlank(key)) {
             RoleQueryPara filter = new RoleQueryPara();
-            Page<Role> page = new Page<>(filter.getPage(),filter.getLimit());
+            Page<Role> page = new Page<>(filter.getPage(), filter.getLimit());
             roleService.listPage(page, filter);
             return ApiResult.ok("获取角色信息成功", page);
         }
         return ApiResult.fail("获取失败");
     }
 
-    //
+
 
 }

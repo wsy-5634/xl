@@ -1,5 +1,9 @@
+server:
+  port: 8081
 spring:
-    application:
-       name: IOTServer
-    profiles:
-     active: dev
+  application:
+    name: IOTServer
+  datasource:
+    url: jdbc:mysql:///fuguiot  #?useUnicode=true&amp&useSSL=false&amp&characterEncoding=UTF-8&amp&serverTimezone=GMT%2B8&amp&allowPublicKeyRetrieval=true # MySQL在高版本需要指明是否进行SSL连接 解决则加上 &useSSL=false
+    username: root
+    password: root

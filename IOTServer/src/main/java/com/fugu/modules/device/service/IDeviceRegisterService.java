@@ -12,7 +12,6 @@ import java.util.List;
 public interface IDeviceRegisterService /*extends IService<DeviceBase>*/ {
     /**
      * 设备登记，将设备登记信息写入数据库
-     * @param device
      */
     public boolean saveDevice(List equ_mgt);
 

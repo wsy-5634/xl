@@ -1,4 +1,4 @@
-package com.fugu.modules.shiro.utils;
+package com.fugu.modules.system.util;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.crypto.hash.SimpleHash;
@@ -10,7 +10,6 @@ import org.apache.shiro.util.ByteSource;
 public class MD5Util {
 
     protected MD5Util() {
-
     }
 
     private static final String ALGORITH_NAME = "md5";

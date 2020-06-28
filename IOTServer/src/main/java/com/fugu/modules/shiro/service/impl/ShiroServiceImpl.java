@@ -42,9 +42,10 @@ public class ShiroServiceImpl implements ShiroService {
 
     @Override
     public Map<String, String> loadFilterChainDefinitionMap() {
-       // 权限控制map
+    // 配置访问权限 必须是LinkedHashMap，因为它必须保证有序
        Map<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
-       // 配置过滤:不会被拦截的链接 -> 放行 start ----------------------------------------------------------
+        //配置不登录可以访问的资源，anon 表示资源都可以匿名访问
+      //放行 start ----------------------------------------------------------
        // 放行Swagger2页面，需要放行这些
        filterChainDefinitionMap.put("/swagger-ui.html","anon");
        filterChainDefinitionMap.put("/swagger/**","anon");
@@ -53,32 +54,34 @@ public class ShiroServiceImpl implements ShiroService {
        filterChainDefinitionMap.put("/v2/**","anon");
        filterChainDefinitionMap.put("/static/**", "anon");
 
+
        // 登陆
        filterChainDefinitionMap.put("/api/auth/login/**", "anon");
-        filterChainDefinitionMap.put("/api/auth/sys/login/**", "anon");
-       // 三方登录
-       filterChainDefinitionMap.put("/api/auth/loginByQQ", "anon");
-       filterChainDefinitionMap.put("/api/auth/afterlogin.do", "anon");
-       // 退出
-       filterChainDefinitionMap.put("/api/auth/logout", "anon");
+//       // 三方登录
+//       filterChainDefinitionMap.put("/api/auth/loginByQQ", "anon");
+//       filterChainDefinitionMap.put("/api/auth/afterlogin.do", "anon");
+//       // 退出
+//       filterChainDefinitionMap.put("/api/auth/logout", "anon");
        // 放行未授权接口，重定向使用
        filterChainDefinitionMap.put("/api/auth/unauth", "anon");
        // token过期接口
        filterChainDefinitionMap.put("/api/auth/tokenExpired", "anon");
        // 被挤下线
        filterChainDefinitionMap.put("/api/auth/downline", "anon");
+        filterChainDefinitionMap.put("/api/auth/user", "anon");
        // 放行 end ----------------------------------------------------------
 
        // 从数据库或缓存中查取出来的url与resources对应则不会被拦截 放行
        List<Menu> permissionList = menuMapper.selectList( null );
        if ( !CollectionUtils.isEmpty( permissionList ) ) {
-          permissionList.forEach( e -> {
+          permissionList.forEach( e -> {    //e为菜单
               if ( StringUtils.isNotBlank( e.getUrl() ) ) {
                  // 根据url查询相关联的角色名,拼接自定义的角色权限
-                 List<Role> roleList = roleMapper.selectRoleByMenuId( e.getId() );
-                 StringJoiner zqRoles = new StringJoiner(",", "zqRoles[", "]");
+                 List<Role> roleList = roleMapper.selectRoleByMenuId( e.getId() );//从菜单中拿到对应的角色集合
+                 StringJoiner zqRoles = new StringJoiner(",", "zqRoles[", "]"); //zqRoles 为角色权限过滤器
                  if ( !CollectionUtils.isEmpty( roleList ) ){
                     roleList.forEach( f -> {
+                        //从角色中拿到编码admin或者visitor，添加到shiro角色过滤器  MyRolesAuthorizationFilter
                         zqRoles.add( f.getCode() );
                     });
                  }

@@ -30,6 +30,8 @@ public interface ShiroService {
      */
     void updatePermission(ShiroFilterFactoryBean shiroFilterFactoryBean, Integer roleId, Boolean isRemoveSession);
 
+
+
     /**
      * shiro动态权限加载 -> 原理：删除shiro缓存，重新执行doGetAuthorizationInfo方法授权角色和权限
      * @param roleId

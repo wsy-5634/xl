@@ -22,6 +22,7 @@ import tk.mybatis.mapper.entity.Example;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @Service
 @Transactional
@@ -50,7 +51,8 @@ public class DeviceQueryServiceImpl implements IDeviceQueryService {
         String options = (String)list.get(list.indexOf("options"));//所在地域
 
         //根据时间段查询对应设备信息
-        List ids = baseMapper.selectByTime(qztime, qstime);
+        Set<DeviceBase> deviceBytime = baseMapper.selectByTime(qztime, qstime);
+
 
         //添加复杂查询条件
         //初始化复杂条件 example对象
@@ -76,6 +78,8 @@ public class DeviceQueryServiceImpl implements IDeviceQueryService {
 
         //执行查询操作
         List<DeviceBase> deviceBases = baseMapper.selectByExample(example);
+
+
 
 
         //添加分页条件，进行分页操作

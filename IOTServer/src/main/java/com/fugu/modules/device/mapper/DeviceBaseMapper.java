@@ -1,6 +1,7 @@
 package com.fugu.modules.device.mapper;
 
 import com.fugu.modules.device.entity.DeviceBase;
+import com.fugu.modules.system.entity.User;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -8,6 +9,7 @@ import tk.mybatis.mapper.common.Mapper;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 public interface DeviceBaseMapper extends  Mapper<DeviceBase> {
 
@@ -30,8 +32,8 @@ public interface DeviceBaseMapper extends  Mapper<DeviceBase> {
             "</foreach>")
     void deleteBatches(List ids);
 
-    @Select("SELECT id FROM t_dev_base  WHERE qstime>= #{qstime} AND qztime<= #{qztime}")
-    List selectByTime(Date qztime , Date qstime );
+    @Select("SELECT * FROM t_dev_base  WHERE qstime>= #{qstime} AND qztime<= #{qztime}")
+    Set<DeviceBase> selectByTime(Date qztime , Date qstime );
 
     /**
      * 列表分页

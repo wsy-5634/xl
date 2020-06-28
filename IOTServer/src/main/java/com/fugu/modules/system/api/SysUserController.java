@@ -13,6 +13,7 @@ import com.fugu.modules.common.dto.output.ApiResult;
 import com.fugu.modules.system.dto.input.UserQueryPara;
 import com.fugu.modules.system.entity.User;
 import com.fugu.modules.system.service.IUserService;
+import com.fugu.modules.system.service.impl.UserServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.http.util.TextUtils;
@@ -37,6 +38,7 @@ public class SysUserController extends BaseController {
     @Autowired
     IUserService userService;
 
+
     @PostMapping(value = "/getCurrentUserInfo", produces = "application/json;charset=utf-8")
     @ApiOperation(value = "查询获取当前登录用户信息", httpMethod = "POST", response = ApiResult.class, notes = "获取当前登录用户信息")
     public ApiResult getCurrentUserInfo(@RequestParam String token) {
@@ -50,8 +52,8 @@ public class SysUserController extends BaseController {
     /**
      * 管理员登录后自动展示所用用户信息
      */
-    @PostMapping(value = "/listPage", produces = "application/json;charset=utf-8")
-    @ApiOperation(value = "查询展示-所有用户基础信息表列表分页", httpMethod = "POST", response = ApiResult.class)
+    @PostMapping(value = "/listPage", produces = "application/json;charset=utf-8" )
+ //   @ApiOperation(value = "查询展示-所有用户基础信息表列表分页", httpMethod = "POST", response = ApiResult.class)
     public ApiResult listPage() {
         UserQueryPara filter = new UserQueryPara();
         Page<User> page = new Page<>(filter.getPage(), filter.getLimit());
@@ -121,7 +123,6 @@ public class SysUserController extends BaseController {
         }
     }
 
-
     @PostMapping(value = "/list", produces = "application/json;charset=utf-8")
     @ApiOperation(value = "查询展示—用户基础信息表列表", httpMethod = "POST", response = ApiResult.class)
     public ApiResult list(@RequestBody UserQueryPara filter) {
@@ -185,11 +186,17 @@ public class SysUserController extends BaseController {
         return ApiResult.ok("批量删除成功");
     }
 
-    @PostMapping(value = "/getById", produces = "application/json;charset=utf-8")
+    @PostMapping(value = "/getById/{id}", produces = "application/json;charset=utf-8")
     @ApiOperation(value = "通过ID获取用户基础信息表信息", httpMethod = "POST", response = ApiResult.class)
-    public ApiResult getById(@RequestBody UserQueryPara input) {
-       User entity = userService.selectById(input.getId());
-       return ApiResult.ok("获取系统管理-用户基础信息表信息成功", entity);
+   public User getById() {
+        System.out.println("111");
+       User user = userService.getById(4);
+       return user;
     }
+
+
+
+
+
 
 }

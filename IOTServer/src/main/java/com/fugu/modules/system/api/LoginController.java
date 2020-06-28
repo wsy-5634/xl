@@ -1,35 +1,23 @@
 package com.fugu.modules.system.api;
 
 
-import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.fugu.modules.common.api.BaseController;
-import com.fugu.modules.shiro.utils.MD5Util;
-import com.fugu.modules.system.dto.input.LoginQueryPara;
+import com.fugu.modules.system.util.MD5Util;
 import com.fugu.modules.system.service.ILoginService;
 import com.fugu.modules.system.service.IUserService;
-import com.fugu.modules.system.util.HttpRequestUtils;
-import com.fugu.config.Constants;
 import com.fugu.modules.common.dto.output.ApiResult;
 import com.fugu.modules.shiro.utils.ShiroUtils;
-import com.fugu.modules.system.dto.input.UserQueryPara;
 import com.fugu.modules.system.entity.User;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.http.util.TextUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.validation.constraints.NotBlank;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  *  <p> 授权模块 </p>
@@ -144,68 +132,68 @@ public class LoginController extends BaseController {
      * @return
      * @throws Exception
      */
-    public LoginQueryPara mobileCloudLogin(String token, String appId, String appSecret) throws Exception {
-
-        Map<String, String> headers = new HashMap<>();
-        headers.put("appId", appId);
-        headers.put("appSecret", appSecret);
-        //请求AccessToken
-        byte[] returnBytes = HttpRequestUtils.doPostOrGet(Constants.UBAN_REQUEST_GET_ACCESSTOKEN_URL + "?flags=1", HttpRequestUtils.HTTP_GET, headers);
-        if (returnBytes == null) {
-            return null;
-        }
-        String returnedString = new String(returnBytes);
-        log.info("请求accessToken成功！" + returnedString);
-        JSONObject jsonObject = JSONObject.parseObject(returnedString).getJSONObject("data");
-        if (jsonObject == null) {
-            return null;
-        }
-        //Uban登录
-        headers.clear();
-        headers.put("accessToken", jsonObject.getString("accessToken"));
-        headers.put("token", token);
-        byte[] jsonBytes = HttpRequestUtils.doPostOrGet(Constants.UBAN_REQUEST_LOGIN_URL + "?flags=15", HttpRequestUtils.HTTP_GET, headers);
-        if (jsonBytes == null) {
-            return null;
-        }
-        String jsonString = new String(jsonBytes);
-        log.info("ubun登录成功！" + jsonString);
-        JSONObject object = JSONObject.parseObject(jsonString).getJSONObject("data");
-        if (object == null) {
-            return null;
-        }
-
-        String userId = object.getString("uid");
-        String mobile = object.getString("mobile");
-        String name = object.getString("name");
-        String deptName = object.getString("orgName");
-        String deptSecret = object.getString("orgSecret");
-        String role = null;//默认设置为1，0--代表是企业管理员
-        if (object.containsKey("roles")) {
-           JSONArray roleArray = object.getJSONArray("roles");
-            role = roleArray.toJSONString();
-        }
-
-        LoginQueryPara result = new LoginQueryPara();
-        // 通过手机号获取用户
-        User user = loginService.getLoginedUserByMobile(mobile);
-        if ( user == null) {//用户没有注册
-            user = new User();
-            user.setLoginname(mobile);
-            user.setName(name);
-            user.setPhone(mobile);
-
-            user.setMobileUserId(userId);
-            String password = loginService.insertUser(user, deptName, deptSecret, role);
-
-            result.setLoginname(user.getLoginname());
-            result.setPassword(password);
-        } else {
-            result.setLoginname(user.getLoginname());
-            result.setPassword(user.getPwd());
-        }
-        return result;
-    }
+//    public LoginQueryPara mobileCloudLogin(String token, String appId, String appSecret) throws Exception {
+//
+//        Map<String, String> headers = new HashMap<>();
+//        headers.put("appId", appId);
+//        headers.put("appSecret", appSecret);
+//        //请求AccessToken
+//        byte[] returnBytes = HttpRequestUtils.doPostOrGet(Constants.UBAN_REQUEST_GET_ACCESSTOKEN_URL + "?flags=1", HttpRequestUtils.HTTP_GET, headers);
+//        if (returnBytes == null) {
+//            return null;
+//        }
+//        String returnedString = new String(returnBytes);
+//        log.info("请求accessToken成功！" + returnedString);
+//        JSONObject jsonObject = JSONObject.parseObject(returnedString).getJSONObject("data");
+//        if (jsonObject == null) {
+//            return null;
+//        }
+//        //Uban登录
+//        headers.clear();
+//        headers.put("accessToken", jsonObject.getString("accessToken"));
+//        headers.put("token", token);
+//        byte[] jsonBytes = HttpRequestUtils.doPostOrGet(Constants.UBAN_REQUEST_LOGIN_URL + "?flags=15", HttpRequestUtils.HTTP_GET, headers);
+//        if (jsonBytes == null) {
+//            return null;
+//        }
+//        String jsonString = new String(jsonBytes);
+//        log.info("ubun登录成功！" + jsonString);
+//        JSONObject object = JSONObject.parseObject(jsonString).getJSONObject("data");
+//        if (object == null) {
+//            return null;
+//        }
+//
+//        String userId = object.getString("uid");
+//        String mobile = object.getString("mobile");
+//        String name = object.getString("name");
+//        String deptName = object.getString("orgName");
+//        String deptSecret = object.getString("orgSecret");
+//        String role = null;//默认设置为1，0--代表是企业管理员
+//        if (object.containsKey("roles")) {
+//           JSONArray roleArray = object.getJSONArray("roles");
+//            role = roleArray.toJSONString();
+//        }
+//
+//        LoginQueryPara result = new LoginQueryPara();
+//        // 通过手机号获取用户
+//        User user = loginService.getLoginedUserByMobile(mobile);
+//        if ( user == null) {//用户没有注册
+//            user = new User();
+//            user.setLoginname(mobile);
+//            user.setName(name);
+//            user.setPhone(mobile);
+//
+//            user.setMobileUserId(userId);
+//            String password = loginService.insertUser(user, deptName, deptSecret, role);
+//
+//            result.setLoginname(user.getLoginname());
+//            result.setPassword(password);
+//        } else {
+//            result.setLoginname(user.getLoginname());
+//            result.setPassword(user.getPwd());
+//        }
+//        return result;
+//    }
 
 //    /**
 //     * QQ 授权登录
