@@ -13,13 +13,11 @@ import com.fugu.modules.device.service.IDeviceQueryService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.ibatis.annotations.Insert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import tk.mybatis.mapper.entity.Example;
 
-import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -120,7 +118,8 @@ public class DeviceQueryServiceImpl implements IDeviceQueryService {
      */
     @Override
     public List<City> findprovince() {
-        return null;
+        List<City> citylist = cityMapper.findprovince();
+        return citylist;
     }
 
 
@@ -129,7 +128,8 @@ public class DeviceQueryServiceImpl implements IDeviceQueryService {
      */
     @Override
     public List<City> findcity(Integer pid) {
-        return null;
+        List<City> citylist2 = cityMapper.findcity(pid);
+        return citylist2;
     }
 
 

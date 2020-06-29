@@ -73,9 +73,6 @@ public class ShiroConfig {
        //定义返回对象
        ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
        shiroFilterFactoryBean.setSecurityManager(securityManager);
-//        //未授权界面,该配置无效，并不会进行页面跳转
-//        shiroFilterFactoryBean.setUnauthorizedUrl("/sessionInvalid");
-
     /**
      * 自定义过滤器
      * 配置访问权限 必须是LinkedHashMap，必须保证有序
@@ -119,13 +116,6 @@ public class ShiroConfig {
        return securityManager;
     }
 
-
-    @Bean
-    public MyRolesAuthorizationFilter roleFilter(){
-        MyRolesAuthorizationFilter roleFilter=new MyRolesAuthorizationFilter();
-        return roleFilter;
-    }
-
     /**
      * 身份验证器
      */
@@ -166,39 +156,39 @@ public class ShiroConfig {
      * cookie管理对象;记住我功能,rememberMe管理器
      * @return org.apache.shiro.web.mgt.CookieRememberMeManager
      */
-    @Bean
-    public CookieRememberMeManager cookieRememberMeManager() {
-        CookieRememberMeManager cookieRememberMeManager = new CookieRememberMeManager();
-        cookieRememberMeManager.setCookie(rememberMeCookie());
-        // rememberMe cookie 加密的密钥
-        String encryptKey = "fuguiot_shiro_key";
-        byte[] encryptKeyBytes = encryptKey.getBytes(StandardCharsets.UTF_8);
-        String rememberKey = Base64Utils.encodeToString(Arrays.copyOf(encryptKeyBytes, 16));
-        cookieRememberMeManager.setCipherKey(Base64.decode(rememberKey));
-        return cookieRememberMeManager;
-    }
-
-    /**
-     * rememberMe cookie 效果是重开浏览器后无需重新登录
-     *
-     * @return SimpleCookie
-     */
-    private SimpleCookie rememberMeCookie() {
-        // 设置 cookie 名称，对应 login.html 页面的 <input type="checkbox" name="rememberMe"/>
-        SimpleCookie cookie = new SimpleCookie("rememberMe");
-        // 设置 cookie 的过期时间，单位为ms
-        cookie.setMaxAge(1800000);
-        return cookie;
-    }
-
-
-    //会话管理器
-    @Bean
-    public DefaultWebSessionManager sessionManager(){
-        DefaultWebSessionManager sessionManager=new DefaultWebSessionManager();
-        sessionManager.setGlobalSessionTimeout(1800000);//单位是ms
-        return sessionManager;
-    }
+//    @Bean
+//    public CookieRememberMeManager cookieRememberMeManager() {
+//        CookieRememberMeManager cookieRememberMeManager = new CookieRememberMeManager();
+//        cookieRememberMeManager.setCookie(rememberMeCookie());
+//        // rememberMe cookie 加密的密钥
+//        String encryptKey = "fuguiot_shiro_key";
+//        byte[] encryptKeyBytes = encryptKey.getBytes(StandardCharsets.UTF_8);
+//        String rememberKey = Base64Utils.encodeToString(Arrays.copyOf(encryptKeyBytes, 16));
+//        cookieRememberMeManager.setCipherKey(Base64.decode(rememberKey));
+//        return cookieRememberMeManager;
+//    }
+//
+//    /**
+//     * rememberMe cookie 效果是重开浏览器后无需重新登录
+//     *
+//     * @return SimpleCookie
+//     */
+//    private SimpleCookie rememberMeCookie() {
+//        // 设置 cookie 名称，对应 login.html 页面的 <input type="checkbox" name="rememberMe"/>
+//        SimpleCookie cookie = new SimpleCookie("rememberMe");
+//        // 设置 cookie 的过期时间，单位为ms
+//        cookie.setMaxAge(1800000);
+//        return cookie;
+//    }
+//
+//
+//    //会话管理器
+//    @Bean
+//    public DefaultWebSessionManager sessionManager(){
+//        DefaultWebSessionManager sessionManager=new DefaultWebSessionManager();
+//        sessionManager.setGlobalSessionTimeout(1800000);//单位是ms
+//        return sessionManager;
+//    }
 
 
     /**

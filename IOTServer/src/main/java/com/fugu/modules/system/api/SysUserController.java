@@ -171,8 +171,8 @@ public class SysUserController extends BaseController {
 
     @PostMapping(value = "/delete", produces = "application/json;charset=utf-8")
     @ApiOperation(value = "删除系统管理-用户基础信息表", httpMethod = "POST", response = ApiResult.class)
-    public ApiResult delete(@RequestBody UserQueryPara input) {
-       userService.deleteById(input.getId());
+    public ApiResult delete(Integer id) {
+       userService.deleteById(id);
        return ApiResult.ok("删除系统管理-用户基础信息表成功");
     }
 
@@ -188,15 +188,11 @@ public class SysUserController extends BaseController {
 
     @PostMapping(value = "/getById/{id}", produces = "application/json;charset=utf-8")
     @ApiOperation(value = "通过ID获取用户基础信息表信息", httpMethod = "POST", response = ApiResult.class)
-   public User getById() {
+   public  User getById(Integer id) {
         System.out.println("111");
-       User user = userService.getById(4);
+        UserServiceImpl userService1 = new UserServiceImpl();
+        User user = userService1.getById(id);
        return user;
     }
-
-
-
-
-
 
 }

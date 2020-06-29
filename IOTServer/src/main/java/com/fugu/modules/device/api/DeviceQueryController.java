@@ -3,6 +3,7 @@ package com.fugu.modules.device.api;
 import com.fugu.modules.common.api.BaseController;
 import com.fugu.modules.common.dto.output.ApiResult;
 import com.fugu.modules.common.entity.PageResult;
+import com.fugu.modules.device.entity.City;
 import com.fugu.modules.device.entity.Device;
 import com.fugu.modules.device.service.IDeviceQueryService;
 import io.swagger.annotations.Api;
@@ -13,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -54,21 +56,23 @@ public class DeviceQueryController extends BaseController {
     @RequestMapping("/options")
     @ApiOperation(value = "查询省份或直辖市 ", httpMethod = "POST", response = ApiResult.class)
     public ResponseEntity<List> findoptions(Integer cityclass , Integer pid){
+        List list = new ArrayList();
         if (cityclass==1){
             //查询省或直辖市并返回id
-            queryService.findprovince();
+            List<City> cityList = queryService.findprovince();
+            return ResponseEntity.ok(cityList);
         }
         if (cityclass==2){
             //将上面的id当做pid，根据pid查询对应的市并返回id
-            queryService.findcity(pid);
+            List<City> cityList2 = queryService.findcity(pid);
+            return ResponseEntity.ok(cityList2);
         }
         if (cityclass==3){
             //将上面的id当做pid，根据pid查询对应的县并返回id
-            queryService.findcity(pid);
-
+            List<City> cityList3 = queryService.findcity(pid);
+            return ResponseEntity.ok(cityList3);
         }
-        return null;
-       // return ResponseEntity.ok(list);
+        return ResponseEntity.notFound().build();
     }
 
 //    /**

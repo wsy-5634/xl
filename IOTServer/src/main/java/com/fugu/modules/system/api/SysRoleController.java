@@ -23,7 +23,7 @@ import java.util.List;
  *角色增删改查
  * @author: fugu
  * @description:
- * @date: 2019-08-20
+ * @date: 2020-06-20
  *
  */
 @RestController
@@ -33,12 +33,6 @@ public class SysRoleController extends BaseController {
 
     @Autowired
     IRoleService roleService;
-
-    public static void main(String[] args) {
-        SysUserController sysUserController = new SysUserController();
-        User user = sysUserController.getById();
-        System.out.println(user);
-    }
 
     @PostMapping(value = "/listPage", produces = "application/json;charset=utf-8")
     @ApiOperation(value = "获取-角色表 列表分页", httpMethod = "POST", response = ApiResult.class)

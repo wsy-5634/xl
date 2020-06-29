@@ -16,7 +16,7 @@ import java.util.List;
  * @author: fugu
  * @date: 2019-08-19
  */
-public interface IUserService extends IService<User> {
+public interface IUserService extends IService<User>{
 
     /**
      * 系统管理-用户基础信息表列表分页
@@ -78,4 +78,5 @@ public interface IUserService extends IService<User> {
     User getById(Integer id);
 
 
+    void deleteById(Integer id);
 }

@@ -105,8 +105,8 @@ public interface UserMapper extends BaseMapper<User>, ExampleMapper<User> {
 
     List<User> selectUsersByDept(@Param("filter") Integer deptId);
 
-//    @Select("SELECT * FROM t_sys_user WHERE id = #{id}")
-    User getById(@Param("filter") Integer id);
+    @Select("SELECT * FROM t_sys_user WHERE id = #{id}")
+    User getById(Integer id);
 
 
     //通过loginname查找对应密码

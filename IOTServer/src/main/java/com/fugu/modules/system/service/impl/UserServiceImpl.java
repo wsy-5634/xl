@@ -43,7 +43,7 @@ import java.util.Set;
  */
 @Service
 @Transactional
-public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IUserService {
+public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IUserService {  //extends ServiceImpl<UserMapper, User>
 
     @Autowired
     UserMapper userMapper;
@@ -251,6 +251,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         User user = userMapper.getById(id);
         System.out.println("123");
         return user;
+    }
+
+    @Override
+    public void deleteById(Integer id) {
+        userMapper.deleteById(id);
     }
 
 }
