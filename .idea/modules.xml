@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/Common/Common.iml" filepath="$PROJECT_DIR$/Common/Common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DeviceMonitor/DeviceMonitor.iml" filepath="$PROJECT_DIR$/DeviceMonitor/DeviceMonitor.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/FuguIOT.iml" filepath="$PROJECT_DIR$/.idea/FuguIOT.iml" />
+      <module fileurl="file://$PROJECT_DIR$/IOTServer/IOTServer.iml" filepath="$PROJECT_DIR$/IOTServer/IOTServer.iml" />
     </modules>
   </component>
 </project>
