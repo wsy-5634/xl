@@ -5,6 +5,7 @@ import com.fugu.modules.common.dto.output.ApiResult;
 import com.fugu.modules.common.entity.PageResult;
 import com.fugu.modules.device.entity.City;
 import com.fugu.modules.device.entity.Device;
+import com.fugu.modules.device.entity.DeviceBase;
 import com.fugu.modules.device.service.IDeviceQueryService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -36,13 +37,13 @@ public class DeviceQueryController extends BaseController {
      */
     @GetMapping("/find")
     @ApiOperation(value = "查询并分页 ", httpMethod = "POST", response = ApiResult.class)
-    ResponseEntity<PageResult<List>> queryDeviceBypage(@RequestParam(value = "equ_que") List list, //管理部门，地域，设备类型，选择日期，编号设备
+    ResponseEntity<PageResult<List<DeviceBase>>> queryDeviceBypage(@RequestParam(value = "equ_que") List list, //管理部门，地域，设备类型，选择日期，编号设备
             @RequestParam(value = "page", defaultValue = "1")Integer page,
             @RequestParam(value = "rows",defaultValue = "5")Integer rows
 //            @RequestParam(value = "sortBy",required = false)String sortBy,
 //            @RequestParam(value = "desc", required = false)Boolean desc
     ){
-        PageResult<List> result = queryService.queryDeviceByPage(list,page,rows);
+        PageResult<List<DeviceBase>> result = queryService.queryDeviceByPage(list,page,rows);
         //判断当前页数据是否为空
         if (CollectionUtils.isEmpty(result.getItems())){
             return ResponseEntity.notFound().build();   //返回404

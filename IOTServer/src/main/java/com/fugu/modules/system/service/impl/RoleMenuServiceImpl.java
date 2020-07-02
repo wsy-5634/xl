@@ -57,10 +57,10 @@ public class RoleMenuServiceImpl extends ServiceImpl<RoleMenuMapper, RoleMenu> i
 //修改角色菜单功能---分配菜单
     @Override
     public boolean update(Map<Integer,Integer> map) {
-//Map集合中 K-V 对应 角色菜单表中的 id 和 states ，勾选菜单选项就等于更改states
+//Map集合中 K-V 对应 角色菜单表中的 id 和 status ，勾选菜单选项就等于更改status
        for (Integer key : map.keySet()){
-           //通过ID修改states
-           roleMenuMapper.updatestates(key,map.get(key));
+           //通过ID修改status
+           roleMenuMapper.updatestatus(key,map.get(key));
        }
        return true;
     }

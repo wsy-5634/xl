@@ -34,5 +34,5 @@ public class RoleQueryPara extends BasePageQuery {
     private String addtime;
 
     @ApiModelProperty(value = "是否启用该菜单")
-    private Integer states;
+    private Integer status;
 }

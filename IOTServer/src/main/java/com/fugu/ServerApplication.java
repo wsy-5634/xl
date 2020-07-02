@@ -12,7 +12,6 @@ import tk.mybatis.spring.annotation.MapperScan;
 @EnableConfigurationProperties({MyProperties.class})
 @EnableTransactionManagement
 @SpringBootApplication
-@MapperScan("com.fugu.modules.system.mapper")
 public class ServerApplication {
 
 //    /**

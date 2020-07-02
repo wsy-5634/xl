@@ -1,6 +1,7 @@
 package com.fugu.modules.device.mapper;
 
 import com.fugu.modules.device.entity.City;
+import io.swagger.models.auth.In;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import tk.mybatis.mapper.common.Mapper;
@@ -14,6 +15,9 @@ public interface CityMapper extends Mapper<City> {
 
     @Select("SELECT cityname FROM t_city WHERE pid = #{pid}")
     List<City> findcity(Integer pid);
+
+    @Select("select * from t_city where id = #{id}")
+    City selectByID(Integer id);
 
     /**
      * 列表分页
@@ -39,4 +43,7 @@ public interface CityMapper extends Mapper<City> {
     City findByDid(@Param("id") Integer id);
 
 
+
+    @Select("select id from t_city where name =  #{name} and pid = #{pid}")
+    Integer selectCityByNameAndPid(@Param("name") String name , @Param("pid") Integer pid);
 }

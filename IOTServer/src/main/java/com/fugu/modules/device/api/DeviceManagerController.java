@@ -49,7 +49,7 @@ import java.util.List;
 
     /**
      * 修改设备信息
-     * @Param devicebase:base表对应的字段：number,name,states,options,azposition
+     * @Param devicebase:base表对应的字段：number,name,status,options,azposition
      * @Param department:部门表对应的字段：bmmgt,company
      * @Param number:修改前的设备编号
      */

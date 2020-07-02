@@ -1,5 +1,6 @@
 package com.fugu.modules.device.mapper;
 
+import com.fugu.modules.device.entity.City;
 import com.fugu.modules.device.entity.DeviceBase;
 import com.fugu.modules.system.entity.User;
 import org.apache.ibatis.annotations.Delete;
@@ -16,7 +17,6 @@ public interface DeviceBaseMapper extends  Mapper<DeviceBase> {
     //通过ID查询设备信息
     DeviceBase findByDid(@Param("id") Integer id);
 
-
     //统计该数据是否在数据库中有多少条
     @Select("SELECT COUNT(*) FROM t_dev_base WHERE number = #{number}")
     int countNumber(String number);
@@ -25,6 +25,19 @@ public interface DeviceBaseMapper extends  Mapper<DeviceBase> {
     @Select("SELECT * FROM t_dev_base WHERE number =#{number}")
     DeviceBase findByNumber(String number);
 
+    //通过设备编号查询设备ID
+    @Select("SELECT id FROM t_dev_base WHERE number =#{number}")
+    Set findidByNumber(String number);
+
+
+    //通过设备种类ID查询对应的设备ID
+    @Select("SELECT id FROM t_dev_base WHERE d_typeid = #{d_typeid}")
+    Set findidBytypeid(Integer d_typeid);
+
+    //通过部门ID查询对应的设备ID
+    @Select("SELECT id FROM t_dev_base WHERE d_typeid = #{d_typeid}")
+    Set findidBybmmgtid(Integer d_typeid);
+
     //批量删除
     @Delete("DELETE FROM  t_dev_base  WHERE id IN" +
             "<foreach collection=\"list\" item=\"ids\" open=\"(\" separator=\",\" close=\")\">" +
@@ -32,8 +45,21 @@ public interface DeviceBaseMapper extends  Mapper<DeviceBase> {
             "</foreach>")
     void deleteBatches(List ids);
 
-    @Select("SELECT * FROM t_dev_base  WHERE qstime>= #{qstime} AND qztime<= #{qztime}")
-    Set<DeviceBase> selectByTime(Date qztime , Date qstime );
+
+    //根据有效期开始结束时间查询设备ID
+    @Select("SELECT id FROM t_dev_base  WHERE qstime>= #{qstime} AND qztime<= #{qztime}")
+    Set selectByTime(Date qztime , Date qstime );
+
+    //根据设备ID集合批量查询设备信息
+//    @Select("SELECT * from t_dev_base\n" +
+//            "WHERE id in\n" +
+//            "<foreach collection=\"Set\" item=\"id\" open=\"(\" close=\")\" separator=\",\">\n" +
+//            "#{id}\n" +
+//            "</foreach>")
+    List<DeviceBase> selectByids(Set Setid);
+
+    //根据省名模糊查询 对应的设备ID
+    List<Integer> selectIDByoptions(String options);
 
     /**
      * 列表分页

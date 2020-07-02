@@ -4,13 +4,13 @@
 
 	<!-- 通用查询映射结果 -->
 	<resultMap id="BaseResultMap" type="com.fugu.modules.system.entity.Menu">
-		<id column="id" property="id" />
+		<id column="menu_id" property="menu_id" />
 		<result column="parentId" property="parentId" />
 		<result column="url" property="url" />
 		<result column="title" property="title" />
 		<result column="level" property="level" />
 		<result column="sortNo" property="sortNo" />
-		<result column="states" property="states" />
+		<result column="status" property="status" />
 		<result column="type" property="type" />
 		<result column="resources" property="resources" />
 
@@ -24,9 +24,9 @@
        WHERE
            1 = 1
        <if test="filter.id!=null and filter.id!=''">
-          AND	id= #{filter.id}
+          AND	menu_id= #{filter.id}
        </if>
-       ORDER BY id DESC
+       ORDER BY menu_id DESC
     </select>
 
     <select id="findByResources" resultType="com.fugu.modules.system.entity.Menu">
@@ -42,7 +42,7 @@
 
     <select id="selectMenuByRoleId" resultType="com.fugu.modules.system.entity.Menu">
 		SELECT sm.* FROM t_sys_menu sm
-	    LEFT JOIN t_sys_role_menu srm ON sm.id = srm.menu_id
+	    LEFT JOIN t_sys_role_menu srm ON sm.menu_id = srm.menu_id
 	    WHERE srm.role_id = #{roleId}
 	</select>
 

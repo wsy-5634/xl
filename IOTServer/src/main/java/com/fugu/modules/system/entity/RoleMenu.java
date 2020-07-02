@@ -44,8 +44,8 @@ public class RoleMenu extends BaseEntity {
 	private Integer menu_id;
 
 	@ApiModelProperty(value = "是否启用该菜单")
-	@TableField("states")
-	private Integer states;
+	@TableField("status")
+	private Integer status;
 
 	@Override
 	protected Serializable pkVal() {

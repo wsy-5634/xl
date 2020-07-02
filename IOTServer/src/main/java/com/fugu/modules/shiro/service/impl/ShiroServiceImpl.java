@@ -3,6 +3,7 @@ package com.fugu.modules.shiro.service.impl;
 import com.fugu.modules.common.exception.MyException;
 import com.fugu.modules.system.mapper.MenuMapper;
 import com.fugu.modules.system.mapper.RoleMapper;
+import com.fugu.modules.system.mapper.RoleMenuMapper;
 import com.fugu.modules.system.mapper.UserMapper;
 import com.fugu.modules.shiro.service.ShiroService;
 import com.fugu.modules.shiro.utils.ShiroUtils;
@@ -72,12 +73,17 @@ public class ShiroServiceImpl implements ShiroService {
        // 放行 end ----------------------------------------------------------
 
        // 从数据库或缓存中查取出来的url与resources对应则不会被拦截 放行
-       List<Menu> permissionList = menuMapper.selectList( null );
+        //获取菜单结合
+       List<Menu> permissionList = menuMapper.selectMenus(null);
+        System.out.println(permissionList);
        if ( !CollectionUtils.isEmpty( permissionList ) ) {
           permissionList.forEach( e -> {    //e为菜单
+              System.out.println(e.getMenu_id());
               if ( StringUtils.isNotBlank( e.getUrl() ) ) {
                  // 根据url查询相关联的角色名,拼接自定义的角色权限
-                 List<Role> roleList = roleMapper.selectRoleByMenuId( e.getId() );//从菜单中拿到对应的角色集合
+                  System.out.println(e.getMenu_id());
+                 List<Role> roleList = roleMapper.selectRoleByMenuId( e.getMenu_id() );//从菜单中拿到对应的角色集合
+                  System.out.println(roleList.toString());
                  StringJoiner zqRoles = new StringJoiner(",", "zqRoles[", "]"); //zqRoles 为角色权限过滤器
                  if ( !CollectionUtils.isEmpty( roleList ) ){
                     roleList.forEach( f -> {

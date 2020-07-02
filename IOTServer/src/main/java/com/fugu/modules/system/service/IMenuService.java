@@ -21,7 +21,7 @@ public interface IMenuService extends IService<Menu> {
      * @param :
      * @return: java.util.List<com.fugu.modules.system.entity.Menu>
      */
-    List<Menu> listTreeMenu();
+//    List<Menu> listTreeMenu();
 
     /**
      * 系统管理-菜单表 列表分页
@@ -30,7 +30,7 @@ public interface IMenuService extends IService<Menu> {
      * @param filter
      * @return
      */
-    void listPage(Page<Menu> page, MenuQueryPara filter);
+//    void listPage(Page<Menu> page, MenuQueryPara filter);
 
     /**
      * 保存系统管理-菜单表
@@ -41,16 +41,13 @@ public interface IMenuService extends IService<Menu> {
 
     /**
      * 系统管理-菜单表 列表
-     *
-     * @param filter
      * @return
      */
-    List<Menu> list(MenuQueryPara filter);
+    List<Menu> list();
 
     /**
      * 通过父ID查找子菜单（用于角色分配菜单）
-     * @param id
      * @return
      */
-    List<Menu> selectByPid(Integer id);
+    List<Menu> selectByPid(Integer menu_id);
 }

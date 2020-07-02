@@ -5,6 +5,7 @@ import com.fugu.modules.system.dto.input.MenuQueryPara;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.baomidou.mybatisplus.plugins.pagination.Pagination;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
@@ -18,20 +19,24 @@ public interface MenuMapper extends BaseMapper<Menu> {
 
     /**
      * 列表分页
-     *
-     * @param page
-     * @param filter
      * @return
      */
-    List<Menu> selectMenus(Pagination page, @Param("filter") MenuQueryPara filter);
+//    @Select("select * from t_sys_menu")
+//   List<Menu> selectMenus(Pagination page);     //  , @Param("filter") MenuQueryPara filter);
 
-    /**
-     * 列表
-     *
-     * @param filter
-     * @return
-     */
-    List<Menu> selectMenus(@Param("filter") MenuQueryPara filter);
+     @Select("select * from t_sys_menu")
+     List<Menu> selectMenus();
+
+//    @Select("select * from t_sys_menu ")
+     List<Menu> selectMenus(@Param("filter") MenuQueryPara filter);
+
+//    /**
+//     * 列表
+//     *
+//     * @param filter
+//     * @return
+//     */
+//    List<Menu> selectMenus(@Param("filter") MenuQueryPara filter);
 
     /**
      * 通过菜单编码获取信息

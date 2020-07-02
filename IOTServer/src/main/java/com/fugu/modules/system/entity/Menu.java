@@ -28,12 +28,12 @@ public class Menu  {
     private static final long serialVersionUID = 1L;
 
 	@ApiModelProperty(value = "主键")
-	@TableId(value="id", type= IdType.AUTO)
-	private Integer id;
+	@TableId(value="menu_id", type= IdType.AUTO)
+	private Integer menu_id;
 
 	@ApiModelProperty(value = "上级菜单ID")
 	@TableField("parentId")
-	private String parentId;
+	private Integer parentId;
 
 	@ApiModelProperty(value = "url")
 	@TableField("url")
@@ -66,9 +66,7 @@ public class Menu  {
 	private String type;
 
 	@ApiModelProperty(value = "是否开启")
-	@TableField("states")
-	private String states;
-
-
+	@TableField("status")
+	private Integer status;
 
 }

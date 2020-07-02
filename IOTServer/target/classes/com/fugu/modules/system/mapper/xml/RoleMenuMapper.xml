@@ -7,7 +7,7 @@
 		<id column="id" property="id" />
 		<result column="role_id" property="role_id" />
 		<result column="menu_id" property="menu_id" />
-        <result column="states" property="states" />
+        <result column="status" property="status" />
        <result column="gmt_create" property="gmtCreate" />
        <result column="gmt_modified" property="gmtModified" />
 	</resultMap>
@@ -28,6 +28,14 @@
        </if>
        ORDER BY id DESC
     </select>
+
+    <!--<select id="selectRoleByMenuId" resultMap="BaseResultMap">-->
+        <!--select  role_id  from  t_sys_role_menu-->
+        <!--where  status = 1-->
+        <!--<if test="filter.menu_id!=null and filter.menu_id!=''">-->
+          <!--and menu_id = #{menu_id}-->
+        <!--</if>-->
+    <!--</select>-->
 
     <delete id="deleteByRoleId">
        DELETE FROM t_sys_role_menu

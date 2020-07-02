@@ -5,25 +5,19 @@ import com.fugu.modules.shiro.ShiroSessionIdGenerator;
 import com.fugu.modules.shiro.filter.MyPermissionsAuthorizationFilter;
 import com.fugu.modules.shiro.filter.MyRolesAuthorizationFilter;
 import com.fugu.modules.shiro.service.impl.ShiroServiceImpl;
-import com.fugu.modules.system.util.MD5Util;
 import com.fugu.modules.shiro.utils.SHA256Util;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
-import org.apache.shiro.codec.Base64;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
-import org.apache.shiro.web.mgt.CookieRememberMeManager;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.apache.shiro.web.servlet.SimpleCookie;
 import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
 import org.crazycake.shiro.RedisSessionDAO;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.util.Base64Utils;
 
 import javax.servlet.Filter;
-import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -87,8 +81,6 @@ public class ShiroConfig {
        //过滤token
 //       filtersMap.put( "token", new TokenCheckFilter() );
        shiroFilterFactoryBean.setFilters(filtersMap);
-
-        //拦截器.拦截具体url已放置shiroservice里处理
 
         // 登录的路径: 如果你没有登录则会跳到这个页面中 - 如果没有设置值则会默认跳转到工程根目录下的"/login.jsp"页面 或 "/login" 映射
         shiroFilterFactoryBean.setLoginUrl("/api/auth/unLogin");

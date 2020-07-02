@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.List;
 
 /**
  * <p>  设备登记-设备注册表  </p>
@@ -44,8 +45,8 @@ public class DeviceBase extends BaseEntity {
 //    private String company;
 
     @ApiModelProperty(value = "设备状态")
-    @TableField("state")
-    private Integer state;
+    @TableField("statu")
+    private Integer statu;
 
 //    @ApiModelProperty(value = "安装位置")
 //    private String azposition;
@@ -61,7 +62,7 @@ public class DeviceBase extends BaseEntity {
 
     @ApiModelProperty(value = "所在地域")
     @TableField("options")
-    private String options;
+    private List options;
 
     @ApiModelProperty(value = "安装位置")
     @TableField("azposition")

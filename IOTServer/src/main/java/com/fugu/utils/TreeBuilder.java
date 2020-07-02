@@ -72,7 +72,7 @@ public class TreeBuilder {
      */
     private static MenuTreeNode findMenuChildren(MenuTreeNode treeNode, List<MenuTreeNode> treeNodes) {
        for (MenuTreeNode it : treeNodes) {
-          if (String.valueOf( treeNode.getId() ).equals(it.getParentId())) {
+          if (String.valueOf( treeNode.getMenu_id() ).equals(it.getParentId())) {
               treeNode.getChildren().add(findMenuChildren(it, treeNodes));
           }
        }

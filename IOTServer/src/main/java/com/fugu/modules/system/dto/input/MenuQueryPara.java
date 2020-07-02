@@ -16,10 +16,10 @@ import lombok.Data;
 @ApiModel(description = "系统管理-菜单表 查询参数")
 public class MenuQueryPara extends BasePageQuery{
     @ApiModelProperty(value = "id")
-    private Integer id;
+    private Integer menu_id;
 
     @ApiModelProperty(value = "上级菜单ID")
-    private String parentId;
+    private Integer parentId;
 
     @ApiModelProperty(value = "url")
     private String url;
@@ -42,7 +42,7 @@ public class MenuQueryPara extends BasePageQuery{
      * 菜单图标
      */
     @ApiModelProperty(value = "是否开启")
-    private String 是否开启;
+    private Integer status;
 
     @ApiModelProperty(value = "类型 menu、button")
     private String type;

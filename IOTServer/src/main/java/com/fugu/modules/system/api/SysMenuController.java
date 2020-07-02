@@ -70,16 +70,16 @@ public class SysMenuController extends BaseController {
     public ApiResult save(@RequestBody @Validated Menu input) {
        Integer id = menuService.save(input);
        // 更新权限
-       shiroService.updatePermission(shiroFilterFactoryBean, null, false);
+//       shiroService.updatePermission(shiroFilterFactoryBean, null, false);
        return ApiResult.ok("保存菜单成功", id);
     }
 
     @PostMapping(value = "/delete", produces = "application/json;charset=utf-8")
     @ApiOperation(value = "删除菜单", httpMethod = "POST", response = ApiResult.class)
     public ApiResult delete(@RequestBody MenuQueryPara input) {
-       menuService.deleteById(input.getId());
+       menuService.deleteById(input.getMenu_id());
        // 更新权限
-       shiroService.updatePermission(shiroFilterFactoryBean, null, false);
+//       shiroService.updatePermission(shiroFilterFactoryBean, null, false);
        return ApiResult.ok("删除菜单成功");
     }
 
@@ -89,28 +89,28 @@ public class SysMenuController extends BaseController {
     @ApiOperation(value = "获取系统管理-菜单表 列表分页", httpMethod = "POST", response = ApiResult.class)
     public ApiResult listPage(@RequestBody MenuQueryPara filter) {
        Page<Menu> page = new Page<>(filter.getPage(),filter.getLimit());
-       menuService.listPage(page, filter);
+//       menuService.listPage(page, filter);
        return ApiResult.ok("获取系统管理-菜单表 列表分页成功", page);
     }
 
-    @PostMapping(value = "/list", produces = "application/json;charset=utf-8")
-    @ApiOperation(value = "获取系统管理-菜单表 列表", httpMethod = "POST", response = ApiResult.class)
-    public ApiResult list(@RequestBody MenuQueryPara filter) {
-       List<Menu> result = menuService.list(filter);
-       return ApiResult.ok("获取系统管理-菜单表 列表成功",result);
-    }
+//    @PostMapping(value = "/list", produces = "application/json;charset=utf-8")
+//    @ApiOperation(value = "获取系统管理-菜单表 列表", httpMethod = "POST", response = ApiResult.class)
+//    public ApiResult list(@RequestBody MenuQueryPara filter) {
+//       List<Menu> result = menuService.list();
+//       return ApiResult.ok("获取系统管理-菜单表 列表成功",result);
+//    }
 
     @PostMapping(value = "/getById", produces = "application/json;charset=utf-8")
     @ApiOperation(value = "获取系统管理-菜单表 信息", httpMethod = "POST", response = ApiResult.class)
     public ApiResult getById(@RequestBody MenuQueryPara input) {
-       Menu entity = menuService.selectById(input.getId());
+       Menu entity = menuService.selectById(input.getMenu_id());
        return ApiResult.ok("获取系统管理-菜单表 信息成功", entity);
     }
 
     @PostMapping(value = "/getByPid", produces = "application/json;charset=utf-8")
     @ApiOperation(value = "根据父ID获取子菜单表信息(用于角色分配菜单)", httpMethod = "POST", response = ApiResult.class)
-    public ApiResult getByPid(@RequestParam(value = "id" ,defaultValue = "1")Integer id) {
-        List<Menu> list = menuService.selectByPid(id);
+    public ApiResult getByPid(@RequestParam(value = "menu_id" ,defaultValue = "1")Integer menu_id) {
+        List<Menu> list = menuService.selectByPid(menu_id);
         return ApiResult.ok("获取分配菜单表 信息成功", list);
     }
 

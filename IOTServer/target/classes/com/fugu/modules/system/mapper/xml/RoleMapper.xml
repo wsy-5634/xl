@@ -9,7 +9,7 @@
         <result column="rolename" property="rolename" />
         <result column="describe" property="describe" />
         <result column="userNum" property="userNum" />
-        <!--<result column="states" property="states" />-->
+        <!--<result column="status" property="status" />-->
         <result column="addtime" property="addtime" />
 	</resultMap>
 
@@ -46,10 +46,18 @@
        WHERE sur.user_id = #{user_id}
     </select>
 
+    <!--<select id="selectRoleByMenuId" resultType="com.fugu.modules.system.entity.Role">-->
+       <!--SELECT sr.* FROM t_sys_role sr-->
+       <!--LEFT JOIN t_sys_role_menu srm ON sr.id=srm.role_id-->
+       <!--WHERE srm.menu_id = #{menu_id}-->
+    <!--</select>-->
     <select id="selectRoleByMenuId" resultType="com.fugu.modules.system.entity.Role">
-       SELECT sr.* FROM t_sys_role sr
-       LEFT JOIN t_sys_role_menu srm ON sr.id=srm.role_id
-       WHERE srm.menu_id = #{menu_id}
+        SELECT r.* FROM  t_sys_role r
+        LEFT JOIN t_sys_role_menu rm on r.id=rm.role_id
+        where rm.status = 1
+        <if test="menu_id!=null and menu_id!=''">
+            and menu_id = #{menu_id}
+        </if>
     </select>
 
 </mapper>

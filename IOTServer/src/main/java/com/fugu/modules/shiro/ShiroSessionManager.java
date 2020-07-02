@@ -16,7 +16,7 @@ import java.io.Serializable;
  *
  * @description :
  * @author : fugu
- * @date : 2019/8/23 15:55
+ * @date : 2020/6/29
  */
 @Slf4j
 public class ShiroSessionManager extends DefaultWebSessionManager {

@@ -14,7 +14,7 @@ public interface IDeviceQueryService {
      * 根据输入条件筛选查找对应的设备并分页
      * @return
      */
-    public PageResult<List> queryDeviceByPage(List list ,Integer page , Integer rows);
+    public PageResult<List<DeviceBase>> queryDeviceByPage(List list ,Integer page , Integer rows);
 
     /**
      * 查询设备状态

@@ -4,6 +4,7 @@ package com.fugu.modules.shiro;
 import com.fugu.modules.shiro.utils.SpringUtil;
 import com.fugu.modules.system.mapper.MenuMapper;
 import com.fugu.modules.system.mapper.RoleMapper;
+import com.fugu.modules.system.mapper.RoleMenuMapper;
 import com.fugu.modules.system.mapper.UserMapper;
 import com.fugu.modules.shiro.utils.ShiroUtils;
 import com.fugu.modules.system.entity.Menu;
@@ -28,7 +29,7 @@ import java.util.Set;
  *
  * @description :
  * @author : fugu
- * @date : 2019/8/23 15:20
+ * @date : 2020/6/29
  */
 @Slf4j
 public class ShiroRealm extends AuthorizingRealm {
@@ -39,6 +40,8 @@ public class ShiroRealm extends AuthorizingRealm {
     private MenuMapper menuMapper;
     @Autowired
     private RoleMapper roleMapper;
+    @Autowired
+    private RoleMenuMapper roleMenuMapper;
 
     @Override
     public String getName() {

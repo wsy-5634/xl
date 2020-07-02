@@ -32,7 +32,6 @@ public class Role extends BaseEntity {
 	@ApiModelProperty(value = "角色编码")
 	@TableField("code")
 	@NotBlank(message = "角色编码不能为空")
-	@Length(max = 20, message = "角色编码不能超过20个字符")
 	private String code;
 
 	@ApiModelProperty(value = "角色名称")
@@ -48,9 +47,9 @@ public class Role extends BaseEntity {
 	@TableField("userNum")
 	private String userNum;
 
-//	@ApiModelProperty(value = "是否启用")
-//	@TableField("states")
-//	private Integer states;
+	@ApiModelProperty(value = "是否启用")
+	@TableField("status")
+	private Integer status;
 
 	@ApiModelProperty(value = "添加时间")
 	@TableField("addtime")

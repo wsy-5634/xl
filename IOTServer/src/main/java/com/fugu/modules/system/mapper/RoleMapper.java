@@ -13,7 +13,6 @@ import java.util.List;
 
 /**
  * <p> 系统管理-角色表  Mapper 接口 </p>
- *
  * @author : fugu
  * @date : 2019-08-20
  */
@@ -46,10 +45,10 @@ public interface RoleMapper extends BaseMapper<Role>, ExampleMapper<Role> {
 
     /**
      * 通过菜单ID查询角色集合
+     *
      * @param menu_id:
      * @return: java.util.List<Role>
      */
-    @Select("SELECT role_id FROM t_sys_role_menu WHERE menu_id = #{menu_id} AND states ='1'")
-    List<Role> selectRoleByMenuId(Integer menu_id);
+    List<Role> selectRoleByMenuId(@Param("menu_id") Integer menu_id);
 
 }

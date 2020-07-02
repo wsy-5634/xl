@@ -25,35 +25,36 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements IM
     @Autowired
     MenuMapper menuMapper;
 
+//    @Override
+//    public List <Menu> listTreeMenu() {
+//       return menuMapper.selectList(null);
+//        return  null;
+//    }
+
+//    @Override
+//    public void listPage(Page<Menu> page, MenuQueryPara filter) {
+//       page.setRecords(menuMapper.selectMenus(page ));
+//    }
+
     @Override
-    public List <Menu> listTreeMenu() {
-       return menuMapper.selectList(null);
+    public List<Menu> list() {
+       return menuMapper.selectMenus(null);
     }
 
     @Override
-    public void listPage(Page<Menu> page, MenuQueryPara filter) {
-       page.setRecords(menuMapper.selectMenus(page, filter));
-    }
-
-    @Override
-    public List<Menu> list(MenuQueryPara filter) {
-       return menuMapper.selectMenus(filter);
-    }
-
-    @Override
-    public List<Menu> selectByPid(Integer id) {
-        List<Menu> menus = menuMapper.selectByPid(id);
+    public List<Menu> selectByPid(Integer Menu_id) {
+        List<Menu> menus = menuMapper.selectByPid(Menu_id);
         return menus;
     }
 
     @Override
     public Integer save(Menu para) {
-       if (para.getId()!=null) {
+       if (para.getMenu_id()!=null) {
           menuMapper.updateById(para);
        } else {
           menuMapper.insert(para);
        }
-       return para.getId();
+       return para.getMenu_id();
     }
 
 }
