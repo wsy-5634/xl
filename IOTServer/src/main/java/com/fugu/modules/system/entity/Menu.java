@@ -33,7 +33,7 @@ public class Menu  {
 
 	@ApiModelProperty(value = "上级菜单ID")
 	@TableField("parentId")
-	private Integer parentId;
+	private String parentId;
 
 	@ApiModelProperty(value = "url")
 	@TableField("url")
@@ -68,5 +68,7 @@ public class Menu  {
 	@ApiModelProperty(value = "是否开启")
 	@TableField("status")
 	private Integer status;
+
+
 
 }

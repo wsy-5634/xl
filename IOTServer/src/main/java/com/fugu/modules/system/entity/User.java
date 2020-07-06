@@ -109,12 +109,10 @@ public class User extends BaseEntity<User> {
 	@TableField("flag")
 	private String flag;
 
-	@ApiModelProperty(value = "是否启用")
-	@TableField("status")
-	@NotBlank(message = "是否启用不能为空")
-	private Integer status;
-
-
+//	@ApiModelProperty(value = "是否启用")
+//	@TableField("status")
+//	@NotBlank(message = "是否启用不能为空")
+//	private String status;
     /**
      * 盐值
      */

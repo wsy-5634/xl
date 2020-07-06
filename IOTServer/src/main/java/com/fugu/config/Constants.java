@@ -37,7 +37,7 @@ public class Constants {
 
     public static final String UBAN_REQUEST_GET_ACCESSTOKEN_URL = "https://openapi.e.uban360.com/platform/api/token/get";
 
-   public static final String UBAN_REQUEST_LOGIN_URL = "https://openapi.e.uban360.com/platform/api/auth/login";
+    public static final String UBAN_REQUEST_LOGIN_URL = "https://openapi.e.uban360.com/platform/api/auth/login";
 
     public static final String FILE_BASE_PATH = "/usr/content/files/";
 

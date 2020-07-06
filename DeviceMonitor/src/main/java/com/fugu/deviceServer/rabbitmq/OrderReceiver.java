@@ -27,7 +27,6 @@ public class OrderReceiver {
         System.out.println("---------收到消息，开始消费---------");
         System.out.println("订单ID："+order.getId());
 
-
         /**
          * Delivery Tag 用来标识信道中投递的消息。RabbitMQ 推送消息给 Consumer 时，会附带一个 Delivery Tag，
          * 以便 Consumer 可以在消息确认时告诉 RabbitMQ 到底是哪条消息被确认了。
@@ -44,4 +43,5 @@ public class OrderReceiver {
         //ACK,确认一条消息已经被消费
         channel.basicAck(deliveryTag, multiple);
     }
+
 }

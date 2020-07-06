@@ -1,6 +1,6 @@
 # 配置端口
 server:
-  port: 8081
+  port: 8080
   servlet:
     #    context-path: /api
     application-display-name: IOTServer

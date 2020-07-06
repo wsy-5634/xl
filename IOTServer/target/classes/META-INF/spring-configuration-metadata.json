@@ -18,6 +18,62 @@
       "sourceMethod": "getUpload()"
     }
   ],
-  "properties": [],
+  "properties": [
+    {
+      "name": "fugu.swagger.contact-email",
+      "type": "java.lang.String",
+      "sourceType": "com.fugu.config.MyProperties$Swagger"
+    },
+    {
+      "name": "fugu.swagger.contact-name",
+      "type": "java.lang.String",
+      "sourceType": "com.fugu.config.MyProperties$Swagger"
+    },
+    {
+      "name": "fugu.swagger.contact-url",
+      "type": "java.lang.String",
+      "sourceType": "com.fugu.config.MyProperties$Swagger"
+    },
+    {
+      "name": "fugu.swagger.description",
+      "type": "java.lang.String",
+      "sourceType": "com.fugu.config.MyProperties$Swagger"
+    },
+    {
+      "name": "fugu.swagger.license",
+      "type": "java.lang.String",
+      "sourceType": "com.fugu.config.MyProperties$Swagger"
+    },
+    {
+      "name": "fugu.swagger.license-url",
+      "type": "java.lang.String",
+      "sourceType": "com.fugu.config.MyProperties$Swagger"
+    },
+    {
+      "name": "fugu.swagger.terms-of-service-url",
+      "type": "java.lang.String",
+      "sourceType": "com.fugu.config.MyProperties$Swagger"
+    },
+    {
+      "name": "fugu.swagger.title",
+      "type": "java.lang.String",
+      "sourceType": "com.fugu.config.MyProperties$Swagger"
+    },
+    {
+      "name": "fugu.swagger.version",
+      "type": "java.lang.String",
+      "sourceType": "com.fugu.config.MyProperties$Swagger"
+    },
+    {
+      "name": "fugu.upload.static-domain",
+      "type": "java.lang.String",
+      "sourceType": "com.fugu.config.MyProperties$Upload"
+    },
+    {
+      "name": "fugu.upload.upload-path",
+      "type": "java.lang.String",
+      "sourceType": "com.fugu.config.MyProperties$Upload"
+    }
+  ],
   "hints": []
 }
